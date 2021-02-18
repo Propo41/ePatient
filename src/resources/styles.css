@@ -1,0 +1,22 @@
+/* this should be here. otherwise wouldn't work */
+@font-face {
+    font-family: 'redressed';
+    src: url('fonts/redressed.ttf');
+}
+
+* {
+    -fx-color-blue: #2784FF;
+    -fx-color-green: #0ACF83;
+    -fx-color-yellow: #FFC614;
+    -fx-color-orange: #FF7E62;
+    -fx-color-ash: #F9FAFF;
+    -fx-color-ash-background: #E5E5E5;
+    -fx-color-white: #FFFFFF;
+
+}
+
+
+.title-text {
+    -fx-font-family: 'redressed';
+    -fx-text-fill: -fx-color-yellow;
+}
