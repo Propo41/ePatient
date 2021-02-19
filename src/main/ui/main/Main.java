@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import resources.database.ConnectMSSQL;
 
 public class Main extends Application {
 
@@ -16,10 +17,15 @@ public class Main extends Application {
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        ConnectMSSQL connectMSSQL = new ConnectMSSQL();
+        connectMSSQL.connectDB();
+
     }
 
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }
