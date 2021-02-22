@@ -14,6 +14,7 @@ public class ConnectMSSQL {
                     "sa",
                     "123456");
             System.out.println("DB NAME IS: " + connection.getMetaData().getDatabaseProductName());
+
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("Select FirstName FROM Customer");
 
