@@ -61,7 +61,6 @@
     -fx-background-color: -fx-color-blue;
     -fx-background-radius: 10;
     -fx-font-size: 20 ;
-
 }
 /* green button */
 .button-secondary {
@@ -80,9 +79,7 @@
     -fx-background-color:  -fx-color-green;
     -fx-background-radius: 10;
     -fx-font-size: 20 ;
-
 }
-
 
 .text-field-normal{
     -fx-background-color:-fx-color-ash-background;
@@ -110,4 +107,13 @@
     -fx-text-fill: -fx-color-ash-dark;
     -fx-padding: 10;
     /*make sure to add padding from the fxml file.*/
+}
+
+.pane-round-corners{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-border-color: white;
+    -fx-background-color: #F9FAFF;
+    -fx-effect: dropshadow(three-pass-box, #1E65C2, 3.0, 3.0, 3.0, 3.0); //north
 }
