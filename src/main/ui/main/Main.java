@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Hello World");
-        Scene scene = new Scene(root, 1200, 768);
+        Scene scene = new Scene(root, 1200, 857); // ratio is 1.4:1
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
