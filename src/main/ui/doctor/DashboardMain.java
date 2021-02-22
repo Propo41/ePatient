@@ -17,12 +17,9 @@ public class DashboardMain extends Application {
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(857);
-        primaryStage.setMaxHeight(1200);
-
+        primaryStage.setMinWidth(1200);
         primaryStage.show();
 
-        ConnectMSSQL connectMSSQL = new ConnectMSSQL();
-        connectMSSQL.connectDB();
 
     }
 

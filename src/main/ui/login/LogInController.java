@@ -19,9 +19,9 @@ public class LogInController {
     @FXML
     void loginClicked(ActionEvent event) {
         System.out.println("Login Type " + loginType);
-        ConnectMSSQL connectMSSQL = new ConnectMSSQL();
+        ConnectMSSQL connectMSSQL = new ConnectMSSQL(userId.getText(), userPassword.getText(), loginType);
         System.out.println(userId.getText() + " " +userPassword.getText());
-        connectMSSQL.logInForm(userId.getText(),loginType ,userPassword.getText());
+        connectMSSQL.logInForm();
     }
 
     public void setLoginType(String loginType){
