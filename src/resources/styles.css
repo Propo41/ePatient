@@ -82,3 +82,32 @@
     -fx-font-size: 20 ;
 
 }
+
+
+.text-field-normal{
+    -fx-background-color:-fx-color-ash-background;
+    -fx-background-radius: 10;
+    -fx-font-size: 15;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+    -fx-padding: 10;
+}
+
+.text-field-normal:focused{
+    -fx-border-color: -fx-color-blue;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.5;
+}
+
+.text-field-icon{
+    -fx-background-image:url('http://icons.iconarchive.com/icons/rockettheme/halloween/32/pumpkin-icon.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-color:-fx-color-ash-background;
+    -fx-background-radius: 10;
+    -fx-font-size: 15;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+    -fx-padding: 10;
+    /*make sure to add padding from the fxml file.*/
+}

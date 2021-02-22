@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import com.jfoenix.controls.*?>
@@ -12,38 +14,57 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" styleClass="title-text" stylesheets="@../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton layoutX="628.0" layoutY="393.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-secondary" text="DOCTOR" textAlignment="CENTER">
+      <JFXButton layoutX="622.0" layoutY="594.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-secondary" text="DOCTOR" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Bold" />
          </font>
       </JFXButton>
 
-      <JFXButton layoutX="628.0" layoutY="506.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-tertiary" text="DOCTOR" textAlignment="CENTER">
+      <JFXButton layoutX="622.0" layoutY="707.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-tertiary" text="DOCTOR" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Black" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="628.0" layoutY="276.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-primary" text="DOCTOR" textAlignment="CENTER">
+      <JFXButton layoutX="622.0" layoutY="477.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-primary" text="DOCTOR" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Black" />
          </font>
       </JFXButton>
-      <Label layoutX="787.0" layoutY="118.0" styleClass="title-text" text="H1 Headline">
+      <Label layoutX="761.0" layoutY="7.0" styleClass="title-text" text="H1 Headline">
          <font>
             <Font />
          </font>
       </Label>
 
-      <Label layoutX="787.0" layoutY="118.0" styleClass="title-text-dialog" text="Dialog Headline 1">
+      <Label layoutX="712.0" layoutY="117.0" styleClass="title-text-dialog" text="Dialog Headline 1">
          <font>
             <Font />
          </font>
       </Label>
 
-      <Label layoutX="787.0" layoutY="118.0" styleClass="title-text-dialog-2" text="Dialog Headline 2">
+      <Label layoutX="828.0" layoutY="230.0" styleClass="title-text-dialog-2" text="Dialog Headline 2">
          <font>
             <Font />
          </font>
       </Label>
+
+      <Label layoutX="81.0" layoutY="62.0" styleClass="text-sub-heading" text="SUB HEADING">
+         <font>
+            <Font />
+         </font>
+      </Label>
+
+      <Label layoutX="81.0" layoutY="102.0" styleClass="text-sub-heading-bold" text="SUB HEADING BOLD">
+         <font>
+            <Font />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="145.0" styleClass="text-sub-heading-light" text="TEXT">
+         <font>
+            <Font />
+         </font>
+      </Label>
+      <TextField layoutX="54.0" layoutY="492.0" prefHeight="86.0" prefWidth="494.0" styleClass="text-field" />
+
    </children>
 </AnchorPane>
