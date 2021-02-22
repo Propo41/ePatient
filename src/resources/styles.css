@@ -14,8 +14,7 @@
     -fx-color-ash-dark: #939393;
     -fx-color-ash-background: #E5E5E5;
     -fx-color-white: #FFFFFF;
-
-
+    -fx-color-black: #333333;
 }
 
 .title-text {
@@ -48,12 +47,22 @@
     -fx-font-size: 20;
 }
 
+.text-content-title{
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-navy-blue;
+    -fx-font-size: 20;
+}
+
+
 
 .text-sub-heading-light {
     -fx-font-family: "Segoe UI";
     -fx-text-fill: -fx-color-ash-dark;
-    -fx-font-size: 15;
+    -fx-font-size: 13;
 }
+
+/* START: Button styles*/
+
 /* blue button */
 .button-primary {
     -fx-font-family: "Segoe UI Semibold";
@@ -70,7 +79,6 @@
     -fx-background-color:  -fx-color-orange;
     -fx-background-radius: 10;
     -fx-font-size: 20 ;
-
 }
 
 /* orange button */
@@ -83,6 +91,16 @@
 
 }
 
+/* text button */
+.button-text-only {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-blue;
+    -fx-background-color: -fx-color-ash;
+    -fx-background-radius: 10;
+    -fx-font-size: 18 ;
+}
+
+/*END: Button styles*/
 
 .text-field-normal{
     -fx-background-color:-fx-color-ash-background;
@@ -110,4 +128,77 @@
     -fx-text-fill: -fx-color-ash-dark;
     -fx-padding: 10;
     /*make sure to add padding from the fxml file.*/
+}
+
+
+/* START: STYLE FOR TAB LAYOUT */
+.tab-header-background{
+    -fx-background-color: -fx-color-ash;
+}
+
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab-selected-line{
+    -fx-border-color: -fx-color-blue;
+
+}
+
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:selected:top .jfx-rippler .tab-container .tab-label{
+    -fx-text-fill: -fx-color-ash-dark;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* ripple effect color for tabs*/
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:top .jfx-rippler{
+    -jfx-rippler-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:top .jfx-rippler .tab-container .tab-label .text{
+    -fx-fill: -fx-color-ash-dark;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* END: STYLE FOR TAB LAYOUT */
+
+.nav-button-selected{
+    -fx-graphic: url('icons/ic_dashboard_white.png');
+    -fx-background-color: -fx-color-blue;
+    -fx-background-radius: 10;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+}
+
+.nav-button-unselected{
+    -fx-graphic: url('icons/ic_dummy_2.png');
+    -fx-background-color: -fx-color-ash;
+    -fx-background-radius: 10;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+}
+
+.nav-background{
+    -fx-background-radius: 10;
+    -fx-background-color: -fx-color-ash;
+}
+
+.content-background{
+    -fx-background-radius: 10;
+    -fx-background-color: -fx-color-ash;
+}
+
+.window-background{
+    -fx-background-color: -fx-color-ash-background;
+}
+
+/* code from @mustofa */
+.card-background{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, -fx-color-ash-background, 3.0, 3.0, 3.0, 3.0);
+}
+
+.card-title{
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-black;
+    -fx-font-size: 18;
 }
