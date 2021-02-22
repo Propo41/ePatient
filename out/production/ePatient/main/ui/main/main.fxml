@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
@@ -9,13 +10,40 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="title-text" stylesheets="@../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" styleClass="title-text" stylesheets="@../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="7.0" prefHeight="364.0" prefWidth="100.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="166.0" styleClass="title-text" text="Label" />
-         </children>
-      </VBox>
+      <JFXButton layoutX="628.0" layoutY="393.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-secondary" text="DOCTOR" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Bold" />
+         </font>
+      </JFXButton>
+
+      <JFXButton layoutX="628.0" layoutY="506.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-tertiary" text="DOCTOR" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Black" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="628.0" layoutY="276.0" prefHeight="88.0" prefWidth="500.0" styleClass="button-primary" text="DOCTOR" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Black" />
+         </font>
+      </JFXButton>
+      <Label layoutX="787.0" layoutY="118.0" styleClass="title-text" text="H1 Headline">
+         <font>
+            <Font />
+         </font>
+      </Label>
+
+      <Label layoutX="787.0" layoutY="118.0" styleClass="title-text-dialog" text="Dialog Headline 1">
+         <font>
+            <Font />
+         </font>
+      </Label>
+
+      <Label layoutX="787.0" layoutY="118.0" styleClass="title-text-dialog-2" text="Dialog Headline 2">
+         <font>
+            <Font />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
