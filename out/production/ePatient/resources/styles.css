@@ -79,6 +79,7 @@
     -fx-background-color:  -fx-color-orange;
     -fx-background-radius: 10;
     -fx-font-size: 20 ;
+
 }
 
 /* orange button */
@@ -201,4 +202,13 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-black;
     -fx-font-size: 18;
+}
+
+.pane-round-corners{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-border-color: white;
+    -fx-background-color: #F9FAFF;
+    -fx-effect: dropshadow(three-pass-box, #1E65C2, 3.0, 3.0, 3.0, 3.0); //north
 }

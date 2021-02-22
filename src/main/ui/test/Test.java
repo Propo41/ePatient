@@ -1,25 +1,23 @@
-package main.ui.doctor;
+package main.ui.test;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.ui.database.ConnectMSSQL;
 
-public class DashboardMain extends Application {
+public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-        primaryStage.setTitle("a World");
+        Parent root = FXMLLoader.load(getClass().getResource("../main/main.fxml"));
+        primaryStage.setTitle("Hello World");
         Scene scene = new Scene(root, 1200, 857); // ratio is 1.4:1
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(857);
-        primaryStage.setMinWidth(1200);
+        primaryStage.setMaxHeight(1200);
         primaryStage.show();
-
 
     }
 
