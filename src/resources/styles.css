@@ -47,12 +47,11 @@
     -fx-font-size: 20;
 }
 
-.text-content-title{
+.text-content-title {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-navy-blue;
     -fx-font-size: 20;
 }
-
 
 
 .text-sub-heading-light {
@@ -69,16 +68,17 @@
     -fx-text-fill: white;
     -fx-background-color: -fx-color-blue;
     -fx-background-radius: 10;
-    -fx-font-size: 20 ;
+    -fx-font-size: 20;
 
 }
+
 /* green button */
 .button-secondary {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
-    -fx-background-color:  -fx-color-orange;
+    -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
-    -fx-font-size: 20 ;
+    -fx-font-size: 20;
 
 }
 
@@ -86,9 +86,9 @@
 .button-tertiary {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
-    -fx-background-color:  -fx-color-green;
+    -fx-background-color: -fx-color-green;
     -fx-background-radius: 10;
-    -fx-font-size: 20 ;
+    -fx-font-size: 20;
 
 }
 
@@ -98,13 +98,23 @@
     -fx-text-fill: -fx-color-blue;
     -fx-background-color: -fx-color-ash;
     -fx-background-radius: 10;
-    -fx-font-size: 18 ;
+    -fx-font-size: 18;
 }
+
+/* text button with smaller font and white background*/
+.button-text-only-small {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-blue;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 17;
+}
+
 
 /*END: Button styles*/
 
-.text-field-normal{
-    -fx-background-color:-fx-color-ash-background;
+.text-field-normal {
+    -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     -fx-font-size: 15;
     -fx-font-family: "Segoe UI Semibold";
@@ -112,17 +122,17 @@
     -fx-padding: 10;
 }
 
-.text-field-normal:focused{
+.text-field-normal:focused {
     -fx-border-color: -fx-color-blue;
     -fx-border-radius: 10;
     -fx-border-width: 1.5;
 }
 
-.text-field-icon{
-    -fx-background-image:url('http://icons.iconarchive.com/icons/rockettheme/halloween/32/pumpkin-icon.png');
+.text-field-icon {
+    -fx-background-image: url('http://icons.iconarchive.com/icons/rockettheme/halloween/32/pumpkin-icon.png');
     -fx-background-repeat: no-repeat;
     -fx-background-position: left center;
-    -fx-background-color:-fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     -fx-font-size: 15;
     -fx-font-family: "Segoe UI Semibold";
@@ -133,34 +143,34 @@
 
 
 /* START: STYLE FOR TAB LAYOUT */
-.tab-header-background{
+.tab-header-background {
     -fx-background-color: -fx-color-ash;
 }
 
-.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab-selected-line{
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab-selected-line {
     -fx-border-color: -fx-color-blue;
 
 }
 
-.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:selected:top .jfx-rippler .tab-container .tab-label{
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:selected:top .jfx-rippler .tab-container .tab-label {
     -fx-text-fill: -fx-color-ash-dark;
     -fx-font-family: "Segoe UI Semibold";
 }
 
 /* ripple effect color for tabs*/
-.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:top .jfx-rippler{
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:top .jfx-rippler {
     -jfx-rippler-fill: white;
     -fx-font-family: "Segoe UI Semibold";
 }
 
-.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:top .jfx-rippler .tab-container .tab-label .text{
+.jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:top .jfx-rippler .tab-container .tab-label .text {
     -fx-fill: -fx-color-ash-dark;
     -fx-font-family: "Segoe UI Semibold";
 }
 
 /* END: STYLE FOR TAB LAYOUT */
 
-.nav-button-selected{
+.nav-button-selected {
     -fx-graphic: url('icons/ic_dashboard_white.png');
     -fx-background-color: -fx-color-blue;
     -fx-background-radius: 10;
@@ -168,7 +178,7 @@
     -fx-text-fill: white;
 }
 
-.nav-button-unselected{
+.nav-button-unselected {
     -fx-graphic: url('icons/ic_dummy_2.png');
     -fx-background-color: -fx-color-ash;
     -fx-background-radius: 10;
@@ -176,39 +186,40 @@
     -fx-text-fill: -fx-color-ash-dark;
 }
 
-.nav-background{
+.nav-background {
     -fx-background-radius: 10;
     -fx-background-color: -fx-color-ash;
 }
 
-.content-background{
+.content-background {
     -fx-background-radius: 10;
     -fx-background-color: -fx-color-ash;
 }
 
-.window-background{
+.window-background {
     -fx-background-color: -fx-color-ash-background;
 }
 
 /* code from @mustofa */
-.card-background{
+.card-background {
     -fx-background-radius: 30;
     -fx-border-radius: 30;
     -fx-background-color: white;
     -fx-effect: dropshadow(three-pass-box, -fx-color-ash-background, 3.0, 3.0, 3.0, 3.0);
 }
 
-.card-title{
+.card-title {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-black;
     -fx-font-size: 18;
 }
 
-.pane-round-corners{
+.pane-round-corners {
     -fx-background-radius: 30;
     -fx-border-radius: 30;
-    -fx-border-width:5;
+    -fx-border-width: 5;
     -fx-border-color: white;
     -fx-background-color: #F9FAFF;
-    -fx-effect: dropshadow(three-pass-box, #1E65C2, 3.0, 3.0, 3.0, 3.0); //north
+    -fx-effect: dropshadow(three-pass-box, #1E65C2, 3.0, 3.0, 3.0, 3.0);
+
 }
