@@ -55,13 +55,13 @@ public class DoctorMainController implements Initializable {
     @FXML
     private Label doctorNameTv;
 
-    private Pair<JFXButton, Boolean> guiButtonCurrent;
-    private Pair<JFXButton, Boolean> guiButtonPrevious;
+    private JFXButton guiButtonCurrent;
+    private JFXButton guiButtonPrevious;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        guiButtonCurrent = new Pair<>(navDashboardBtn, true);
-        guiButtonPrevious = new Pair<>(navDashboardBtn, true);
+        guiButtonCurrent = navDashboardBtn;
+        guiButtonPrevious = navDashboardBtn;
 
         // initially load dashboard UI
         try{
@@ -76,10 +76,10 @@ public class DoctorMainController implements Initializable {
 
     @FXML
     void onDashboardClick(ActionEvent event) {
-        if (!guiButtonCurrent.getKey().equals(navDashboardBtn)) {
-            guiButtonCurrent = new Pair<>(navDashboardBtn, true);
+        if (!guiButtonCurrent.equals(navDashboardBtn)) {
+            guiButtonCurrent = navDashboardBtn;
             guiChangeButtonStyle();
-            guiButtonPrevious = new Pair<>(navDashboardBtn, true);
+            guiButtonPrevious = navDashboardBtn;
             try{
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
@@ -92,10 +92,10 @@ public class DoctorMainController implements Initializable {
 
     @FXML
     void onPatientsClick(ActionEvent event) {
-        if (!guiButtonCurrent.getKey().equals(navPatientBtn)) {
-            guiButtonCurrent = new Pair<>(navPatientBtn, true);
+        if (!guiButtonCurrent.equals(navPatientBtn)) {
+            guiButtonCurrent = navPatientBtn;
             guiChangeButtonStyle();
-            guiButtonPrevious = new Pair<>(navPatientBtn, true);
+            guiButtonPrevious = navPatientBtn;
             try{
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("patients.fxml")));
@@ -109,10 +109,10 @@ public class DoctorMainController implements Initializable {
 
     @FXML
     void onProfileClick(ActionEvent event) {
-        if (!guiButtonCurrent.getKey().equals(navMyProfileBtn)) {
-            guiButtonCurrent = new Pair<>(navMyProfileBtn, true);
+        if (!guiButtonCurrent.equals(navMyProfileBtn)) {
+            guiButtonCurrent = navMyProfileBtn;
             guiChangeButtonStyle();
-            guiButtonPrevious = new Pair<>(navMyProfileBtn, true);
+            guiButtonPrevious = navMyProfileBtn;
             try{
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("profile.fxml")));
@@ -126,10 +126,10 @@ public class DoctorMainController implements Initializable {
 
     @FXML
     void onAppointmentsClick(ActionEvent event) {
-        if (!guiButtonCurrent.getKey().equals(navAppointmentsBtn)) {
-            guiButtonCurrent = new Pair<>(navAppointmentsBtn, true);
+        if (!guiButtonCurrent.equals(navAppointmentsBtn)) {
+            guiButtonCurrent = navAppointmentsBtn;
             guiChangeButtonStyle();
-            guiButtonPrevious = new Pair<>(navAppointmentsBtn, true);
+            guiButtonPrevious = navAppointmentsBtn;
             try{
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("appointments.fxml")));
@@ -160,11 +160,11 @@ public class DoctorMainController implements Initializable {
     }
 
     private void guiChangeButtonStyle() {
-        guiButtonCurrent.getKey().getStyleClass().clear();
-        guiButtonCurrent.getKey().getStyleClass().add("nav-button-selected");
+        guiButtonCurrent.getStyleClass().clear();
+        guiButtonCurrent.getStyleClass().add("nav-button-selected");
 
-        guiButtonPrevious.getKey().getStyleClass().clear();
-        guiButtonPrevious.getKey().getStyleClass().add("nav-button-unselected");
+        guiButtonPrevious.getStyleClass().clear();
+        guiButtonPrevious.getStyleClass().add("nav-button-unselected");
     }
 
 }
