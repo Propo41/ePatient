@@ -135,6 +135,7 @@ public class DoctorMainController implements Initializable {
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("appointments.fxml")));
             }catch (Exception e){
                 e.printStackTrace();
+
             }
         }
     }
