@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import main.ui.database.DoctorDao;
+import util.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,16 +46,15 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*  *//* DoctorDB doctorDB = new DoctorDB(doctorId);
-        String totalAppointments = doctorDB.getTotalAppointments();*//*
-        Util util = Util.getInstance();
-        ConnectMSSQL mssql = util.getConnectMSSQL();
-        String totalAppointments = mssql.getTotalAppointments();
-       // totalAppointmentTv.setText(totalAppointments);
-        ArrayList<String> list = mssql.getPatientHistory();
+        DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
+        String totalAppointments = doctorDao.getTotalAppointments();
+        totalAppointmentTv.setText(totalAppointments);
 
-        String name = mssql.getDoctorName();
-        if (name != null) {
+
+       //ArrayList<String> list = mssql.getPatientHistory();
+
+      //  String name = mssql.getDoctorName();
+       /* if (name != null) {
             doctorNameTv.setText(name.toUpperCase());
         }*/
 

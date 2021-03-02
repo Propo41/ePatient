@@ -1,63 +1,55 @@
 package main.ui.database;
 
-import main.ui.model.Schedule;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import util.Util;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ConnectMSSQL {
+public class DatabaseHandler {
 
-    private String userID;
-    private String password;
-    private String userType;
     private Connection connection;
+    private static HikariDataSource dataSource;
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=master;selectedMethod=cursor";
 
-    public ConnectMSSQL(String userID, String password, String userType) {
-        this.userID = userID.toLowerCase();
-        this.password = password.toLowerCase();
-        this.userType = userType.toLowerCase();
-        connectDB();
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(URL);
+        config.setUsername("sa");
+        config.setPassword("123456");
+        config.addDataSourceProperty("minimumIdle", "5");
+        config.addDataSourceProperty("maximumPoolSize", "25");
+        dataSource = new HikariDataSource(config);
     }
 
-    private void connectDB() {
+
+    public static Connection getConnection()   {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(
-                    "jdbc:sqlserver://localhost:1433;databaseName=master;selectedMethod=cursor",
-                    "sa",
-                    "123456");
-            System.out.println("DB NAME IS: " + connection.getMetaData().getDatabaseProductName());
-            Util util = Util.getInstance();
-            util.setConnectMSSQL(this);
+            return dataSource.getConnection();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
 
+    public boolean logInForm(String userID, String password, String userType) {
+        if (connection == null) {
+            try {
+                connection = dataSource.getConnection();
+                System.out.println("Connected DB NAME IS: " + connection.getMetaData().getDatabaseProductName());
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
         }
 
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean logInForm() {
         try {
             String query = "";
             switch (userType) {
@@ -85,6 +77,7 @@ public class ConnectMSSQL {
                             return false;
                         }
                         break;
+
                     case "receptionist":
                         if (resultSet.getString("receptionist_pass").equals(password)) {
                             System.out.println("Logged In");
@@ -93,6 +86,7 @@ public class ConnectMSSQL {
                             return false;
                         }
                         break;
+
                     case "admin":
                         if (resultSet.getString("admin_pass").equals(password)) {
                             System.out.println("Logged In");
@@ -101,9 +95,12 @@ public class ConnectMSSQL {
                             return false;
                         }
                         break;
+
                 }
 
             }
+            Util util = Util.getInstance();
+            util.setUserId(userID);
 
             return true;
 
@@ -115,7 +112,7 @@ public class ConnectMSSQL {
 
     }
 
-    public String getTotalAppointments() {
+   /* public String getTotalAppointments() {
         String query = "select count(doctor_id) as 'count' from Appointment where doctor_id='" + userID + "'";
         try {
             Statement statement = connection.createStatement();
@@ -132,7 +129,7 @@ public class ConnectMSSQL {
         return "0";
     }
 
-    public ArrayList<String> getPatientHistory(){
+    public ArrayList<String> getPatientHistory() {
         ArrayList<String> list = new ArrayList<>();
         String query = "select patient_name from Patient";
         try {
@@ -169,19 +166,5 @@ public class ConnectMSSQL {
         return null;
     }
 
-    public String getDoctorName(){
-        String query = "select doctor_name from Doctor where doctor_id='" + userID + "'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                return resultSet.getString("doctor_name");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
+  */
 }

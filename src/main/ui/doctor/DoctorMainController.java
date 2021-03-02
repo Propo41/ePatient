@@ -1,27 +1,16 @@
 package main.ui.doctor;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Pair;
-import main.ui.database.ConnectMSSQL;
-import main.ui.database.DoctorDB;
+import main.ui.database.DoctorDao;
 import util.Util;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class DoctorMainController implements Initializable {
@@ -62,6 +51,10 @@ public class DoctorMainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         guiButtonCurrent = navDashboardBtn;
         guiButtonPrevious = navDashboardBtn;
+
+        DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
+        String name = doctorDao.getName();
+        doctorNameTv.setText(name);
 
         // initially load dashboard UI
         try{

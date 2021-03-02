@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.ui.login.LogInController;
+import util.Util;
 
 import java.io.IOException;
 
@@ -35,8 +36,7 @@ public class MainController {
         Parent parent = loader.load();
         Scene loginScene = new Scene(parent);
 
-        LogInController logInController = loader.getController();
-        logInController.setLoginType(loginType);
+        Util.getInstance().setUserType(loginType);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(loginScene);

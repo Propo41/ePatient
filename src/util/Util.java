@@ -1,16 +1,11 @@
 package util;
 
-import main.ui.database.ConnectMSSQL;
-
-import java.sql.Connection;
-
 /*Singleton class to hold local variables*/
 public class Util {
     private static Util instance = null;
 
-    private Connection connection;
-    private ConnectMSSQL connectMSSQL;
-
+    private String userId;
+    private String userType;
 
     public static Util getInstance()
     {
@@ -20,21 +15,23 @@ public class Util {
         return instance;
     }
 
-    public ConnectMSSQL getConnectMSSQL() {
-        return connectMSSQL;
+    public static void setInstance(Util instance) {
+        Util.instance = instance;
     }
 
-    public void setConnectMSSQL(ConnectMSSQL connectMSSQL) {
-        this.connectMSSQL = connectMSSQL;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public String getUserType() {
+        return userType;
     }
 
-
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 }

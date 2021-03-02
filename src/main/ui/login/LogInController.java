@@ -9,8 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.ui.database.ConnectMSSQL;
-import main.ui.doctor.DoctorMainController;
+import main.ui.database.DatabaseHandler;
+import util.Util;
 
 public class LogInController {
 
@@ -20,23 +20,22 @@ public class LogInController {
     @FXML
     private TextField userPassword;
 
-    private String loginType;
 
     @FXML
     void loginClicked(ActionEvent event) {
-        System.out.println("Login Type " + loginType);
-        ConnectMSSQL connectMSSQL = new ConnectMSSQL(userId.getText(), userPassword.getText(), loginType);
+        String userType = Util.getInstance().getUserType();
+        System.out.println("Login Type: " + userType);
+
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        boolean status = databaseHandler.logInForm(userId.getText(), userPassword.getText(), userType);
         System.out.println(userId.getText() + " " + userPassword.getText());
         // if user is verified, continue to dashboard
-        if (connectMSSQL.logInForm()) {
+        if (status) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/main/ui/doctor/doctor_main.fxml"));
                 Parent parent = loader.load();
                 Scene loginScene = new Scene(parent);
-
-                DoctorMainController doctorMainController = loader.getController();
-               // dashboardController.setDoctorId(userId.getText());
 
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(loginScene);
@@ -50,9 +49,6 @@ public class LogInController {
         }
     }
 
-    public void setLoginType(String loginType) {
-        this.loginType = loginType;
-    }
 
 
 }
