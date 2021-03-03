@@ -5,8 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import main.ui.database.DoctorDao;
 import util.Util;
 
@@ -44,6 +53,9 @@ public class DoctorMainController implements Initializable {
     @FXML
     private Label doctorNameTv;
 
+    @FXML
+    private ListView<HBox> listView;
+
     private JFXButton guiButtonCurrent;
     private JFXButton guiButtonPrevious;
 
@@ -57,13 +69,74 @@ public class DoctorMainController implements Initializable {
         doctorNameTv.setText(name);
 
         // initially load dashboard UI
-        try{
+        try {
             frameLayout.getChildren().clear();
             frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        createCardItems(12);
+
+        createCard();
+
+    }
+
+    private void createCardItems(int items) {
+        int maxItemsPerRow = 5;
+        int rows = (int) Math.ceil(items / 5.0);
+        while (rows != 0) {
+            createCardsPerRow(maxItemsPerRow);
+            rows--;
+        }
+        createCardsPerRow(items % maxItemsPerRow);
+    }
+
+    private void createCardsPerRow(int i) {
+        HBox hBox = new HBox();
+
+    }
+
+    private void createCard() {
+        VBox vBox = new VBox();
+        vBox.getStyleClass().add("card-background");
+        vBox.setPadding(new Insets(20.0d, 20.0d, 20.0d, 20.0d));
+        vBox.setSpacing(8);
+        vBox.setPrefWidth(220);
+        vBox.setAlignment(Pos.TOP_CENTER);
+
+        ImageView icon = new ImageView();
+        icon.getStyleClass().add("user-icon");
+        icon.setFitWidth(70);
+        icon.setFitHeight(70);
+
+        Label nameLabel = new Label("Gabbie Carter");
+        nameLabel.getStyleClass().add("text-sub-heading-bold");
+        nameLabel.setWrapText(true);
+        nameLabel.setTextAlignment(TextAlignment.CENTER);
+
+        Label subtitleLabel = new Label("PATIENT SINCE MARCH 10, 2020");
+        subtitleLabel.getStyleClass().add("text-card-subtitle");
+        subtitleLabel.setWrapText(true);
+        subtitleLabel.setTextAlignment(TextAlignment.CENTER);
+
+        JFXButton viewBtn = new JFXButton();
+        viewBtn.setText("VIEW");
+        viewBtn.setPrefWidth(220);
+        viewBtn.getStyleClass().add("button-primary-small");
+
+        JFXButton prescriptionBtn = new JFXButton();
+        prescriptionBtn.setText("PRESCRIPTIONS");
+        prescriptionBtn.setPrefWidth(220);
+        prescriptionBtn.getStyleClass().add("button-tertiary-small");
+
+        vBox.getChildren().add(icon);
+        vBox.getChildren().add(nameLabel);
+        vBox.getChildren().add(subtitleLabel);
+        vBox.getChildren().add(viewBtn);
+        vBox.getChildren().add(prescriptionBtn);
+
+        frameLayout.getChildren().add(vBox);
 
     }
 
@@ -73,10 +146,10 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navDashboardBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navDashboardBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -89,10 +162,10 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navPatientBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navPatientBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("patients.fxml")));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -106,10 +179,10 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navMyProfileBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navMyProfileBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("profile.fxml")));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -123,10 +196,10 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navAppointmentsBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navAppointmentsBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
                 frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("appointments.fxml")));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
 
             }

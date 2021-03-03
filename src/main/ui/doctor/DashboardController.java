@@ -70,7 +70,8 @@ public class DashboardController implements Initializable {
         hBox.setSpacing(20);
         hBox.setPrefHeight(100);
 
-        ImageView icon = new ImageView(new Image("https://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/128/blue-home-icon.png"));
+        ImageView icon = new ImageView();
+        icon.getStyleClass().add("user-icon");
         icon.setFitWidth(70);
         icon.setFitHeight(70);
 
@@ -98,7 +99,6 @@ public class DashboardController implements Initializable {
         viewMoreBtn.getStyleClass().add("button-text-only-small");
 
         hBox1.getChildren().add(viewMoreBtn);
-
         hBox.getChildren().addAll(icon, vBox, hBox1);
         root.getChildren().add(hBox);
     }

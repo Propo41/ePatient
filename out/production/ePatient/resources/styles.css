@@ -17,6 +17,10 @@
     -fx-color-black: #333333;
 }
 
+.user-icon{
+    -fx-image: url('icons/ic_profile_image.png');
+}
+
 .title-text {
     -fx-font-family: 'redressed';
     -fx-text-fill: -fx-color-navy-blue;
@@ -54,6 +58,12 @@
 }
 
 
+.text-card-subtitle {
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: -fx-color-ash-dark;
+    -fx-font-size: 15;
+}
+
 .text-sub-heading-light {
     -fx-font-family: "Segoe UI";
     -fx-text-fill: -fx-color-ash-dark;
@@ -72,6 +82,16 @@
 
 }
 
+.button-primary-small {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-blue;
+    -fx-background-radius: 10;
+    -fx-font-size: 13;
+    -fx-padding: 10;
+
+}
+
 /* green button */
 .button-secondary {
     -fx-font-family: "Segoe UI Semibold";
@@ -79,6 +99,17 @@
     -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
     -fx-font-size: 20;
+
+}
+
+/* green button */
+.button-secondary-small {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-orange;
+    -fx-background-radius: 10;
+    -fx-font-size: 13;
+    -fx-padding: 10;
 
 }
 
@@ -91,6 +122,18 @@
     -fx-font-size: 20;
 
 }
+
+/* orange button */
+.button-tertiary-small {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-green;
+    -fx-background-radius: 10;
+    -fx-font-size: 13;
+    -fx-padding: 10;
+
+}
+
 
 /* text button */
 .button-text-only {
