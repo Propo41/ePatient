@@ -1,13 +1,16 @@
-package main.ui.doctor;
+package main.ui.doctor.dashboard;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -15,18 +18,51 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import main.ui.database.DoctorDao;
+import util.Util;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PatientsController implements Initializable {
+public class DashboardController implements Initializable {
+
+    @FXML
+    private VBox root;
+
+    @FXML
+    private JFXListView<?> visitingHoursListView;
+
+    @FXML
+    private Label totalVisitsTv;
+
+    @FXML
+    private Label totalAppointmentTv;
+
+    @FXML
+    private JFXButton showMorePatientsBtn;
+
+    @FXML
+    private Label totalBilledTv;
+
     @FXML
     private ListView<HBox> patientListView;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
+        String totalAppointments = doctorDao.getTotalAppointments();
+        totalAppointmentTv.setText(totalAppointments);
 
-        for(int i=0; i<10; i++){
+
+        //ArrayList<String> list = mssql.getPatientHistory();
+
+        // create recent patients list
+        for (int i = 0; i < 10; i++) {
             HBox hBox = createCard("Gabbie", "12 March 2021");
             HBox btnContainer = (HBox) hBox.getChildren().get(2);
             JFXButton button = (JFXButton) btnContainer.getChildren().get(0);
@@ -41,8 +77,32 @@ public class PatientsController implements Initializable {
         }
 
 
-
     }
+
+
+   /* @FXML
+    void onMoreClick(ActionEvent event) {
+
+        // loader.setController(new DialogMyPatientsController("message"));
+        try {
+            // final FXMLLoader loader = new FXMLLoader(getClass().getResource("Dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dialog_my_patients.fxml"));
+            loader.setController(new DialogMyPatientsController("message"));
+
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 250, 150);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initOwner(totalAppointmentTv.getScene().getWindow());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }*/
 
     public HBox createCard(String name, String date) {
         HBox hBox = new HBox();
@@ -52,7 +112,8 @@ public class PatientsController implements Initializable {
         hBox.setPrefHeight(100);
         hBox.setPrefWidth(300);
 
-        ImageView icon = new ImageView(new Image("https://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/128/blue-home-icon.png"));
+        ImageView icon = new ImageView();
+        icon.getStyleClass().add("user-icon");
         icon.setFitWidth(70);
         icon.setFitHeight(70);
 
@@ -91,5 +152,5 @@ public class PatientsController implements Initializable {
         return hBox;
 
     }
-}
 
+}

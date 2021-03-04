@@ -9,11 +9,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="root" prefHeight="847.0" spacing="10.0" stylesheets="@../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.DashboardController">
+<VBox fx:id="root" spacing="10.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.dashboard.DashboardController">
    <children>
       <Label layoutX="50.0" layoutY="30.0" styleClass="text-content-title" text="DASHBOARD" />
-      <Separator layoutX="50.0" layoutY="69.0" prefHeight="5.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" />
-      <HBox layoutX="45.0" layoutY="94.0" prefHeight="271.0" prefWidth="845.0" spacing="20.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0">
+      <Separator layoutX="50.0" layoutY="69.0" prefHeight="5.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" VBox.vgrow="ALWAYS" />
+      <HBox layoutX="45.0" layoutY="94.0" prefHeight="271.0" prefWidth="845.0" spacing="20.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" VBox.vgrow="SOMETIMES">
          <children>
             <StackPane prefHeight="271.0" prefWidth="432.0" styleClass="card-background" HBox.hgrow="ALWAYS">
                <children>
@@ -77,32 +77,9 @@
       <AnchorPane layoutX="50.0" layoutY="376.0" prefHeight="26.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
          <children>
             <Label layoutY="10.0" styleClass="card-title" text="RECENT PATIENTS" AnchorPane.leftAnchor="0.0" />
-            <JFXButton fx:id="showMorePatientsBtn" layoutX="770.0" layoutY="1.0" onAction="#onMoreClick" styleClass="button-text-only" text="MORE" textAlignment="CENTER" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="20.0" styleClass="card-background">
-         <children>
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../resources/icons/ic_profile_image.png" />
-               </image>
-            </ImageView>
-            <VBox alignment="CENTER_LEFT" prefWidth="500.0" spacing="5.0">
-               <children>
-                  <Label lineSpacing="2.0" styleClass="text-sub-heading" text="LTOM givcasdas" VBox.vgrow="SOMETIMES" />
-                  <Label styleClass="text-sub-heading-light" text="Label" />
-               </children>
-            </VBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="224.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <JFXButton prefHeight="50.0" prefWidth="200.0" styleClass="button-text-only-small" text="VIEW MORE" />
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-         </padding>
-      </HBox>
+      <ListView fx:id="patientListView" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
    </children>
    <padding>
       <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />

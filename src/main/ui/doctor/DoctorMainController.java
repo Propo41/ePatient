@@ -5,17 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import main.ui.database.DoctorDao;
 import util.Util;
 
@@ -71,73 +66,30 @@ public class DoctorMainController implements Initializable {
         // initially load dashboard UI
         try {
             frameLayout.getChildren().clear();
-            frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
+            VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
+            root = (VBox) makeResponsive(root, "vbox");
+            frameLayout.getChildren().add(root);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        createCardItems(12);
-
-        createCard();
+        // createCardItems(4);
 
     }
 
-    private void createCardItems(int items) {
-        int maxItemsPerRow = 5;
-        int rows = (int) Math.ceil(items / 5.0);
-        while (rows != 0) {
-            createCardsPerRow(maxItemsPerRow);
-            rows--;
+    private Parent makeResponsive(Parent root, String node) {
+        if (node.equals("vbox")) {
+            VBox vBox = (VBox) root;
+            // to make the contents of the frame responsive
+            vBox.setPrefWidth(930);
+            vBox.setPrefHeight(847);
+            AnchorPane.setTopAnchor(vBox, 0.0d);
+            AnchorPane.setBottomAnchor(vBox, 0.0d);
+            AnchorPane.setLeftAnchor(vBox, 0.0d);
+            AnchorPane.setRightAnchor(vBox, 0.0d);
+            return vBox;
         }
-        createCardsPerRow(items % maxItemsPerRow);
-    }
-
-    private void createCardsPerRow(int i) {
-        HBox hBox = new HBox();
-
-    }
-
-    private void createCard() {
-        VBox vBox = new VBox();
-        vBox.getStyleClass().add("card-background");
-        vBox.setPadding(new Insets(20.0d, 20.0d, 20.0d, 20.0d));
-        vBox.setSpacing(8);
-        vBox.setPrefWidth(220);
-        vBox.setAlignment(Pos.TOP_CENTER);
-
-        ImageView icon = new ImageView();
-        icon.getStyleClass().add("user-icon");
-        icon.setFitWidth(70);
-        icon.setFitHeight(70);
-
-        Label nameLabel = new Label("Gabbie Carter");
-        nameLabel.getStyleClass().add("text-sub-heading-bold");
-        nameLabel.setWrapText(true);
-        nameLabel.setTextAlignment(TextAlignment.CENTER);
-
-        Label subtitleLabel = new Label("PATIENT SINCE MARCH 10, 2020");
-        subtitleLabel.getStyleClass().add("text-card-subtitle");
-        subtitleLabel.setWrapText(true);
-        subtitleLabel.setTextAlignment(TextAlignment.CENTER);
-
-        JFXButton viewBtn = new JFXButton();
-        viewBtn.setText("VIEW");
-        viewBtn.setPrefWidth(220);
-        viewBtn.getStyleClass().add("button-primary-small");
-
-        JFXButton prescriptionBtn = new JFXButton();
-        prescriptionBtn.setText("PRESCRIPTIONS");
-        prescriptionBtn.setPrefWidth(220);
-        prescriptionBtn.getStyleClass().add("button-tertiary-small");
-
-        vBox.getChildren().add(icon);
-        vBox.getChildren().add(nameLabel);
-        vBox.getChildren().add(subtitleLabel);
-        vBox.getChildren().add(viewBtn);
-        vBox.getChildren().add(prescriptionBtn);
-
-        frameLayout.getChildren().add(vBox);
-
+        return null;
     }
 
     @FXML
@@ -148,7 +100,9 @@ public class DoctorMainController implements Initializable {
             guiButtonPrevious = navDashboardBtn;
             try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
+                VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -164,7 +118,9 @@ public class DoctorMainController implements Initializable {
             guiButtonPrevious = navPatientBtn;
             try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("patients.fxml")));
+                VBox root = FXMLLoader.load(getClass().getResource("patients/patients.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -181,7 +137,10 @@ public class DoctorMainController implements Initializable {
             guiButtonPrevious = navMyProfileBtn;
             try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("profile.fxml")));
+                VBox root = FXMLLoader.load(getClass().getResource("profile/profile.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -198,7 +157,10 @@ public class DoctorMainController implements Initializable {
             guiButtonPrevious = navAppointmentsBtn;
             try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("appointments.fxml")));
+                VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+
             } catch (Exception e) {
                 e.printStackTrace();
 

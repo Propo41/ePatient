@@ -1,31 +1,8 @@
-/* list view styling */
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
-    -fx-background-color: -fx-color-ash;
-
-}
-
-.list-view, .split-pane {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-}
-
-
-.list-cell:even {
-    -fx-background-color: -fx-color-ash;
-}
-
-
-/*
-.list-cell:filled:hover {
-    -fx-background-color: #0093ff;
-    -fx-text-fill: white;
-}*/
-
 /* The track, ie the background of the scrollbar */
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track {
-    -fx-background-color: -fx-color-ash;
-    -fx-border-color: -fx-color-ash;
+    -fx-background-color: -fx-color-ash-background;
+    -fx-border-color: -fx-color-ash-background;
     -fx-background-radius: 0em;
     -fx-border-radius: 2em;
 }
@@ -57,7 +34,7 @@
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: -fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-dark;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 
@@ -69,9 +46,6 @@
 
 }
 
-.scroll-bar:horizontal .thumb:pressed,
-.scroll-bar:vertical .thumb:pressed {
-    -fx-background-color: -fx-color-ash-dark;
 
-}
+
 
