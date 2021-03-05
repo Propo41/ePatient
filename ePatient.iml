@@ -8,14 +8,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sqljdbc42" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://F:/Studies/Java Folder/jphoenix/jfoenix-8.0.10.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="jfoenix-8.0.10" level="project" />
+    <orderEntry type="library" name="HikariCP-3.1.0" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.7.25" level="project" />
   </component>
 </module>

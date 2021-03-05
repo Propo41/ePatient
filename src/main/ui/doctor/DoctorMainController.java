@@ -1,27 +1,20 @@
 package main.ui.doctor;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Pair;
-import main.ui.database.ConnectMSSQL;
-import main.ui.database.DoctorDB;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import main.ui.database.DoctorDao;
 import util.Util;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class DoctorMainController implements Initializable {
@@ -55,6 +48,9 @@ public class DoctorMainController implements Initializable {
     @FXML
     private Label doctorNameTv;
 
+    @FXML
+    private ListView<HBox> listView;
+
     private JFXButton guiButtonCurrent;
     private JFXButton guiButtonPrevious;
 
@@ -63,15 +59,37 @@ public class DoctorMainController implements Initializable {
         guiButtonCurrent = navDashboardBtn;
         guiButtonPrevious = navDashboardBtn;
 
+        DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
+        String name = doctorDao.getName();
+        doctorNameTv.setText(name);
+
         // initially load dashboard UI
-        try{
+        try {
             frameLayout.getChildren().clear();
-            frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
-        }catch (Exception e){
+            VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
+            root = (VBox) makeResponsive(root, "vbox");
+            frameLayout.getChildren().add(root);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // createCardItems(4);
 
+    }
+
+    private Parent makeResponsive(Parent root, String node) {
+        if (node.equals("vbox")) {
+            VBox vBox = (VBox) root;
+            // to make the contents of the frame responsive
+            vBox.setPrefWidth(930);
+            vBox.setPrefHeight(847);
+            AnchorPane.setTopAnchor(vBox, 0.0d);
+            AnchorPane.setBottomAnchor(vBox, 0.0d);
+            AnchorPane.setLeftAnchor(vBox, 0.0d);
+            AnchorPane.setRightAnchor(vBox, 0.0d);
+            return vBox;
+        }
+        return null;
     }
 
     @FXML
@@ -80,10 +98,12 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navDashboardBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navDashboardBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("dashboard.fxml")));
-            }catch (Exception e){
+                VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -96,10 +116,12 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navPatientBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navPatientBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("patients.fxml")));
-            }catch (Exception e){
+                VBox root = FXMLLoader.load(getClass().getResource("patients/patients.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -113,10 +135,13 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navMyProfileBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navMyProfileBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("profile.fxml")));
-            }catch (Exception e){
+                VBox root = FXMLLoader.load(getClass().getResource("profile/profile.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -130,10 +155,13 @@ public class DoctorMainController implements Initializable {
             guiButtonCurrent = navAppointmentsBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navAppointmentsBtn;
-            try{
+            try {
                 frameLayout.getChildren().clear();
-                frameLayout.getChildren().add(FXMLLoader.load(getClass().getResource("appointments.fxml")));
-            }catch (Exception e){
+                VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+
+            } catch (Exception e) {
                 e.printStackTrace();
 
             }

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="HikariCP-3.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Dropbox/SD_PROJECT_3.1/HikariCP-3.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Dropbox/SD_PROJECT_3.1/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

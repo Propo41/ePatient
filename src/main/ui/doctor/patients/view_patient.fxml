@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="user-icon" />
+            <Label styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
+            <Label styleClass="text-sub-heading-light" text="ID: 12314124" />
+            <Separator prefWidth="200.0">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Separator>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" VBox.vgrow="NEVER">
+               <children>
+                  <Label styleClass="text-sub-heading" text="DATE OF BIRTH" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="WEIGHT" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="AGE" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="HEIGHT" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="GENDER" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="CONTACT" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="EMAIL" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="ADDRESS" textAlignment="CENTER" wrapText="true" />
+                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" top="5.0" />
+         </BorderPane.margin></VBox>
+   </left>
+   <right>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="857.0" prefWidth="1045.0" styleClass="nav-background" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <VBox styleClass="text-content-background">
+                     <children>
+                        <Label styleClass="text-box-header" text="HISTORY">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></Label>
+                        <TextArea editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox styleClass="text-content-background">
+                     <children>
+                        <Label styleClass="text-box-header" text="ALLERGIES">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <TextArea editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox styleClass="text-content-background">
+                           <children>
+                              <Label styleClass="text-box-header" text="MEDICATIONS">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextArea editable="false" prefHeight="155.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="text-content-background">
+                           <children>
+                              <Label styleClass="text-box-header" text="MEDICAL HISTORY">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextArea editable="false" prefHeight="155.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox VBox.vgrow="ALWAYS" />
+                        <JFXButton prefHeight="44.0" prefWidth="775.0" styleClass="button-primary-medium" text="CLOSE" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </right>
+</BorderPane>
