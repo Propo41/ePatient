@@ -1,4 +1,4 @@
-package main.ui.doctor;
+package main.ui.doctor.admin;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,11 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.ui.database.ConnectMSSQL;
+import main.ui.database.DatabaseHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +25,7 @@ public class AddProfileController implements Initializable {
     password, retypePassword  , educationalBackground,  department, professionalExperience ,
             availableDuration, roomNumber ;
 
-    ConnectMSSQL connectMSSQL;
+    DatabaseHandler connectMSSQL;
 
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -138,7 +137,7 @@ public class AddProfileController implements Initializable {
 
 
     private void insertData() {
-        connectMSSQL = new ConnectMSSQL();
+        connectMSSQL = new DatabaseHandler();
         boolean queryResult = connectMSSQL.insertDoctorProfile(name.getText(), email.getText(), mobileNumber.getText(),
                 doctorAddress.getText(), department.getText(), speciality.getText(), languages.getText(),
                 hospitalAffiliations.getText(), professionalExperience.getText(), roomNumber.getText(),
@@ -149,12 +148,12 @@ public class AddProfileController implements Initializable {
 
     private void openEmptyDialogWarning(String emptyMessage){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/doctor/InputError.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/doctor/admin/InputErrorDialog.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
 
-            InputErrorController inputErrorController = fxmlLoader.getController();
-            inputErrorController.setErrorMessage(emptyMessage);
+            InputErrorDialogController inputErrorDialogController = fxmlLoader.getController();
+            inputErrorDialogController.setErrorMessage(emptyMessage);
 
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root1));
@@ -168,7 +167,7 @@ public class AddProfileController implements Initializable {
 
     private void openSuccessDialog() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/doctor/InsertionProfileDialog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/doctor/admin/InsertionProfileDialog.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
 

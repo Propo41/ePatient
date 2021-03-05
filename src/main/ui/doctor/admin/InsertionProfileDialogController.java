@@ -1,4 +1,4 @@
-package main.ui.doctor;
+package main.ui.doctor.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,22 +9,25 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InputErrorController  implements Initializable {
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
+public class InsertionProfileDialogController implements Initializable {
 
     @FXML
-    private Label inputErrorLabel;
+    private Label idNumber;
 
-    public void setErrorMessage(String emptyField) {
-        inputErrorLabel.setText(emptyField);
+    public void setIdNumber(int idNumberOfNewUser) {
+        idNumber.setText(idNumberOfNewUser+"");
     }
 
     @FXML
     void dismissDialog(ActionEvent event) {
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
 
 }
