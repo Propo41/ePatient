@@ -29,7 +29,6 @@ public class MainController {
     }
 
     private void openLogIn(String loginType, ActionEvent event) throws IOException {
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/ui/login/LogIn.fxml"));
         Parent parent = loader.load();
