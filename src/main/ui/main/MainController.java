@@ -22,6 +22,7 @@ public class MainController {
     @FXML
     void receptionistClicked(ActionEvent event) throws IOException {
         openLogIn("receptionist", event);
+
     }
 
     @FXML
