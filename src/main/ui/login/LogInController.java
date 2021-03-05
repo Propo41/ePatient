@@ -47,7 +47,11 @@ public class LogInController {
                 e.printStackTrace();
             }
 
+        }else{
+            System.out.println("Incorrect Credentials");
         }
+
+
     }
 
     public void setLoginType(String loginType) {
