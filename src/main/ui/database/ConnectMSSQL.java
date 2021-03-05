@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ConnectMSSQL {
 
@@ -44,6 +45,7 @@ public class ConnectMSSQL {
             System.out.println("DB NAME IS: " + connection.getMetaData().getDatabaseProductName());
             Util util = Util.getInstance();
             util.setConnectMSSQL(this);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -183,5 +185,56 @@ public class ConnectMSSQL {
         return "0";
     }
 
+    public ArrayList<String> getPatientHistory(){
+        ArrayList<String> list = new ArrayList<>();
+        String query = "select patient_name from Patient";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                list.add(resultSet.getString("patient_name"));
+            }
+            return list;
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    public ArrayList<String> getVisitingHours() {
+        ArrayList<String> list = new ArrayList<>();
+        String query = "select * from Schedule where doctor_id='" + userID + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                list.add(resultSet.getString("schedule_day"));
+            }
+            return list;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String getDoctorName(){
+        String query = "select doctor_name from Doctor where doctor_id='" + userID + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                return resultSet.getString("doctor_name");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

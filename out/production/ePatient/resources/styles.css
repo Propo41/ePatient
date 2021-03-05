@@ -82,11 +82,12 @@
     -fx-font-size: 20;
 }
 
-.text-content-title{
+.text-content-title {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-navy-blue;
     -fx-font-size: 20;
 }
+
 
 
 .text-sub-heading-light {
@@ -135,6 +136,16 @@
     -fx-font-size: 18 ;
 }
 
+/* text button with smaller font and white background*/
+.button-text-only-small {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-blue;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 17;
+}
+
+
 /*END: Button styles*/
 
 .text-field-normal{
@@ -143,7 +154,7 @@
     -fx-font-size: 15;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
-    -fx-padding: 15;
+    -fx-padding: 10;
 }
 
 .text-field-normal:focused{

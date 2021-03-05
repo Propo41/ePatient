@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.ui.database.ConnectMSSQL;
-import main.ui.doctor.DashboardController;
+import main.ui.doctor.DoctorMainController;
 
 public class LogInController {
 
@@ -31,15 +31,16 @@ public class LogInController {
         if (connectMSSQL.logInForm()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/main/ui/doctor/dashboard.fxml"));
+                loader.setLocation(getClass().getResource("/main/ui/doctor/doctor_main.fxml"));
                 Parent parent = loader.load();
                 Scene loginScene = new Scene(parent);
 
-                DashboardController dashboardController = loader.getController();
-                dashboardController.setDoctorId(userId.getText());
+                DoctorMainController doctorMainController = loader.getController();
+               // dashboardController.setDoctorId(userId.getText());
 
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(loginScene);
+                window.setTitle("ePatient");
                 window.show();
 
             } catch (Exception e) {
