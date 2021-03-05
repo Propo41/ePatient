@@ -38,7 +38,6 @@ public class DashboardController implements Initializable {
         System.out.println("more dialog shown");
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        /* DoctorDB doctorDB = new DoctorDB(doctorId);
