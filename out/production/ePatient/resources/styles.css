@@ -57,9 +57,44 @@
     -fx-font-size: 16;
 }
 
+.text-sub-heading-2{
+    -fx-text-fill: -fx-color-ash-dark;
+    -fx-font-family: Segoe UI;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-line-height: 16px;
+    -fx-font-weight: 700;
+    -fx-display: flex;
+    -fx-align-items: center;
+    -fx-text-align: center;
+    -fx-letter-spacing: 1.25px;
+    -fx-text-transform: uppercase;
+}
+
+.text-sub-heading-blue{
+    -fx-font-family: Segoe UI;
+    -fx-font-style: normal;
+    -fx-font-weight: 600;
+    -fx-font-size: 20px;
+    -fx-line-height: 16px;
+    -fx-display: flex;
+    -fx-align-items: center;
+    -fx-text-align: center;
+    -fx-letter-spacing: 1.25px;
+    -fx-text-transform: uppercase;
+    -fx-text-fill: -fx-color-navy-blue;
+}
+
 .text-sub-heading-bold {
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: -fx-color-ash-dark;
+    -fx-font-size: 20;
+}
+
+.text-sub-heading-bold-blue{
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: -fx-color-navy-blue;
     -fx-font-size: 20;
 }
 
@@ -75,6 +110,7 @@
     -fx-text-fill: -fx-color-ash-dark;
     -fx-font-size: 15;
 }
+
 
 .text-sub-heading-light {
     -fx-font-family: "Segoe UI";

@@ -3,15 +3,11 @@ package main.ui.database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import util.Util;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+
 
 public class DatabaseHandler {
 
@@ -38,6 +34,48 @@ public class DatabaseHandler {
         }
         return null;
     }
+
+    public boolean insertDoctorProfile(String name, String email, String mobileNumber, String doctorAddresss,
+                                String department, String speciality, String languages, String hospitalAffiliations,
+                                String professionalExperience, String roomNumber,
+                                String educationalBackground, String password){
+
+        String query = "INSERT INTO Doctor (doctor_name, doctor_email, doctor_mobile, doctor_address, department, doctor_specialist, " +
+                "languages, hospital_affiliations, professional_experience, room_number, educaional_background, doctor_password) " +
+                "VALUES ('" +  name + "', '" + email + "','" + mobileNumber + "','" + doctorAddresss + "','" + languages +
+        "','" + department + "','" + speciality + "','" + hospitalAffiliations + "','" + professionalExperience +"','" +
+               Integer.parseInt(roomNumber) + "','" + educationalBackground + "','" + password +"')";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public int getProfileId(){
+        String val="";
+        try {
+            String query = " select TOP 1 doctor_id from Doctor order by doctor_id desc";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                val = resultSet.getString("doctor_id");
+            }
+        }catch (Exception ex){
+
+        }
+
+        return Integer.parseInt(val);
+    }
+
+
 
     public boolean logInForm(String userID, String password, String userType) {
         if (connection == null) {
