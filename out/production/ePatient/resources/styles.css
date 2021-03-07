@@ -3,11 +3,13 @@
     font-family: 'redressed';
     src: url('fonts/redressed.ttf');
 }
-.root{
+
+.root {
     FONT-SIZE-DIALOG-TITLE: 0;
     FONT-SIZE-DIALOG-SUBTITLE: 0;
     FONT-SIZE-DIALOG-CONTENT: 0;
 }
+
 * {
     -fx-color-blue: #2784FF;
     -fx-color-navy-blue: #334564;
@@ -21,8 +23,24 @@
     -fx-color-black: #333333;
 }
 
-.user-icon{
+.user-icon {
     -fx-image: url('icons/ic_profile_image.png');
+}
+
+.add-icon{
+    -fx-image: url('icons/ic_add.png');
+}
+
+.bullet-icon {
+    -fx-image: url('icons/ic_bullet_point.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+.delete-icon {
+    -fx-image: url('icons/ic_delete.png');
+    -fx-pref-width: 10;
+    -fx-pref-height: 10;
 }
 
 .title-text {
@@ -46,9 +64,8 @@
 .text-sub-heading {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
-    -fx-font-size: 20;
+    -fx-font-size: 17;
 }
-
 
 
 .text-box-header {
@@ -57,7 +74,7 @@
     -fx-font-size: 16;
 }
 
-.text-sub-heading-2{
+.text-sub-heading-2 {
     -fx-text-fill: -fx-color-ash-dark;
     -fx-font-family: Segoe UI;
     -fx-font-style: normal;
@@ -72,7 +89,7 @@
     -fx-text-transform: uppercase;
 }
 
-.text-sub-heading-blue{
+.text-sub-heading-blue {
     -fx-font-family: Segoe UI;
     -fx-font-style: normal;
     -fx-font-weight: 600;
@@ -92,7 +109,7 @@
     -fx-font-size: 20;
 }
 
-.text-sub-heading-bold-blue{
+.text-sub-heading-bold-blue {
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: -fx-color-navy-blue;
     -fx-font-size: 20;
@@ -115,7 +132,7 @@
 .text-sub-heading-light {
     -fx-font-family: "Segoe UI";
     -fx-text-fill: -fx-color-ash-dark;
-    -fx-font-size: 13;
+    -fx-font-size: 15;
 }
 
 /* START: Button styles*/
@@ -221,7 +238,7 @@
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
-    -fx-padding: 10;
+    -fx-padding: 15;
 }
 
 .text-field-normal:focused {
@@ -246,6 +263,12 @@
 
 }
 
+.text-prompt{
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+}
+
 .text-field-icon:focused {
     -fx-border-color: -fx-color-blue;
     -fx-border-radius: 10;
@@ -253,25 +276,29 @@
 
 }
 
-
-.text-field-no-edit{
+.text-label-ash-background{
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+}
+.text-field-no-edit {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
     /*padding: top right bottom left*/
-    -fx-padding: 10 0 0 0;
+    -fx-padding: 10 10 10 10;
 }
 
-.text-field-no-edit .scroll-pane:fitToWidth .viewport .content{
+.text-field-no-edit .scroll-pane:fitToWidth .viewport .content {
     -fx-background-color: -fx-color-ash-background;
 }
 
 
 
 /*used for vbox background*/
-.text-content-background{
+.text-content-background {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     /*padding: top right bottom left*/
@@ -359,5 +386,24 @@
     -fx-border-color: white;
     -fx-background-color: #F9FAFF;
     -fx-effect: dropshadow(three-pass-box, #1E65C2, 3.0, 3.0, 3.0, 3.0);
+
+}
+
+.date-picker-style {
+    -fx-border-color: -fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-background;
+
+}
+
+.date-picker:editable .date-picker-display-node {
+    visibility: false;
+}
+
+
+.h-box-background {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    /*padding: top right bottom left*/
+    -fx-padding: 10 10 10 10;
 
 }

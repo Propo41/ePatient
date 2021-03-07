@@ -27,9 +27,18 @@
     -fx-image: url('icons/ic_profile_image.png');
 }
 
+.add-icon{
+    -fx-image: url('icons/ic_add.png');
+}
 
 .bullet-icon {
     -fx-image: url('icons/ic_bullet_point.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+.delete-icon {
+    -fx-image: url('icons/ic_delete.png');
     -fx-pref-width: 10;
     -fx-pref-height: 10;
 }

@@ -21,7 +21,7 @@
     <children>
       <ImageView fitHeight="522.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" smooth="false" StackPane.alignment="CENTER_LEFT">
          <image>
-            <Image url="@login_background_3.png" />
+            <Image url="@../../../resources/icons/login_background_3.png" />
          </image>
          <StackPane.margin>
             <Insets top="50.0" />
@@ -29,7 +29,7 @@
       </ImageView>
       <ImageView fitHeight="376.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true" smooth="false" StackPane.alignment="BOTTOM_RIGHT">
          <image>
-            <Image url="@login_background_2.png" />
+            <Image url="@../../../resources/icons/login_background_2.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="300.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" smooth="false" StackPane.alignment="TOP_RIGHT">
@@ -37,7 +37,7 @@
             <Insets top="100.0" />
          </StackPane.margin>
          <image>
-            <Image url="@login_background_1.png" />
+            <Image url="@../../../resources/icons/login_background_1.png" />
          </image>
       </ImageView>
         <StackPane id="dialog" prefHeight="150.0" prefWidth="200.0">
