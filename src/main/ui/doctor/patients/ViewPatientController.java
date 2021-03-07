@@ -69,6 +69,21 @@ public class ViewPatientController implements Initializable {
 
     }
 
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        for (int i = 0; i < 7; i++) {
+            HBox hBox = createList("Alcohol: Yes");
+            socialHistoryListView.getItems().add(hBox);
+        }
+
+        for (int i = 0; i < 7; i++) {
+            HBox hBox = createList("Tonsillitis");
+            medicalHistoryListView.getItems().add(hBox);
+        }
+    }
+
     private HBox createList(String name) {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
@@ -83,18 +98,5 @@ public class ViewPatientController implements Initializable {
         hBox.getChildren().add(label);
 
         return hBox;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("Alcohol: Yes");
-            socialHistoryListView.getItems().add(hBox);
-        }
-
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("Tonsillitis");
-            medicalHistoryListView.getItems().add(hBox);
-        }
     }
 }

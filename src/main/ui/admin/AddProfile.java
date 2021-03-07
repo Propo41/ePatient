@@ -1,4 +1,4 @@
-package main.ui.doctor.admin;
+package main.ui.admin;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

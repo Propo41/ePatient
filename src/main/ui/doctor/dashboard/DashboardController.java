@@ -14,9 +14,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import database.DoctorDao;
+import model.Schedule;
 import util.Util;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -46,8 +48,10 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
+        // getting total appointments
         String totalAppointments = doctorDao.getTotalAppointments();
         totalAppointmentTv.setText(totalAppointments);
+        totalVisitsTv.setText(doctorDao.getTotalVisits());
 
         // create recent patients list
         for (int i = 0; i < 10; i++) {
@@ -64,15 +68,17 @@ public class DashboardController implements Initializable {
             patientListView.getItems().add(hBox);
         }
 
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createVisitingHours("SUNDAY, 3:30PM - 4:30PM");
+        // getting doctor visiting hours
+        ArrayList<Schedule> visitingHours = doctorDao.getDoctorVisitingHours();
+        for (int i = 0; i < visitingHours.size(); i++) {
+            HBox hBox = createVisitingHours(visitingHours.get(i));
             visitingHoursListView.getItems().add(hBox);
         }
 
 
     }
 
-    private HBox createVisitingHours(String time) {
+    private HBox createVisitingHours(Schedule schedule) {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
         hBox.setSpacing(20);
@@ -81,7 +87,10 @@ public class DashboardController implements Initializable {
         imageView.getStyleClass().add("bullet-icon");
         hBox.getChildren().add(imageView);
 
-        Label label = new Label(time);
+        Label label = new Label(
+                schedule.getDay() + ": " +
+                        schedule.getStartTime() + " - " +
+                        schedule.getEndTime());
         label.getStyleClass().add("text-sub-heading");
         hBox.getChildren().add(label);
 
@@ -124,13 +133,6 @@ public class DashboardController implements Initializable {
         viewMoreBtn.setPrefWidth(200);
 
         viewMoreBtn.getStyleClass().add("button-text-only-small");
-        viewMoreBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("clicked");
-            }
-        });
-
         hBox1.getChildren().add(viewMoreBtn);
 
         hBox.getChildren().addAll(icon, vBox, hBox1);

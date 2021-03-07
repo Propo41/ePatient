@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -88,6 +89,16 @@ public class DoctorMainController implements Initializable {
             AnchorPane.setLeftAnchor(vBox, 0.0d);
             AnchorPane.setRightAnchor(vBox, 0.0d);
             return vBox;
+        }else if(node.equals("scrollpane")){
+            ScrollPane scrollPane = (ScrollPane) root;
+            // to make the contents of the frame responsive
+            scrollPane.setPrefWidth(930);
+            scrollPane.setPrefHeight(847);
+            AnchorPane.setTopAnchor(scrollPane, 0.0d);
+            AnchorPane.setBottomAnchor(scrollPane, 0.0d);
+            AnchorPane.setLeftAnchor(scrollPane, 0.0d);
+            AnchorPane.setRightAnchor(scrollPane, 0.0d);
+            return scrollPane;
         }
         return null;
     }
