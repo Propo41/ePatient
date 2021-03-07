@@ -1,4 +1,4 @@
-package main.ui.doctor.edit_doctor;
+package main.ui.admin.edit_doctor;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;

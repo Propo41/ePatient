@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.admin.AddProfileController">
+<ScrollPane maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.AddProfileController">
    <content>
       <StackPane maxWidth="1200.0" minHeight="571.333" minWidth="800.0" prefWidth="1200.0" stylesheets="@../../../../resources/styles.css">
          <children>

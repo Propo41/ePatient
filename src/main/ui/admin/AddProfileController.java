@@ -1,4 +1,4 @@
-package main.ui.doctor.admin;
+package main.ui.admin;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -148,7 +148,7 @@ public class AddProfileController implements Initializable {
 
     private void openEmptyDialogWarning(String emptyMessage){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/doctor/admin/InputErrorDialog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/InputErrorDialog.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
 
@@ -167,7 +167,7 @@ public class AddProfileController implements Initializable {
 
     private void openSuccessDialog() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/doctor/admin/InsertionProfileDialog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/InsertionProfileDialog.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
 

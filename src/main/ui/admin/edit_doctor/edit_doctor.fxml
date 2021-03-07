@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -12,9 +16,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.edit_doctor.EditDoctorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.edit_doctor.EditDoctorController">
    <left>
       <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" top="5.0" />
+         </BorderPane.margin>
          <children>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="user-icon" />
             <Label fx:id="doctor_name" styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
@@ -28,13 +38,13 @@
                </VBox.margin>
             </Separator>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
                <children>
                   <Label styleClass="text-sub-heading" text="SPECIALITY" textAlignment="CENTER" wrapText="true" />
                   <Label styleClass="text-sub-heading-light" text="PROCTOLOGY" textAlignment="CENTER" wrapText="true" />
                </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
@@ -63,12 +73,7 @@
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" />
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" />
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" top="5.0" />
-         </BorderPane.margin></VBox>
+      </VBox>
    </left>
    <right>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="857.0" prefWidth="1045.0" styleClass="nav-background" BorderPane.alignment="CENTER">
@@ -80,13 +85,17 @@
          </BorderPane.margin>
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
                <children>
                   <VBox styleClass="text-content-background">
                      <children>
                         <Label styleClass="text-box-header" text="PROFESSIONAL SUMMARY">
                            <padding>
                               <Insets left="10.0" />
-                           </padding></Label>
+                           </padding>
+                        </Label>
                         <TextArea fx:id="professionalSummary" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
                      </children>
                   </VBox>
@@ -106,7 +115,7 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <ListView fx:id="educationalBackgroundList" prefHeight="163.0" prefWidth="660.0" />
+                        <ListView fx:id="educationalBackgroundList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                      </children>
                   </VBox>
                   <HBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
@@ -136,13 +145,9 @@
                   <VBox VBox.vgrow="ALWAYS">
                      <children>
                         <VBox VBox.vgrow="ALWAYS" />
-                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="button-primary-medium" text="CLOSE" />
                      </children>
                   </VBox>
                </children>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
             </VBox>
          </content>
       </ScrollPane>

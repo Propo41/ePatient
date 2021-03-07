@@ -1,4 +1,4 @@
-package main.ui.doctor.edit_doctor;
+package main.ui.admin;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,11 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class random_delete extends Application {
+public class AddProfile extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("edit_doctor.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("addProfile.fxml"));
         primaryStage.setTitle("A World");
         Scene scene = new Scene(root, 1200, 857); // ratio is 1.4:1
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());
