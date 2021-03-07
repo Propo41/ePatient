@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.ui.database.DatabaseHandler;
+import database.DatabaseHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;

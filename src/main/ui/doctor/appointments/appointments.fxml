@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.ui.doctor.appointments.AppointmentsController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox prefHeight="847.0" spacing="15.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.appointments.AppointmentsController">
+   <children>
+      <Label styleClass="text-content-title" text="MY APPOINTMENTS" />
+      <HBox spacing="10.0">
+         <children>
+            <HBox fx:id="datePickerRoot" alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="601.0" spacing="10.0" styleClass="h-box-background" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../../../resources/icons/ic_calender.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="selectedDateLabel" prefHeight="19.0" prefWidth="475.0" styleClass="text-prompt" text="Label" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+               </children>
+            </HBox>
+            <JFXButton fx:id="searchButton" onAction="#onSearchClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <Separator prefHeight="5.0" prefWidth="845.0" />
+      <ListView fx:id="prescriptionList" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+   </padding>
+</VBox>

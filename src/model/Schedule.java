@@ -1,4 +1,4 @@
-package main.ui.model;
+package model;
 
 public class Schedule {
     private String day;

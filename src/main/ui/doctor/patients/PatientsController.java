@@ -61,6 +61,7 @@ public class PatientsController implements Initializable {
         hBox.setSpacing(10);
         while(i!=0){
             VBox vBox = createCard();
+           // vBox.setMaxWidth(290);
             hBox.getChildren().add(vBox);
             i--;
         }
@@ -109,6 +110,7 @@ public class PatientsController implements Initializable {
                     root = FXMLLoader.load(getClass().getResource("view_patient.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("$NameOfPatient");
+                    stage.setResizable(false);
                     stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
                     stage.show();
                     // Hide this current window (if this is what you want)
@@ -132,6 +134,7 @@ public class PatientsController implements Initializable {
                     root = FXMLLoader.load(getClass().getResource("view_prescription.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("My New Stage Title");
+                    stage.setResizable(false);
                     stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
                     stage.show();
                     // Hide this current window (if this is what you want)
