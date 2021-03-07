@@ -1,7 +1,8 @@
-package main.ui.database;
+package database;
 
 import com.zaxxer.hikari.HikariDataSource;
-import main.ui.model.Patient;
+import database.interfaces.IDoctorDao;
+import model.Patient;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

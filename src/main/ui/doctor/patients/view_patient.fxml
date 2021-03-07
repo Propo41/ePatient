@@ -10,75 +10,87 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.ViewPatientController">
    <left>
       <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="user-icon" />
-            <Label styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
-            <Label styleClass="text-sub-heading-light" text="ID: 12314124" />
+            <Label fx:id="patientNameLabel" styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
+            <Label fx:id="patientIdLabel" styleClass="text-sub-heading-light" text="ID: 12314124" />
             <Separator prefWidth="200.0">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
             </Separator>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" VBox.vgrow="NEVER">
                <children>
                   <Label styleClass="text-sub-heading" text="DATE OF BIRTH" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="dobLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </VBox.margin>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="WEIGHT" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="weightLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="AGE" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="ageLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="BLOOD GROUP" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="bloodGroupLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="HEIGHT" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="heightLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="GENDER" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="genderLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="CONTACT" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="contactLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label styleClass="text-sub-heading" text="EMERGENCY CONTACT" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="emergencyContactLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="EMAIL" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="emailLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="ADDRESS" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="addressLabel" styleClass="text-sub-heading-light" text="Label" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
          </children>
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="20.0" left="30.0" right="20.0" top="20.0" />
          </padding>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" top="5.0" />
@@ -97,51 +109,37 @@
                <children>
                   <VBox styleClass="text-content-background">
                      <children>
-                        <Label styleClass="text-box-header" text="HISTORY">
+                        <Label styleClass="text-box-header" text="SURGICAL HISTORY">
                            <padding>
                               <Insets left="10.0" />
                            </padding></Label>
-                        <TextArea editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
+                        <TextArea fx:id="historyTv" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox styleClass="text-content-background">
                      <children>
-                        <Label styleClass="text-box-header" text="ALLERGIES">
+                        <Label styleClass="text-box-header" text="MEDICAL HISTORY">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextArea editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
+                        <ListView fx:id="medicalHistoryListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                      </children>
                   </VBox>
-                  <HBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+                  <VBox styleClass="text-content-background">
                      <children>
-                        <VBox styleClass="text-content-background">
-                           <children>
-                              <Label styleClass="text-box-header" text="MEDICATIONS">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextArea editable="false" prefHeight="155.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
-                           </children>
-                        </VBox>
-                        <VBox styleClass="text-content-background">
-                           <children>
-                              <Label styleClass="text-box-header" text="MEDICAL HISTORY">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextArea editable="false" prefHeight="155.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
-                           </children>
-                        </VBox>
+                        <Label styleClass="text-box-header" text="SOCIAL HISTORY">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ListView fx:id="socialHistoryListView" prefHeight="150.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                      </children>
-                  </HBox>
+                  </VBox>
                   <VBox VBox.vgrow="ALWAYS">
                      <children>
                         <VBox VBox.vgrow="ALWAYS" />
-                        <JFXButton prefHeight="44.0" prefWidth="775.0" styleClass="button-primary-medium" text="CLOSE" />
+                        <JFXButton fx:id="closeButton" onAction="#onCloseClick" prefHeight="44.0" prefWidth="775.0" styleClass="button-primary-medium" text="CLOSE" />
                      </children>
                   </VBox>
                </children>

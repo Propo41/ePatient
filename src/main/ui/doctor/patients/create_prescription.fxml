@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.CreatePrescriptionController">
+   <children>
+      <Label styleClass="title-text-dialog-2" text="Create A New Prescription" />
+      <Separator prefHeight="5.0" prefWidth="845.0" />
+      <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="NEVER">
+         <children>
+            <Label styleClass="text-box-header" text="PATIENT" />
+            <TextField fx:id="patientTv" promptText="ENTER PATIENT NAME OR ID" styleClass="text-field-normal" />
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </VBox>
+      <VBox prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label styleClass="text-box-header" text="RECOMMENDED TESTS" />
+            <TextArea fx:id="testsTv" prefHeight="120.0" prefWidth="835.0" promptText="ENTER TESTS TO BE CARRIED OUT SEPARATED BY A COMMA" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </VBox>
+      <VBox prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label styleClass="text-box-header" text="RECOMMENDED MEDICINES" />
+            <TextArea fx:id="medicinesTv" prefHeight="120.0" promptText="ENTER MEDICINE NAMES SEPARATED BY A COMMA" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </VBox>
+      <VBox prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label styleClass="text-box-header" text="DESCRIPTION" />
+            <TextArea fx:id="descriptionTv" prefHeight="120.0" promptText="ENTER THE PRESCRIPTION DETAILS" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton fx:id="addPrescriptionBtn" maxWidth="1920.0" onAction="#onAddClick" prefHeight="50.0" prefWidth="843.0" styleClass="button-primary-small" text="ADD PRESCRIPTION" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+   </padding>
+</VBox>

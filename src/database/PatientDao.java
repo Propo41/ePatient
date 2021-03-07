@@ -1,6 +1,7 @@
-package main.ui.database;
+package database;
 
-import main.ui.model.Patient;
+import database.interfaces.IPatientDao;
+import model.Patient;
 
 import java.util.ArrayList;
 

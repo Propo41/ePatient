@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.ui.doctor.profile.ProfileController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox fx:id="root" prefHeight="857.0" spacing="10.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.profile.ProfileController">
+   <children>
+      <Label layoutX="50.0" layoutY="30.0" styleClass="text-content-title" text="MY PROFILE" />
+      <Separator layoutX="50.0" layoutY="69.0" prefHeight="5.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" VBox.vgrow="ALWAYS" />
+      <HBox layoutX="45.0" layoutY="94.0" prefHeight="271.0" prefWidth="845.0" spacing="10.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" VBox.vgrow="SOMETIMES">
+         <children>
+            <VBox prefHeight="742.0" prefWidth="170.0" spacing="25.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label styleClass="text-sub-heading" text="SPECIALITY" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="specialityLabel" styleClass="text-sub-heading-light" text="PROCTOLOGY" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label styleClass="text-sub-heading" text="CONTACT" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="contactLabel" styleClass="text-sub-heading-light" text="PROCTOLOGY" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label styleClass="text-sub-heading" text="EMAIL" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="emailLabel" styleClass="text-sub-heading-light" text="PROCTOLOGY" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label styleClass="text-sub-heading" text="ADDRESS" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="addressLabel" styleClass="text-sub-heading-light" text="PROCTOLOGY" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="405.0" prefWidth="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </Separator>
+            <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <VBox styleClass="text-content-background">
+                     <children>
+                        <Label styleClass="text-box-header" text="PROFESSIONAL SUMMARY">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <TextArea fx:id="summaryTv" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus platea pellentesque commodo quis sit amet lacus. Felis volutpat magna faucibus natoque. Vestibulum volutpat adipiscing diam eleifend cras. Semper egestas mi purus praesent lectus massa elit in." wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0" styleClass="text-content-background">
+                     <children>
+                        <Label styleClass="text-box-header" text="EDUCATIONAL BACKGROUND">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ListView fx:id="eduBackgroundListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0" styleClass="text-content-background">
+                     <children>
+                        <Label styleClass="text-box-header" text="PROFESSIONAL EXPERIENCE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ListView fx:id="professionalExpListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0" styleClass="text-content-background">
+                     <children>
+                        <Label styleClass="text-box-header" text="HOSPITAL AFFILIATIONS">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ListView fx:id="hospitalAffListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+   </padding>
+</VBox>

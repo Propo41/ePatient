@@ -11,7 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.ui.database.DoctorDao;
+import database.DoctorDao;
 import util.Util;
 
 import java.net.URL;

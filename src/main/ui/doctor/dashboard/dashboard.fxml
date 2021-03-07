@@ -13,14 +13,14 @@
    <children>
       <Label layoutX="50.0" layoutY="30.0" styleClass="text-content-title" text="DASHBOARD" />
       <Separator layoutX="50.0" layoutY="69.0" prefHeight="5.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" VBox.vgrow="ALWAYS" />
-      <HBox layoutX="45.0" layoutY="94.0" prefHeight="271.0" prefWidth="845.0" spacing="20.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" VBox.vgrow="SOMETIMES">
+      <HBox layoutX="45.0" layoutY="94.0" prefHeight="285.0" prefWidth="845.0" spacing="20.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" VBox.vgrow="SOMETIMES">
          <children>
             <StackPane prefHeight="271.0" prefWidth="432.0" styleClass="card-background" HBox.hgrow="ALWAYS">
                <children>
                   <VBox prefHeight="271.0" prefWidth="265.0" spacing="10.0">
                      <children>
                         <Label styleClass="card-title" text="VISITING HOURS" />
-                        <JFXListView fx:id="visitingHoursListView" prefHeight="224.0" prefWidth="225.0" />
+                        <ListView fx:id="visitingHoursListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_white.css" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
