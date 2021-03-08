@@ -16,18 +16,17 @@ public class MainController {
 
     @FXML
     void adminClicked(ActionEvent event) throws IOException {
-        openLogIn("admin", event);
+        openLogIn(Util.TYPE_ADMIN, event);
     }
 
     @FXML
     void receptionistClicked(ActionEvent event) throws IOException {
-        openLogIn("receptionist", event);
-
+        openLogIn(Util.TYPE_RECEPTIONIST, event);
     }
 
     @FXML
     void doctorClicked(ActionEvent event) throws IOException {
-        openLogIn("doctor", event);
+        openLogIn(Util.TYPE_DOCTOR, event);
     }
 
     private void openLogIn(String loginType, ActionEvent event) throws IOException {
@@ -38,7 +37,7 @@ public class MainController {
 
         Util.getInstance().setUserType(loginType);
 
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.show();
 

@@ -33,7 +33,16 @@ public class LogInController {
         if (status) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/main/ui/doctor/doctor_main.fxml"));
+                if(userType.equals(Util.TYPE_ADMIN)){
+                    loader.setLocation(getClass().getResource("/main/ui/admin/main/admin_main.fxml"));
+
+                }else if(userType.equals(Util.TYPE_DOCTOR)){
+                    loader.setLocation(getClass().getResource("/main/ui/doctor/doctor_main.fxml"));
+
+                }else{
+                   //loader.setLocation(getClass().getResource("/main/ui/doctor/doctor_main.fxml"));
+
+                }
                 Parent parent = loader.load();
                 Scene loginScene = new Scene(parent);
 

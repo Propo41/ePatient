@@ -8,6 +8,11 @@ import java.util.Locale;
 
 /*Singleton class to hold local variables*/
 public class Util {
+    public static final String TYPE_ADMIN = "admin";
+    public static final String TYPE_DOCTOR = "doctor";
+
+    public static final String TYPE_RECEPTIONIST = "receptionist";
+
     private static Util instance = null;
 
     private String userId;

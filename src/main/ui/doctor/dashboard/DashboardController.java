@@ -87,7 +87,7 @@ public class DashboardController implements Initializable {
     private void viewMore(Patient patient) {
         FXMLLoader loader;
         try {
-            loader = FXMLLoader.load(getClass().getResource("view_patient.fxml"));
+            loader = FXMLLoader.load(getClass().getResource("main/ui/doctor/patients/view_patient.fxml"));
             ViewPatientController controller = loader.getController();
             controller.setContent(patient.getId());
             Stage stage = new Stage();
