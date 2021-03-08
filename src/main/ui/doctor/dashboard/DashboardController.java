@@ -4,9 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
@@ -14,9 +17,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import database.DoctorDao;
+import javafx.stage.Stage;
+import main.ui.doctor.patients.ViewPatientController;
+import model.Patient;
 import model.Schedule;
 import util.Util;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -52,29 +59,48 @@ public class DashboardController implements Initializable {
         String totalAppointments = doctorDao.getTotalAppointments();
         totalAppointmentTv.setText(totalAppointments);
         totalVisitsTv.setText(doctorDao.getTotalVisits());
+        totalBilledTv.setText(doctorDao.getTotalBill());
 
+        ArrayList<Patient> recentPatientList = doctorDao.getRecentPatientList();
         // create recent patients list
-        for (int i = 0; i < 10; i++) {
-            HBox hBox = createCard("Gabbie", "12 March 2021");
+        for (int i = 0; i < recentPatientList.size(); i++) {
+            Patient patient = recentPatientList.get(i);
+            HBox hBox = createCard(patient.getName(), Util.formatDate(patient.getDate()));
             HBox btnContainer = (HBox) hBox.getChildren().get(2);
             JFXButton button = (JFXButton) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    System.out.println("clicked index: " + finalI);
-                }
-            });
+            int index = i;
+            button.setOnAction(event ->
+                    viewMore(recentPatientList.get(index)));
             patientListView.getItems().add(hBox);
         }
 
         // getting doctor visiting hours
         ArrayList<Schedule> visitingHours = doctorDao.getDoctorVisitingHours();
-        for (int i = 0; i < visitingHours.size(); i++) {
-            HBox hBox = createVisitingHours(visitingHours.get(i));
+        for (Schedule visitingHour : visitingHours) {
+            HBox hBox = createVisitingHours(visitingHour);
             visitingHoursListView.getItems().add(hBox);
         }
 
+
+    }
+
+    private void viewMore(Patient patient) {
+        FXMLLoader loader;
+        try {
+            loader = FXMLLoader.load(getClass().getResource("view_patient.fxml"));
+            ViewPatientController controller = loader.getController();
+            controller.setContent(patient.getId());
+            Stage stage = new Stage();
+            stage.setTitle(patient.getName());
+            stage.setResizable(false);
+            stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            //((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -99,6 +125,9 @@ public class DashboardController implements Initializable {
 
 
     public HBox createCard(String name, String date) {
+        name = name.toUpperCase();
+        date = date.toUpperCase();
+
         HBox hBox = new HBox();
         hBox.getStyleClass().add("card-background");
         hBox.setPadding(new Insets(10.0d, 20.0d, 10.0d, 20.0d));

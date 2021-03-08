@@ -1,6 +1,7 @@
 package main.ui.doctor.patients;
 
 import com.jfoenix.controls.JFXButton;
+import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import model.Patient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -98,5 +100,10 @@ public class ViewPatientController implements Initializable {
         hBox.getChildren().add(label);
 
         return hBox;
+    }
+
+    public void setContent(String patientId) {
+        DoctorDao doctorDao = new DoctorDao();
+        Patient patient = doctorDao.getPatientProfile(patientId);
     }
 }

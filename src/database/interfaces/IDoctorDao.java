@@ -12,5 +12,6 @@ public interface IDoctorDao {
     ArrayList<Patient> getRecentPatientList();
     ArrayList<Schedule> getDoctorVisitingHours();
     String getTotalVisits();
-
+    String getTotalBill();
+    Patient getPatientProfile(String patientId);
 }

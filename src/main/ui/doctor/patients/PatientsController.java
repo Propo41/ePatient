@@ -34,8 +34,7 @@ public class PatientsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
       //  image.setImage(new Image("/resources/icons/ic_search.png"));
-
-        createCardItems(8);
+        createCardItems(6);
     }
 
 
@@ -44,7 +43,8 @@ public class PatientsController implements Initializable {
      */
     private void createCardItems(int items) {
         int maxItemsPerRow = 5;
-        int rows = (int) Math.ceil(items / 5.0);
+        int rows;
+        rows =  items / 5;
         while (rows != 0) {
             createCardsPerRow(maxItemsPerRow);
             rows--;

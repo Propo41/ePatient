@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class DatabaseHandler {
 
     private Connection connection;
-    private static HikariDataSource dataSource;
+    private static final HikariDataSource dataSource;
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=ePatient;selectedMethod=cursor";
 
     static {

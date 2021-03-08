@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 /*Singleton class to hold local variables*/
 public class Util {
@@ -24,6 +25,8 @@ public class Util {
 
         return instance;
     }
+
+
 
 
     public String getUserId() {
@@ -61,6 +64,18 @@ public class Util {
         return null;
     }
 
+    public static String formatDate(Date date) {
+        String pattern = "dd MMMM yyyy";
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat(pattern, Locale.getDefault());
+
+        String a = simpleDateFormat.format(date);
+        System.out.println(a);
+        return a;
+
+
+    }
+
     /**
      *
      * @param day integer extracted from date instance
@@ -69,5 +84,11 @@ public class Util {
     public static String getDay(int day){
         String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         return days[day];
+    }
+
+    private static String getMonth(int month){
+        String[] days = {"January", "February", "March", "April", "May", "June",
+                "July", "Aug", "September", "October", "November", "December"};
+        return days[month];
     }
 }
