@@ -47,6 +47,7 @@ public class DatabaseHandler {
                Integer.parseInt(roomNumber) + "','" + educationalBackground + "','" + password +"')";
 
         try {
+            connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
             statement.execute(query);
             return true;
@@ -75,6 +76,38 @@ public class DatabaseHandler {
         return Integer.parseInt(val);
     }
 
+    public String getSingleInfo(int id, String column){
+        String query = "select "+ column +" from Doctor where doctor_id = " + id;
+        String val="";
+        try {
+            connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                val = resultSet.getString(column);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            val = "Not found";
+        }
+        return val;
+    }
+
+
+    public ResultSet getDoctorMainAdmin(String name){
+        String query = "select doctor_specialist,doctor_name,doctor_id from Doctor where doctor_name like '%"+ name + "%' ";
+        ResultSet resultSet = null;
+        try {
+            connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
 
 
     public boolean logInForm(String userID, String password, String userType) {
@@ -82,7 +115,6 @@ public class DatabaseHandler {
             try {
                 connection = dataSource.getConnection();
                 System.out.println("Connected DB NAME IS: " + connection.getMetaData().getDatabaseProductName());
-
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
@@ -149,6 +181,9 @@ public class DatabaseHandler {
         }
 
     }
+
+
+
 
    /* public String getTotalAppointments() {
         String query = "select count(doctor_id) as 'count' from Appointment where doctor_id='" + userID + "'";

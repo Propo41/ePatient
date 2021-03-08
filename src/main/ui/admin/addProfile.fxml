@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -18,6 +13,9 @@
 
 
 <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" stylesheets="@../../../resources/styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.AddProfileController">
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" stylesheets="@../../../resources/styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.AddProfileController">
    <content>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <padding>
@@ -225,7 +223,10 @@
             <VBox alignment="BASELINE_CENTER" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="BASELINE_RIGHT" VBox.vgrow="ALWAYS" />
-                  <JFXButton onAction="#saveClicked" prefHeight="44.0" prefWidth="1047.0" styleClass="button-primary" text="SAVE" VBox.vgrow="ALWAYS" />
+                  <JFXButton maxWidth="1.7976931348623157E308" onAction="#saveClicked" prefHeight="44.0" prefWidth="1047.0" styleClass="button-primary" text="SAVE" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </VBox.margin></JFXButton>
                </children>
             </VBox>
          </children>
