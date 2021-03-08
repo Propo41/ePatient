@@ -6,6 +6,19 @@ public class Schedule {
     private String endTime;
     private String duration;
 
+    public Schedule(String day, String startTime, String endTime, String duration) {
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.duration = duration;
+    }
+
+    public Schedule(String day, String startTime, String endTime) {
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public String getDay() {
         return day;
     }

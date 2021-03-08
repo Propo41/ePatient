@@ -1,5 +1,11 @@
 package util;
 
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 /*Singleton class to hold local variables*/
 public class Util {
     private static Util instance = null;
@@ -20,9 +26,8 @@ public class Util {
         return instance;
     }
 
-    public static void setInstance(Util instance) {
-        Util.instance = instance;
-    }
+
+
 
     public String getUserId() {
         return userId;
@@ -38,5 +43,52 @@ public class Util {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    /**
+     *
+     * @param time in 24hr format: "22:15"
+     * @return time in 12hr format hh:mm a
+     */
+    public static String convert24to12format(String time){
+        try {
+            SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
+            Date date = _24HourSDF.parse(time);
+           // System.out.println(date);
+            System.out.println(_12HourSDF.format(date));
+            return _12HourSDF.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String formatDate(Date date) {
+        String pattern = "dd MMMM yyyy";
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat(pattern, Locale.getDefault());
+
+        String a = simpleDateFormat.format(date);
+        System.out.println(a);
+        return a;
+
+
+    }
+
+    /**
+     *
+     * @param day integer extracted from date instance
+     * @return the day, ie day = 1 means Monday
+     */
+    public static String getDay(int day){
+        String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        return days[day];
+    }
+
+    private static String getMonth(int month){
+        String[] days = {"January", "February", "March", "April", "May", "June",
+                "July", "Aug", "September", "October", "November", "December"};
+        return days[month];
     }
 }

@@ -1,6 +1,7 @@
 package main.ui.doctor.patients;
 
 import com.jfoenix.controls.JFXButton;
+import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import model.Patient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -69,6 +71,21 @@ public class ViewPatientController implements Initializable {
 
     }
 
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        for (int i = 0; i < 7; i++) {
+            HBox hBox = createList("Alcohol: Yes");
+            socialHistoryListView.getItems().add(hBox);
+        }
+
+        for (int i = 0; i < 7; i++) {
+            HBox hBox = createList("Tonsillitis");
+            medicalHistoryListView.getItems().add(hBox);
+        }
+    }
+
     private HBox createList(String name) {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
@@ -85,16 +102,8 @@ public class ViewPatientController implements Initializable {
         return hBox;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("Alcohol: Yes");
-            socialHistoryListView.getItems().add(hBox);
-        }
-
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("Tonsillitis");
-            medicalHistoryListView.getItems().add(hBox);
-        }
+    public void setContent(String patientId) {
+        DoctorDao doctorDao = new DoctorDao();
+        Patient patient = doctorDao.getPatientProfile(patientId);
     }
 }
