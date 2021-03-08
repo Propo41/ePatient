@@ -27,9 +27,18 @@
     -fx-image: url('icons/ic_profile_image.png');
 }
 
+.add-icon{
+    -fx-image: url('icons/ic_add.png');
+}
 
 .bullet-icon {
     -fx-image: url('icons/ic_bullet_point.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+.delete-icon {
+    -fx-image: url('icons/ic_delete.png');
     -fx-pref-width: 10;
     -fx-pref-height: 10;
 }
@@ -295,6 +304,14 @@
     /*padding: top right bottom left*/
     -fx-padding: 10 20 10 20;
 
+}
+
+
+.text-content-background-2 {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    /*padding: top right bottom left*/
+    -fx-padding: 10 10 10 0;
 }
 
 
