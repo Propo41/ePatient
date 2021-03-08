@@ -15,7 +15,7 @@ public class InsertionProfileDialogController implements Initializable {
     private Label idNumber;
 
     public void setIdNumber(int idNumberOfNewUser) {
-        idNumber.setText(idNumberOfNewUser+"");
+        idNumber.setText("Your account ID is "+ idNumberOfNewUser+"");
     }
 
     @FXML

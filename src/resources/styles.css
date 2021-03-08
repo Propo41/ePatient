@@ -307,6 +307,14 @@
 }
 
 
+.text-content-background-2 {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    /*padding: top right bottom left*/
+    -fx-padding: 10 10 10 0;
+}
+
+
 /* START: STYLE FOR TAB LAYOUT */
 .tab-header-background {
     -fx-background-color: -fx-color-ash;

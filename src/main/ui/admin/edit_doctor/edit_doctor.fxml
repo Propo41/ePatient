@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -16,7 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.edit_doctor.EditDoctorController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.edit_doctor.EditDoctorController">
    <left>
       <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
          <padding>
@@ -28,7 +25,6 @@
          <children>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="user-icon" />
             <Label fx:id="doctor_name" styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
-            <Label maxWidth="111.0" prefHeight="76.0" prefWidth="111.0" styleClass="text-sub-heading-light" text="SPECIALIST IN PROCTOLOGY" textAlignment="CENTER" wrapText="true" />
             <Separator prefWidth="200.0">
                <padding>
                   <Insets left="10.0" right="10.0" />
@@ -43,13 +39,13 @@
                </VBox.margin>
                <children>
                   <Label styleClass="text-sub-heading" text="SPECIALITY" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="PROCTOLOGY" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="specialist2" maxWidth="100.0" styleClass="text-sub-heading-light" text="PROCTOLOGY" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                <children>
                   <Label styleClass="text-sub-heading" text="HOSPITAL AFFILIATIONS" textAlignment="CENTER" wrapText="true" />
-                  <Label styleClass="text-sub-heading-light" text="XXXXXXxxx" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="hospitalAffiliations" styleClass="text-sub-heading-light" text="xx" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
@@ -70,8 +66,20 @@
                   <Label fx:id="address" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" />
-            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" />
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <JFXButton onAction="#onEditClick" prefHeight="40.0" prefWidth="775.0" styleClass="button-secondary-small" text="EDIT">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </left>
@@ -99,7 +107,7 @@
                         <TextArea fx:id="professionalSummary" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
                      </children>
                   </VBox>
-                  <VBox styleClass="text-content-background">
+                  <VBox styleClass="text-content-background-2">
                      <children>
                         <HBox prefHeight="28.0" prefWidth="660.0">
                            <children>
@@ -107,6 +115,9 @@
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Label>
                               <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#educationalBackgroundClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
                                  <HBox.margin>
@@ -118,26 +129,48 @@
                         <ListView fx:id="educationalBackgroundList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                      </children>
                   </VBox>
+                  <VBox styleClass="text-content-background-2">
+                     <children>
+                        <HBox prefHeight="28.0" prefWidth="660.0">
+                           <children>
+                              <Label styleClass="text-box-header" text="PROFESSIONAL EXPERINCE">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#professionalExperienceClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
+                                 <HBox.margin>
+                                    <Insets left="7.0" top="2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="professionalExperienceList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                     </children>
+                  </VBox>
                   <HBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <VBox styleClass="text-content-background">
+                        <VBox styleClass="text-content-background-2">
                            <children>
                               <Label styleClass="text-box-header" text="AVAILABLE DURATION">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextArea editable="false" prefHeight="155.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
+                              <ListView fx:id="avaiableDurationList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                            </children>
                         </VBox>
-                        <VBox styleClass="text-content-background">
+                        <VBox styleClass="text-content-background-2">
                            <children>
                               <Label styleClass="text-box-header" text="CHAMBER ADDRESS">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextArea editable="false" prefHeight="155.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="- DUST MITES" wrapText="true" />
+                              <ListView fx:id="chamberAddressList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                            </children>
                         </VBox>
                      </children>
@@ -145,6 +178,7 @@
                   <VBox VBox.vgrow="ALWAYS">
                      <children>
                         <VBox VBox.vgrow="ALWAYS" />
+                        <JFXButton fx:id="dismissButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onDismissClick" prefHeight="40.0" styleClass="button-primary-small" text="DISMISS" />
                      </children>
                   </VBox>
                </children>

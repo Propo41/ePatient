@@ -58,10 +58,6 @@ public class AddProfileController implements Initializable {
 
     @FXML
     void saveClicked(ActionEvent event) {
-        checkInputFields();
-    }
-
-    private void checkInputFields() {
         checkemptyField();
     }
 
@@ -178,7 +174,7 @@ public class AddProfileController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root1));
             stage.show();
-            System.out.println("here");
+
         }catch (Exception ex){
 
         }
