@@ -1,8 +1,6 @@
 package main.ui.doctor.dashboard;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,7 +63,7 @@ public class DashboardController implements Initializable {
         // create recent patients list
         for (int i = 0; i < recentPatientList.size(); i++) {
             Patient patient = recentPatientList.get(i);
-            HBox hBox = createCard(patient.getName(), Util.formatDate(patient.getDate()));
+            HBox hBox = createCard(patient.getName(), Util.formatDate(patient.getJoinedDate()));
             HBox btnContainer = (HBox) hBox.getChildren().get(2);
             JFXButton button = (JFXButton) btnContainer.getChildren().get(0);
             int index = i;
@@ -85,20 +83,21 @@ public class DashboardController implements Initializable {
     }
 
     private void viewMore(Patient patient) {
-        FXMLLoader loader;
+        Parent root;
         try {
-            loader = FXMLLoader.load(getClass().getResource("main/ui/doctor/patients/view_patient.fxml"));
-            ViewPatientController controller = loader.getController();
-            controller.setContent(patient.getId());
+             root = FXMLLoader.load(getClass().getResource("../patients/view_patient.fxml"));
+            // root = FXMLLoader.load(getClass().getResource("../patients/view_patient.fxml"));
+          /*  ViewPatientController controller = new ViewPatientController(patient.getId());
+            controller.setContent("a");
+*/
             Stage stage = new Stage();
             stage.setTitle(patient.getName());
             stage.setResizable(false);
-            stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+            stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
             stage.show();
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

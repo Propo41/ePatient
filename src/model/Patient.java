@@ -1,11 +1,13 @@
 package model;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class Patient {
     private String name;
     private String id;
-    private String mobile;
+    private String contact;
+    private String emergencyContact;
     private String email;
     private String address;
     private String gender;
@@ -13,16 +15,21 @@ public class Patient {
     private String age;
     private String height;
     private String weight;
-    private Date date;
+    private Date joinedDate;
+    private Date birthDate;
+    private HashMap<String, Boolean> medicalHistory;
+    private HashMap<String, Boolean> socialHistory;
+    private String surgicalHistory;
 
 
+    public Patient(){}
     public Patient(String name, String mobile,
                    String email, String address,
                    String gender, String bloodGroup,
                    String age, String height,
                    String weight) {
         this.name = name;
-        this.mobile = mobile;
+        this.contact = mobile;
         this.email = email;
         this.address = address;
         this.gender = gender;
@@ -32,10 +39,58 @@ public class Patient {
         this.weight = weight;
     }
 
-    public Patient(String name, Date date, String id) {
+    public Patient(String name, Date joinedDate, String id) {
         this.name = name;
-        this.date = date;
+        this.joinedDate = joinedDate;
         this.id = id;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public HashMap<String, Boolean> getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public void setMedicalHistory(HashMap<String, Boolean> medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public HashMap<String, Boolean> getSocialHistory() {
+        return socialHistory;
+    }
+
+    public void setSocialHistory(HashMap<String, Boolean> socialHistory) {
+        this.socialHistory = socialHistory;
+    }
+
+    public String getSurgicalHistory() {
+        return surgicalHistory;
+    }
+
+    public void setSurgicalHistory(String surgicalHistory) {
+        this.surgicalHistory = surgicalHistory;
     }
 
     public String getId() {
@@ -46,20 +101,12 @@ public class Patient {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getJoinedDate() {
+        return joinedDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setJoinedDate(Date joinedDate) {
+        this.joinedDate = joinedDate;
     }
 
     public String getEmail() {
