@@ -43,6 +43,12 @@
                         <Label fx:id="addressLabel" styleClass="text-sub-heading-light" text="PROCTOLOGY" wrapText="true" />
                      </children>
                   </VBox>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label styleClass="text-sub-heading" text="VISIT FEE" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="visitFeeLabel" styleClass="text-sub-heading-light" text="PROCTOLOGY" wrapText="true" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="405.0" prefWidth="0.0">
@@ -55,16 +61,6 @@
                   <Insets bottom="10.0" top="10.0" />
                </HBox.margin>
                <children>
-                  <VBox styleClass="text-content-background">
-                     <children>
-                        <Label styleClass="text-box-header" text="PROFESSIONAL SUMMARY">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <TextArea fx:id="summaryTv" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus platea pellentesque commodo quis sit amet lacus. Felis volutpat magna faucibus natoque. Vestibulum volutpat adipiscing diam eleifend cras. Semper egestas mi purus praesent lectus massa elit in." wrapText="true" />
-                     </children>
-                  </VBox>
                   <VBox spacing="10.0" styleClass="text-content-background">
                      <children>
                         <Label styleClass="text-box-header" text="EDUCATIONAL BACKGROUND">

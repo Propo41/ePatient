@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import database.DoctorDao;
 import util.Util;
@@ -60,15 +61,15 @@ public class DoctorMainController implements Initializable {
         guiButtonCurrent = navDashboardBtn;
         guiButtonPrevious = navDashboardBtn;
 
-        DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
-        String name = doctorDao.getName();
+        DoctorDao doctorDao = new DoctorDao();
+        String name = doctorDao.getName(Util.getInstance().getUserId());
         doctorNameTv.setText(name);
 
         // initially load dashboard UI
         try {
             frameLayout.getChildren().clear();
-            VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
-            root = (VBox) makeResponsive(root, "vbox");
+            StackPane root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
+            root = (StackPane) makeResponsive(root, "stackpane");
             frameLayout.getChildren().add(root);
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,6 +100,16 @@ public class DoctorMainController implements Initializable {
             AnchorPane.setLeftAnchor(scrollPane, 0.0d);
             AnchorPane.setRightAnchor(scrollPane, 0.0d);
             return scrollPane;
+        }else if(node.equals("stackpane")){
+            StackPane stackPane = (StackPane) root;
+            // to make the contents of the frame responsive
+            stackPane.setPrefWidth(930);
+            stackPane.setPrefHeight(847);
+            AnchorPane.setTopAnchor(stackPane, 0.0d);
+            AnchorPane.setBottomAnchor(stackPane, 0.0d);
+            AnchorPane.setLeftAnchor(stackPane, 0.0d);
+            AnchorPane.setRightAnchor(stackPane, 0.0d);
+            return stackPane;
         }
         return null;
     }

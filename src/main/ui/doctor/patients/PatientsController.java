@@ -1,6 +1,8 @@
 package main.ui.doctor.patients;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,10 +19,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import model.Patient;
 import util.Util;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PatientsController implements Initializable {
@@ -30,37 +34,60 @@ public class PatientsController implements Initializable {
     @FXML
     private TextField patientSearchTv;
 
+    @FXML
+    private VBox root;
+
+    @FXML
+    private Label resultsFoundLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         patientSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
         //  image.setImage(new Image("/resources/icons/ic_search.png"));
 
-        createCardItems(8);
+
     }
 
+    @FXML
+    void onSearchClick(ActionEvent event) {
+        String keyword = patientSearchTv.getText();
+        patientListView.getItems().clear();
+        resultsFoundLabel.setVisible(true);
+        if(!keyword.isEmpty()){
+            DoctorDao doctorDao = new DoctorDao();
+            ArrayList<Patient> patientList = doctorDao.getPatientList(patientSearchTv.getText());
+            resultsFoundLabel.setText(patientList.size() + " SEARCH RESULTS FOUND");
+            createCardItems(patientList);
+        }else{
+            resultsFoundLabel.setText("0 SEARCH RESULTS FOUND");
 
-    /*
+
+        }
+    }
+
+    /**
      * creates the desired number of items, passed as a parameter
      */
-    private void createCardItems(int items) {
+    private void createCardItems( ArrayList<Patient> patientList) {
         int maxItemsPerRow = 5;
-        int rows = items / 5;
+        int rows = patientList.size() / 5;
         while (rows != 0) {
-            createCardsPerRow(maxItemsPerRow);
+            createCardsPerRow(maxItemsPerRow, patientList);
             rows--;
         }
-        createCardsPerRow(items % maxItemsPerRow);
+        createCardsPerRow(patientList.size() % maxItemsPerRow, patientList);
     }
 
-    /*
+    /**
      * creates i number of items, with each row having $maxItemsPerRow items
      * called implicitly from createCardItems()
      */
-    private void createCardsPerRow(int i) {
+    private void createCardsPerRow(int i, ArrayList<Patient> patientList) {
+        i--; // used since the array index starts from 0
         HBox hBox = new HBox();
         hBox.setSpacing(10);
-        while(i!=0){
-            VBox vBox = createCard();
+        while(i!=-1){
+            VBox vBox = createCard(patientList.get(i));
             // vBox.setMaxWidth(290);
             hBox.getChildren().add(vBox);
             i--;
@@ -73,7 +100,7 @@ public class PatientsController implements Initializable {
      * creates a single card item
      * called implicitly from createCardsPerRow()
      */
-    private VBox createCard() {
+    private VBox createCard(Patient patient) {
         VBox vBox = new VBox();
         vBox.getStyleClass().add("card-background");
         vBox.setPadding(new Insets(20.0d, 20.0d, 20.0d, 20.0d));
@@ -88,12 +115,12 @@ public class PatientsController implements Initializable {
         icon.setFitWidth(70);
         icon.setFitHeight(70);
 
-        Label nameLabel = new Label("Gabbie Carter");
+        Label nameLabel = new Label(patient.getName());
         nameLabel.getStyleClass().add("text-sub-heading-bold");
         nameLabel.setWrapText(true);
         nameLabel.setTextAlignment(TextAlignment.CENTER);
 
-        Label subtitleLabel = new Label("PATIENT SINCE MARCH 10, 2020");
+        Label subtitleLabel = new Label("PATIENT SINCE " + Util.formatDate(patient.getJoinedDate()));
         subtitleLabel.getStyleClass().add("text-card-subtitle");
         subtitleLabel.setWrapText(true);
         subtitleLabel.setTextAlignment(TextAlignment.CENTER);
@@ -105,18 +132,16 @@ public class PatientsController implements Initializable {
         viewBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Parent root;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("view_patient.fxml"));
+                try{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("view_patient.fxml"));
                     Stage stage = new Stage();
-                    stage.setTitle("$NameOfPatient");
+                    stage.setTitle(patient.getName());
                     stage.setResizable(false);
-                    stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+                    stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+                    ViewPatientController controller = loader.getController();
+                    controller.setContent(patient.getId());
                     stage.show();
-                    // Hide this current window (if this is what you want)
-                    //((Node)(event.getSource())).getScene().getWindow().hide();
-                }
-                catch (IOException e) {
+                }catch (Exception e){
                     e.printStackTrace();
                 }
             }

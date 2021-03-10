@@ -6,14 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import model.Patient;
+import util.Util;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ViewPatientController implements Initializable {
@@ -37,7 +41,7 @@ public class ViewPatientController implements Initializable {
     private Label heightLabel;
 
     @FXML
-    private TextArea historyTv;
+    private TextArea surgicalHistoryTv;
 
     @FXML
     private Label weightLabel;
@@ -66,24 +70,18 @@ public class ViewPatientController implements Initializable {
     @FXML
     private Label patientIdLabel;
 
+    private String patientId;
+
+
     @FXML
     void onCloseClick(ActionEvent event) {
 
     }
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("Alcohol: Yes");
-            socialHistoryListView.getItems().add(hBox);
-        }
 
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("Tonsillitis");
-            medicalHistoryListView.getItems().add(hBox);
-        }
     }
 
     private HBox createList(String name) {
@@ -105,5 +103,34 @@ public class ViewPatientController implements Initializable {
     public void setContent(String patientId) {
         DoctorDao doctorDao = new DoctorDao();
         Patient patient = doctorDao.getPatientProfile(patientId);
+        contactLabel.setText(patient.getContact());
+        bloodGroupLabel.setText(patient.getBloodGroup());
+        genderLabel.setText(patient.getGender());
+        addressLabel.setText(patient.getAddress());
+        heightLabel.setText(patient.getHeight());
+        weightLabel.setText(patient.getWeight());
+        emergencyContactLabel.setText(patient.getEmergencyContact());
+        patientNameLabel.setText(patient.getName());
+        ageLabel.setText(patient.getAge());
+        dobLabel.setText(Util.formatDate(patient.getBirthDate()));
+        emailLabel.setText(patient.getEmail());
+        patientIdLabel.setText("ID: " + patient.getId());
+        surgicalHistoryTv.setText(patient.getSurgicalHistory());
+
+        for (Map.Entry<String, Boolean> entry : patient.getSocialHistory().entrySet()) {
+            String key = entry.getKey();
+            Boolean status = entry.getValue();
+            HBox hBox = createList(key.toUpperCase() + ": " + (status ? "YES" : "NO"));
+            socialHistoryListView.getItems().add(hBox);
+        }
+
+        for (Map.Entry<String, Boolean> entry : patient.getMedicalHistory().entrySet()) {
+            String key = entry.getKey();
+            Boolean status = entry.getValue();
+            HBox hBox = createList(key.toUpperCase() + ": " + (status ? "YES" : "NO"));
+            medicalHistoryListView.getItems().add(hBox);
+        }
+
     }
 }
+

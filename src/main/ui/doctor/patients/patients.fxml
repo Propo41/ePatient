@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="847.0" spacing="15.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.PatientsController">
+<VBox fx:id="root" prefHeight="847.0" spacing="15.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.PatientsController">
    <children>
       <Label styleClass="text-content-title" text="PATIENTS" />
       <HBox spacing="10.0">
@@ -17,13 +17,13 @@
             <TextField fx:id="patientSearchTv" prefHeight="50.0" promptText="ENTER PATIENT NAME OR PATIENT ID" styleClass="text-field-icon" HBox.hgrow="ALWAYS" />
             <HBox alignment="TOP_RIGHT" HBox.hgrow="NEVER">
                <children>
-                  <JFXButton prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
+                  <JFXButton onAction="#onSearchClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </HBox>
       <Separator prefHeight="5.0" prefWidth="845.0" />
-      <Label styleClass="text-sub-heading" text="5 SEARCH RESULTS FOUND" />
+      <Label fx:id="resultsFoundLabel" styleClass="text-sub-heading" text="5 SEARCH RESULTS FOUND" visible="false" />
       <ListView fx:id="patientListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
    </children>
    <padding>

@@ -43,6 +43,17 @@
     -fx-pref-height: 10;
 }
 
+/*changes the background colour of the dialog*/
+.jfx-dialog-layout{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*makes the JFXDialog rounded*/
+.jfx-dialog-overlay-pane > StackPane{
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+}
+
 .title-text {
     -fx-font-family: 'redressed';
     -fx-text-fill: -fx-color-navy-blue;
