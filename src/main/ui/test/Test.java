@@ -10,7 +10,7 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../main/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
         primaryStage.setTitle("Hello World");
         Scene scene = new Scene(root, 1200, 857); // ratio is 1.4:1
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());

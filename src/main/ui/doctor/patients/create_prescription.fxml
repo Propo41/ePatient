@@ -9,53 +9,280 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.CreatePrescriptionController">
+<VBox styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.CreatePrescriptionController">
    <children>
-      <Label styleClass="title-text-dialog-2" text="Create A New Prescription" />
-      <Separator prefHeight="5.0" prefWidth="845.0" />
-      <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="NEVER">
+      <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label styleClass="text-box-header" text="PATIENT" />
-            <TextField fx:id="patientTv" promptText="ENTER PATIENT NAME OR ID" styleClass="text-field-normal" />
+            <Label styleClass="title-text-dialog-2" text="Create A New Prescription" />
+            <Separator prefHeight="5.0" prefWidth="845.0" />
+            <JFXTabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+               <tabs>
+                  <Tab fx:id="healthCondTab" text="HEALTH CONDITION">
+                  <content>
+                        <VBox>
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                                 <children>
+                                    <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="NEVER">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="HEALTH CONDITION" />
+                                          <JFXComboBox fx:id="healthCondCb" prefHeight="50.0" prefWidth="908.0" promptText="SELECT HEALTH CONDITION" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="DIET SUGGESTION (IF ANY)" />
+                                          <TextArea fx:id="dietSuggestionTv" prefHeight="100.0" promptText="SELECT PATIENT’S CURRENT HEALTH CONDITION" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="EXERCISE ROUTINE (IF ANY)" />
+                                          <TextArea fx:id="examRoutineTv" prefHeight="100.0" promptText="SELECT PATIENT’S CURRENT HEALTH CONDITION" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="COMMENTS (IF ANY)" />
+                                          <TextArea fx:id="healthCommentTv" prefHeight="100.0" promptText="WRITE COMMENTS IF ANY" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <JFXButton maxWidth="1920.0" onAction="#onSaveClick" prefHeight="50.0" prefWidth="843.0" styleClass="button-primary-small" text="SAVE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                        </VBox>
+                  </content>
+                  </Tab>
+                  <Tab text="OBSERVED DISEASES">
+                     <content>
+                        <VBox>
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <VBox prefHeight="82.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="DISEASE NAME" />
+                                                <TextField fx:id="diseaseNameTv" prefHeight="49.0" prefWidth="65.0" promptText="ENTER DISEASE NAME" styleClass="text-field-normal" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="82.0" prefWidth="444.0" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="DISEASE TYPE" />
+                                                <JFXComboBox fx:id="diseaseTypeCb" prefHeight="50.0" prefWidth="444.0" promptText="SELECT DISEASE TYPE" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <VBox prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="COMMENTS (IF ANY)" />
+                                          <TextArea fx:id="diseaseCommentsTv" prefHeight="100.0" prefWidth="833.0" promptText="ENTER ANY COMMENTS ABOUT THE DISEASE (IF REQUIRED)" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <JFXButton maxWidth="1920.0" onAction="#onAddDiseaseClick" prefHeight="16.0" prefWidth="853.0" styleClass="button-tertiary-small" text="ADD" VBox.vgrow="ALWAYS" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="text-box-header" text="OBSERVED DISEASES">
+                                             <padding>
+                                                <Insets left="20.0" right="20.0" />
+                                             </padding>
+                                          </Label>
+                                          <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="15.0">
+                                       <children>
+                                          <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ListView fx:id="diseasesListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXButton fx:id="diseasesDeleteItemBtn" maxWidth="1920.0" onAction="#onDeleteDiseaseItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="SUGGEST MEDICAL TESTS">
+                     <content>
+                        <VBox>
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <VBox prefHeight="82.0" prefWidth="421.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="TEST NAME" />
+                                                <TextField fx:id="testNameTv" prefHeight="49.0" prefWidth="65.0" promptText="ENTER TEST NAME" styleClass="text-field-normal" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <VBox prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="TEST DESCRIPTION (IF ANY)" />
+                                          <TextArea fx:id="testDescriptionTv" prefHeight="100.0" prefWidth="833.0" promptText="ENTER ANY DESCRIPTION (IF REQUIRED)" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <JFXButton maxWidth="1920.0" onAction="#onTestsAddClick" prefHeight="16.0" prefWidth="853.0" styleClass="button-tertiary-small" text="ADD" VBox.vgrow="ALWAYS" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="text-box-header" text="SUGGESTED TESTS">
+                                             <padding>
+                                                <Insets left="20.0" right="20.0" />
+                                             </padding>
+                                          </Label>
+                                          <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="15.0">
+                                       <children>
+                                          <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ListView fx:id="testsListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXButton fx:id="diseasesDeleteItemBtn1" maxWidth="1920.0" onAction="#onDeleteTestItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="SUGGEST MEDICINES">
+                     <content>
+                        <VBox>
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <VBox prefHeight="82.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="MEDICINE NAME" />
+                                                <TextField fx:id="medicineNameTv" prefHeight="49.0" prefWidth="65.0" promptText="ENTER MEDICINE NAME" styleClass="text-field-normal" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="82.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="MEDICINE DURATION" />
+                                                <TextField fx:id="medicineDurationTv" prefHeight="49.0" prefWidth="65.0" promptText="ENTER MEDICINE DURATION" styleClass="text-field-normal" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <VBox prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="COMMENT" />
+                                          <TextArea fx:id="medicineCommentTv" prefHeight="100.0" prefWidth="833.0" promptText="ENTER COMMENTS ABOUT THE MEDICINE TIME TABLE" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <JFXButton maxWidth="1920.0" onAction="#onMedicineAddClick" prefHeight="16.0" prefWidth="853.0" styleClass="button-tertiary-small" text="ADD" VBox.vgrow="ALWAYS" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="text-box-header" text="SUGGESTED MEDICINES">
+                                             <padding>
+                                                <Insets left="20.0" right="20.0" />
+                                             </padding>
+                                          </Label>
+                                          <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="15.0">
+                                       <children>
+                                          <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ListView fx:id="medicineListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXButton fx:id="diseasesDeleteItemBtn11" maxWidth="1920.0" onAction="#onMedicineDeleteItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
          </children>
          <padding>
-            <Insets right="10.0" />
+            <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
          </padding>
-      </VBox>
-      <VBox prefWidth="100.0" spacing="10.0">
-         <children>
-            <Label styleClass="text-box-header" text="RECOMMENDED TESTS" />
-            <TextArea fx:id="testsTv" prefHeight="120.0" prefWidth="835.0" promptText="ENTER TESTS TO BE CARRIED OUT SEPARATED BY A COMMA" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-         </children>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-      <VBox prefWidth="100.0" spacing="10.0">
-         <children>
-            <Label styleClass="text-box-header" text="RECOMMENDED MEDICINES" />
-            <TextArea fx:id="medicinesTv" prefHeight="120.0" promptText="ENTER MEDICINE NAMES SEPARATED BY A COMMA" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-         </children>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-      <VBox prefWidth="100.0" spacing="10.0">
-         <children>
-            <Label styleClass="text-box-header" text="DESCRIPTION" />
-            <TextArea fx:id="descriptionTv" prefHeight="120.0" promptText="ENTER THE PRESCRIPTION DETAILS" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-         </children>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
-         <children>
-            <JFXButton fx:id="addPrescriptionBtn" maxWidth="1920.0" onAction="#onAddClick" prefHeight="50.0" prefWidth="843.0" styleClass="button-primary-small" text="ADD PRESCRIPTION" />
-         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-   </padding>
 </VBox>

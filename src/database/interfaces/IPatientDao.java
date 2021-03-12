@@ -6,4 +6,5 @@ import java.util.ArrayList;
 
 public interface IPatientDao {
     ArrayList<Patient> getPatientList();
+    String getName(String patientId);
 }

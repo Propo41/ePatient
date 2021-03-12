@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.skins.JFXDatePickerSkin;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
+import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,9 +19,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import model.Appointment;
+import util.Util;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AppointmentsController implements Initializable {
@@ -36,28 +40,45 @@ public class AppointmentsController implements Initializable {
     @FXML
     private ListView<HBox> prescriptionList;
 
+    private LocalDate selectedDate;
+    private DoctorDao doctorDao;
+
     @FXML
     void onSearchClick(ActionEvent event) {
-
+        prescriptionList.getItems().clear();
+        initList(selectedDate);
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        doctorDao = new DoctorDao();
         JFXDatePicker datePicker = new JFXDatePicker();
         datePicker.getStyleClass().add("date-picker-style");
         HBox.setHgrow(datePicker, Priority.NEVER);
         datePickerRoot.getChildren().add(datePicker);
 
         datePicker.setOnAction(event -> {
-            LocalDate date = datePicker.getValue();
-            selectedDateLabel.setText(date.toString());
+            selectedDate = datePicker.getValue();
+            selectedDateLabel.setText(selectedDate.toString());
         });
 
-        // create recent patients list
-        for (int i = 0; i < 10; i++) {
-            HBox hBox = createCard("Gabbie", "12 March 2021", "9:00AM - 9:00PM",
-                    "REASON: THROAT PAIN");
+        initList(datePicker.getValue());
+
+
+    }
+
+    private void initList(LocalDate date){
+        ArrayList<Appointment> appointments = doctorDao.getAppointmentList(
+                Util.getInstance().getUserId(),
+                date);
+        // create appointment list
+        for (Appointment appointment : appointments) {
+            HBox hBox = createCard(
+                    appointment.getPatientName(),
+                    Util.formatDate(appointment.getDate()),
+                    Util.convert24to12format(appointment.getStartTime().toString()) + " - " +
+                            Util.convert24to12format(appointment.getEndTime().toString()),
+                    appointment.getReason());
             prescriptionList.getItems().add(hBox);
         }
 
@@ -88,7 +109,6 @@ public class AppointmentsController implements Initializable {
         Label timeLabel = new Label(time);
         timeLabel.getStyleClass().add("text-sub-heading-light");
         vBox.getChildren().addAll(nameLabel, dateLabel, timeLabel);
-
 
         HBox hBox1 = new HBox();
         HBox.setHgrow(hBox1, Priority.ALWAYS);

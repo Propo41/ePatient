@@ -1,6 +1,8 @@
 package main.ui.doctor.dashboard;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,13 +12,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import database.DoctorDao;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.ui.doctor.patients.ViewPatientController;
 import model.Patient;
@@ -51,49 +56,75 @@ public class DashboardController implements Initializable {
     @FXML
     private ListView<HBox> patientListView;
 
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private Button button;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
+        DoctorDao doctorDao = new DoctorDao();
         // getting total appointments
-        String totalAppointments = doctorDao.getTotalAppointments();
+        String totalAppointments = doctorDao.getTotalAppointments(Util.getInstance().getUserId());
         totalAppointmentTv.setText(totalAppointments);
-        totalVisitsTv.setText(doctorDao.getTotalVisits());
-        totalBilledTv.setText(doctorDao.getTotalBill());
+        totalVisitsTv.setText(doctorDao.getTotalVisits(Util.getInstance().getUserId()));
+        totalBilledTv.setText(doctorDao.getTotalBill(Util.getInstance().getUserId()));
 
-        ArrayList<Patient> recentPatientList = doctorDao.getRecentPatientList();
+        ArrayList<Patient> recentPatientList = doctorDao.getRecentPatientList(Util.getInstance().getUserId());
         // create recent patients list
         for (int i = 0; i < recentPatientList.size(); i++) {
             Patient patient = recentPatientList.get(i);
-            HBox hBox = createCard(patient.getName(), Util.formatDate(patient.getDate()));
+            HBox hBox = createCard(patient.getName(), Util.formatDate(patient.getJoinedDate()));
             HBox btnContainer = (HBox) hBox.getChildren().get(2);
             JFXButton button = (JFXButton) btnContainer.getChildren().get(0);
             int index = i;
             button.setOnAction(event ->
-                    viewMore(recentPatientList.get(index)));
+
+            viewMore(recentPatientList.get(index)));
             patientListView.getItems().add(hBox);
         }
 
         // getting doctor visiting hours
-        ArrayList<Schedule> visitingHours = doctorDao.getDoctorVisitingHours();
+        ArrayList<Schedule> visitingHours = doctorDao.getDoctorVisitingHours(Util.getInstance().getUserId());
         for (Schedule visitingHour : visitingHours) {
             HBox hBox = createVisitingHours(visitingHour);
             visitingHoursListView.getItems().add(hBox);
         }
 
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    JFXDialogLayout content = new JFXDialogLayout();
+                    content.getStyleClass().add("jfx-dialog-overlay-pane");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dialog.fxml"));
+                    loader.load();
+                    JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
+                    dialog.getStyleClass().add("jfx-dialog-layout");
+                    DialogController dialogController = loader.getController();
+                    dialogController.setLabel("Mustofa sucks");
+                    dialog.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
 
     }
 
     private void viewMore(Patient patient) {
-        FXMLLoader loader;
         try {
-            loader = FXMLLoader.load(getClass().getResource("main/ui/doctor/patients/view_patient.fxml"));
-            ViewPatientController controller = loader.getController();
-            controller.setContent(patient.getId());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../patients/view_patient.fxml"));
+
             Stage stage = new Stage();
             stage.setTitle(patient.getName());
             stage.setResizable(false);
             stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+
+            ViewPatientController controller = loader.getController();
+            controller.setContent(patient.getId());
             stage.show();
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();

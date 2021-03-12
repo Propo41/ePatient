@@ -217,7 +217,7 @@ public class viewDoctorsController implements Initializable {
 
         /*                Parent root;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("view_prescription.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("view_prescription_history.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("My New Stage Title");
                     stage.setResizable(false);
