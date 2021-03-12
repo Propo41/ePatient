@@ -39,7 +39,7 @@
 }
 
 .delete-icon {
-    -fx-image: url('icons/ic_delete.png');
+    -fx-image: url('icons/ic_remove.png');
     -fx-pref-width: 10;
     -fx-pref-height: 10;
 }
@@ -179,7 +179,7 @@
 
 }
 
-/* green button */
+/* orange  button */
 .button-secondary {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
@@ -189,7 +189,7 @@
 
 }
 
-/* green button */
+/* orange button */
 .button-secondary-small {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
@@ -198,6 +198,16 @@
     -fx-font-size: 13;
     -fx-padding: 10;
 
+}
+
+/* orange button for list view delete */
+.button-secondary-listview {
+    -fx-background-color: -fx-color-orange;
+    -fx-background-radius: 10;
+    -fx-background-image: url('/resources/icons/ic_remove.png');
+    -fx-background-size: 20px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 /* orange button */
@@ -418,7 +428,6 @@
     visibility: false;
 }
 
-
 .h-box-background {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
@@ -438,21 +447,6 @@
     -jfx-unfocus-color: white;
     -fx-padding: 10;
 }
-/*
-
-.jfx-combo-box .prompt-container{
-    -fx-background-color: -fx-color-ash-background;
-    -fx-background-radius: 10;
-}
-*/
-/*
-.jfx-combo-box .list-view{
-    -fx-background-color: -fx-color-ash-background;
-    -fx-background-radius: 10;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 13;
-}
-*/
 
 .dialog-background{
     -fx-background-color: white;

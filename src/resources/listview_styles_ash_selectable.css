@@ -1,29 +1,34 @@
 /* STYLE: list view style with white background */
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
-    -fx-background-color: -fx-color-ash-background;
-
+    -fx-background-color: #C4C4C4;
 }
+
 .list-view {
     -fx-background-color: transparent;
     -fx-background-radius: 20;
 }
 
+
 .list-view, .split-pane {
     -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-background-radius: 20;
 }
+
 
 
 .list-cell {
     -fx-background-color: -fx-color-ash-background;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: -fx-color-ash-dark;
+    -fx-font-size: 15;
 }
 
 
-/*
+
 .list-cell:filled:hover {
-    -fx-background-color: #0093ff;
-    -fx-text-fill: white;
-}*/
+    -fx-background-color: #D7D7D7;
+}
 
 /* The track, ie the background of the scrollbar */
 .scroll-bar:horizontal .track,

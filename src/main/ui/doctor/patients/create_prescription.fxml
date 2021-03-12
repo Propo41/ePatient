@@ -113,7 +113,20 @@
                                           <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
-                                    <ListView prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
+                                    <HBox spacing="15.0">
+                                       <children>
+                                          <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ListView fx:id="diseasesListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXButton fx:id="diseasesDeleteItemBtn" maxWidth="1920.0" onAction="#onDeleteDiseaseItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
@@ -166,7 +179,20 @@
                                           <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
-                                    <ListView prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
+                                    <HBox spacing="15.0">
+                                       <children>
+                                          <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ListView fx:id="testsListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXButton fx:id="diseasesDeleteItemBtn1" maxWidth="1920.0" onAction="#onDeleteTestItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
@@ -225,7 +251,20 @@
                                           <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
-                                    <ListView prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
+                                    <HBox spacing="15.0">
+                                       <children>
+                                          <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ListView fx:id="medicineListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXButton fx:id="diseasesDeleteItemBtn11" maxWidth="1920.0" onAction="#onMedicineDeleteItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
