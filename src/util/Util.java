@@ -25,6 +25,9 @@ public class Util {
     public static final int DIALOG_SCREEN_WIDTH = 1000;
     public static final int DIALOG_SCREEN_HEIGHT = 800;
 
+    public static final int DIALOG_SCREEN_WIDTH_2 = 1200;
+    public static final int DIALOG_SCREEN_HEIGHT_2 = 900;
+
     public static Util getInstance() {
         if (instance == null)
             instance = new Util();

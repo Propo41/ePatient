@@ -21,13 +21,14 @@
     -fx-color-ash-background: #E5E5E5;
     -fx-color-white: #FFFFFF;
     -fx-color-black: #333333;
+    -fx-color-combobox-prompt: #b0b0b0
 }
 
 .user-icon {
     -fx-image: url('icons/ic_profile_image.png');
 }
 
-.add-icon{
+.add-icon {
     -fx-image: url('icons/ic_add.png');
 }
 
@@ -44,12 +45,12 @@
 }
 
 /*changes the background colour of the dialog*/
-.jfx-dialog-layout{
+.jfx-dialog-layout {
     -fx-background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*makes the JFXDialog rounded*/
-.jfx-dialog-overlay-pane > StackPane{
+.jfx-dialog-overlay-pane > StackPane {
     -fx-background-radius: 20;
     -fx-background-color: white;
 }
@@ -92,7 +93,6 @@
     -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-line-height: 16px;
-    -fx-font-weight: 700;
     -fx-display: flex;
     -fx-align-items: center;
     -fx-text-align: center;
@@ -274,7 +274,7 @@
 
 }
 
-.text-prompt{
+.text-prompt {
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
@@ -287,11 +287,12 @@
 
 }
 
-.text-label-ash-background{
+.text-label-ash-background {
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
 }
+
 .text-field-no-edit {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
@@ -305,7 +306,6 @@
 .text-field-no-edit .scroll-pane:fitToWidth .viewport .content {
     -fx-background-color: -fx-color-ash-background;
 }
-
 
 
 /*used for vbox background*/
@@ -331,9 +331,9 @@
     -fx-background-color: -fx-color-ash;
 }
 
+
 .jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab-selected-line {
     -fx-border-color: -fx-color-blue;
-
 }
 
 .jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:selected:top .jfx-rippler .tab-container .tab-label {
@@ -425,4 +425,35 @@
     /*padding: top right bottom left*/
     -fx-padding: 10 10 10 10;
 
+}
+
+/* combo box styling*/
+.jfx-combo-box{
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+    -jfx-focus-color: white;
+    -jfx-unfocus-color: white;
+    -fx-padding: 10;
+}
+/*
+
+.jfx-combo-box .prompt-container{
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+}
+*/
+/*
+.jfx-combo-box .list-view{
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13;
+}
+*/
+
+.dialog-background{
+    -fx-background-color: white;
 }

@@ -1,7 +1,6 @@
 package main.ui.doctor.patients;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
 import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -27,7 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class PatientsController implements Initializable {
+public class PrescriptionController implements Initializable {
     @FXML
     private ListView<HBox> patientListView;
 
@@ -62,6 +60,22 @@ public class PatientsController implements Initializable {
             resultsFoundLabel.setText("0 SEARCH RESULTS FOUND");
 
 
+        }
+    }
+
+    @FXML
+    void onCreatePrescriptionClick(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("create_prescription.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Create a New Prescription");
+            stage.setResizable(false);
+            stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+           // CreatePrescriptionController controller = loader.getController();
+          //  controller.setContent(patient.getId());
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -154,16 +168,15 @@ public class PatientsController implements Initializable {
         prescriptionBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Parent root;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("view_prescription.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("view_prescription_history.fxml"));
                     Stage stage = new Stage();
-                    stage.setTitle("My New Stage Title");
+                    stage.setTitle(patient.getName());
                     stage.setResizable(false);
-                    stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+                    stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+                    ViewPrescriptionHistoryController controller = loader.getController();
+                    controller.createPrescriptionHistory(patient.getId());
                     stage.show();
-                    // Hide this current window (if this is what you want)
-                    //((Node)(event.getSource())).getScene().getWindow().hide();
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -179,4 +192,6 @@ public class PatientsController implements Initializable {
 
         return vBox;
     }
+
+
 }

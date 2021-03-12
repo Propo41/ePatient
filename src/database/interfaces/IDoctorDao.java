@@ -21,5 +21,12 @@ public interface IDoctorDao {
     Patient getPatientProfile(String patientId);
     ArrayList<Patient> getPatientList(String keyword);
     ArrayList<Appointment> getAppointmentList(String doctorId, LocalDate date);
-    ArrayList<Object> getPrescriptionHistory(String patientId);
+    /**
+     * uses keyword to find prescription history of patient.
+     * @param keyword doctor name or Id
+     * @param patientId patient's id
+     * @return a list of objects that include <String> and <Prescription>.
+    <String> is used for header whereas <Prescription>
+     */
+    ArrayList<Object> getPrescriptionHistory(String patientId, String keyword);
 }

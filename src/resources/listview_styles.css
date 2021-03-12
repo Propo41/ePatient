@@ -1,4 +1,10 @@
 /* list view styling */
+.list-bg-color{
+    -fx-background-color: #F4F4F4;
+}
+
+
+
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: -fx-color-ash;
 

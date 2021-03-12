@@ -140,7 +140,7 @@ public class DoctorMainController implements Initializable {
             guiButtonPrevious = navPatientBtn;
             try {
                 frameLayout.getChildren().clear();
-                VBox root = FXMLLoader.load(getClass().getResource("patients/patients.fxml"));
+                VBox root = FXMLLoader.load(getClass().getResource("patients/prescription.fxml"));
                 root = (VBox) makeResponsive(root, "vbox");
                 frameLayout.getChildren().add(root);
             } catch (Exception e) {

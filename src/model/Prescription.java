@@ -1,15 +1,27 @@
 package model;
 
+import java.sql.Date;
+
 public class Prescription {
     private String patientId;
     private String doctorId;
     private String doctorName;
     private String reason;
-    private String dateOfPrescription;
+    private Date dateOfPrescription;
     private String prescriptionId;
 
 
     public Prescription() {
+    }
+
+    public Prescription(String patientId, String doctorId, String doctorName,
+                        String reason, Date dateOfPrescription, String prescriptionId) {
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.doctorName = doctorName;
+        this.reason = reason;
+        this.dateOfPrescription = dateOfPrescription;
+        this.prescriptionId = prescriptionId;
     }
 
     public String getPatientId() {
@@ -44,11 +56,11 @@ public class Prescription {
         this.reason = reason;
     }
 
-    public String getDateOfPrescription() {
+    public Date getDateOfPrescription() {
         return dateOfPrescription;
     }
 
-    public void setDateOfPrescription(String dateOfPrescription) {
+    public void setDateOfPrescription(Date dateOfPrescription) {
         this.dateOfPrescription = dateOfPrescription;
     }
 

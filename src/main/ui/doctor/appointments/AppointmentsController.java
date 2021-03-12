@@ -39,7 +39,6 @@ public class AppointmentsController implements Initializable {
 
     @FXML
     private ListView<HBox> prescriptionList;
-    @FXML
 
     private LocalDate selectedDate;
     private DoctorDao doctorDao;
@@ -47,22 +46,8 @@ public class AppointmentsController implements Initializable {
     @FXML
     void onSearchClick(ActionEvent event) {
         prescriptionList.getItems().clear();
-
-        ArrayList<Appointment> appointments = doctorDao.getAppointmentList(
-                Util.getInstance().getUserId(),
-                selectedDate);
-        // create appointment list
-        for (Appointment appointment : appointments) {
-            HBox hBox = createCard(
-                    appointment.getPatientName(),
-                    Util.formatDate(appointment.getDate()),
-                    Util.convert24to12format(appointment.getStartTime().toString()) + " - " +
-                            Util.convert24to12format(appointment.getEndTime().toString()),
-                    appointment.getReason());
-            prescriptionList.getItems().add(hBox);
-        }
+        initList(selectedDate);
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +62,25 @@ public class AppointmentsController implements Initializable {
             selectedDateLabel.setText(selectedDate.toString());
         });
 
+        initList(datePicker.getValue());
+
+
+    }
+
+    private void initList(LocalDate date){
+        ArrayList<Appointment> appointments = doctorDao.getAppointmentList(
+                Util.getInstance().getUserId(),
+                date);
+        // create appointment list
+        for (Appointment appointment : appointments) {
+            HBox hBox = createCard(
+                    appointment.getPatientName(),
+                    Util.formatDate(appointment.getDate()),
+                    Util.convert24to12format(appointment.getStartTime().toString()) + " - " +
+                            Util.convert24to12format(appointment.getEndTime().toString()),
+                    appointment.getReason());
+            prescriptionList.getItems().add(hBox);
+        }
 
     }
 
@@ -105,7 +109,6 @@ public class AppointmentsController implements Initializable {
         Label timeLabel = new Label(time);
         timeLabel.getStyleClass().add("text-sub-heading-light");
         vBox.getChildren().addAll(nameLabel, dateLabel, timeLabel);
-
 
         HBox hBox1 = new HBox();
         HBox.setHgrow(hBox1, Priority.ALWAYS);
