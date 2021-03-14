@@ -17,6 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="847.0" spacing="15.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.appointments.AppointmentsController">
+   <padding>
+      <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+   </padding>
    <children>
       <Label styleClass="text-content-title" text="MY APPOINTMENTS" />
       <HBox spacing="10.0">
@@ -31,10 +34,11 @@
                         <Image url="@../../../../resources/icons/ic_calender.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="selectedDateLabel" prefHeight="19.0" prefWidth="475.0" styleClass="text-prompt" text="Label" HBox.hgrow="SOMETIMES">
+                  <Label fx:id="selectedDateLabel" prefHeight="19.0" prefWidth="475.0" styleClass="text-prompt" text="SET A DATE FROM THE CALENDER ICON" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets left="10.0" />
-                     </HBox.margin></Label>
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <JFXButton fx:id="searchButton" onAction="#onSearchClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
@@ -43,7 +47,4 @@
       <Separator prefHeight="5.0" prefWidth="845.0" />
       <ListView fx:id="prescriptionList" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
    </children>
-   <padding>
-      <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-   </padding>
 </VBox>

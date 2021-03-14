@@ -1,5 +1,6 @@
 package main.ui.doctor.profile;
 
+import database.DoctorDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -9,6 +10,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.Doctor;
+import util.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,19 +22,22 @@ public class ProfileController implements Initializable {
     private Label contactLabel;
 
     @FXML
-    private TextArea summaryTv;
+    private ListView<HBox> professionalExpListView;
 
     @FXML
-    private TextArea professionalExpTv;
+    private Label visitFeeLabel;
+
+    @FXML
+    private ListView<HBox> eduBackgroundListView;
 
     @FXML
     private VBox root;
 
     @FXML
-    private TextArea hospitalAffiliationTv;
+    private Label addressLabel;
 
     @FXML
-    private Label addressLabel;
+    private ListView<HBox> hospitalAffListView;
 
     @FXML
     private Label specialityLabel;
@@ -39,33 +45,32 @@ public class ProfileController implements Initializable {
     @FXML
     private Label emailLabel;
 
-    @FXML
-    private TextArea eduBackgroundTv;
-
-    @FXML
-    private ListView<HBox> professionalExpListView;
-
-    @FXML
-    private ListView<HBox> eduBackgroundListView;
-
-    @FXML
-    private ListView<HBox> hospitalAffListView;
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("SUNDAY, 3:30PM - 4:30PM");
+        DoctorDao doctorDao = new DoctorDao();
+        Doctor doctor = doctorDao.getDoctorProfile(Util.getInstance().getUserId());
+        String [] eduList = Util.splitString(doctor.getEducationalBackground());
+        String [] exp = Util.splitString(doctor.getProfessionalExperience());
+        String [] hosAff = Util.splitString(doctor.getAffiliations());
+
+        contactLabel.setText(doctor.getPhone());
+        specialityLabel.setText(doctor.getSpecialist());
+        addressLabel.setText(doctor.getAddress());
+        emailLabel.setText(doctor.getEmail());
+        visitFeeLabel.setText(doctor.getVisitFee());
+
+        for (String s : eduList) {
+            HBox hBox = createList(s.trim());
             eduBackgroundListView.getItems().add(hBox);
         }
 
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("SUNDAY, 3:30PM - 4:30PM");
+        for (String s: exp) {
+            HBox hBox = createList(s.trim());
             professionalExpListView.getItems().add(hBox);
         }
 
-        for (int i = 0; i < 7; i++) {
-            HBox hBox = createList("SUNDAY, 3:30PM - 4:30PM");
+        for (String s: hosAff) {
+            HBox hBox = createList(s.trim());
             hospitalAffListView.getItems().add(hBox);
         }
     }

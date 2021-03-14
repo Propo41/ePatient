@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ePatient@localhost" uuid="90ff14c2-8660-42c5-8dc5-ae73c2040c35">
+    <data-source source="LOCAL" name="ePatient@localhost" uuid="48a6720f-57fb-476e-9853-88adb8550b4b">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
