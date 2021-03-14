@@ -78,7 +78,7 @@ public class EditPatientController {
         selectedDoctorId = doctor;
         this.editDoctorController = editDoctorController;
         DoctorDao doctorDao = new DoctorDao();
-        doctorInfoList = doctorDao.getDoctorInfo(selectedDoctorId);
+       // doctorInfoList = doctorDao.getDoctorInfo(selectedDoctorId);
 
         doctor_name.setText(doctorInfoList.get(0));
         specialist2.setText(doctorInfoList.get(1));

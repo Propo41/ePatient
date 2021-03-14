@@ -1,8 +1,11 @@
 package database.interfaces;
 
+import model.Appointment;
+import model.Doctor;
 import model.Patient;
 import model.Schedule;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface IDoctorDao {
@@ -11,7 +14,7 @@ public interface IDoctorDao {
     String getName(String doctorId);
     ArrayList<Patient> getRecentPatientList(String doctorId);
     ArrayList<Schedule> getDoctorVisitingHours(String doctorId);
-    Doctor getDoctorProfile( String doctorId);
+    Doctor getDoctorProfile(String doctorId);
     String getTotalVisits(String doctorId);
     String getTotalBill(String doctorId);
     Patient getPatientProfile(String patientId);
@@ -26,9 +29,6 @@ public interface IDoctorDao {
      */
     ArrayList<Object> getPrescriptionHistory(String patientId, String keyword);
 
-
     void updateDoctorAttribute(String attribute, String data, int doctorId);
-    ArrayList<String> getDoctorInfo(int doctorId);
-    Doctor getDoctorProfile(String doctorId);
 
 }

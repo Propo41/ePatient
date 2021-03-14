@@ -2,8 +2,7 @@ package database;
 
 import com.zaxxer.hikari.HikariDataSource;
 import database.interfaces.IDoctorDao;
-import model.Patient;
-import model.Schedule;
+import model.*;
 import util.Util;
 
 import java.sql.*;
