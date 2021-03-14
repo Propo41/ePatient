@@ -53,7 +53,7 @@
                   <Insets left="30.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onAppointmentsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PATIENTS">
+            <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PATIENTS">
                <padding>
                   <Insets left="30.0" />
                </padding>

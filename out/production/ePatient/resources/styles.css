@@ -61,6 +61,12 @@
     -fx-font-size: 50;
 }
 
+.title-text-dialog-3 {
+    -fx-font-family: 'redressed';
+    -fx-text-fill: -fx-color-navy-blue;
+    -fx-font-size: 30;
+}
+
 .text-sub-heading {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
@@ -304,6 +310,14 @@
     /*padding: top right bottom left*/
     -fx-padding: 10 20 10 20;
 
+}
+
+
+.text-content-background-2 {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    /*padding: top right bottom left*/
+    -fx-padding: 10 10 10 0;
 }
 
 
