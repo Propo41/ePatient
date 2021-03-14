@@ -2,6 +2,7 @@ package database;
 
 import com.zaxxer.hikari.HikariDataSource;
 import database.interfaces.IDoctorDao;
+import javafx.collections.ObservableList;
 import model.*;
 import util.Util;
 
@@ -416,4 +417,106 @@ public class DoctorDao implements IDoctorDao {
         return appointmentsList;
 
     }
+
+    @Override
+    public String createNewPrescription(Prescription prescription) {
+        connection = DatabaseHandler.getConnection();
+
+        StringBuilder query = new StringBuilder("" +
+                "insert into Prescription (patient_id, doctor_id, appointment_id, patient_health_condition, comment) " +
+                "VALUES (?, ?, ?, ?, ?) " +
+                "Declare @pres_id int " +
+                "SELECT @pres_id=prescription_id FROM Prescription WHERE prescription_id = SCOPE_IDENTITY() " +
+                "insert into Recommendations (exercise_routine, food_chart, prescription_id) " +
+                "VALUES (?, ?, @pres_id) ");
+
+        query.append("insert into Medicine (prescription_id, medicine_name, duration, comment) values");
+        ObservableList<Medicine> medicines = prescription.getMedicines();
+        for (int i = 0; i < medicines.size(); i++) {
+            if (i == medicines.size() - 1) {
+                query.append(" (@pres_id, ?, ?, ?) ");
+            } else {
+                query.append(" (@pres_id, ?, ?, ?), ");
+            }
+        }
+
+        query.append("insert into Test (prescription_id, test_name, test_description) values");
+        ObservableList<MedicalTest> medicalTests = prescription.getMedicalTests();
+        for (int i = 0; i < medicalTests.size(); i++) {
+            if (i == medicalTests.size() - 1) {
+                query.append(" (@pres_id, ?, ?) ");
+
+            } else {
+                query.append(" (@pres_id, ?, ?), ");
+            }
+        }
+
+        query.append("insert into Disease (prescription_id, disease_name, disease_type, disease_description) values");
+        ObservableList<Disease> diseases = prescription.getDiseases();
+        for (int i = 0; i < diseases.size(); i++) {
+            if (i == diseases.size() - 1) {
+                query.append(" (@pres_id, ?, ?, ?) ");
+
+            } else {
+                query.append(" (@pres_id, ?, ?, ?), ");
+            }
+        }
+
+        System.out.println(query);
+
+        if (connection != null) {
+            try (PreparedStatement preparedStmt = connection.prepareStatement(query.toString())) {
+                preparedStmt.setInt(1, prescription.getPatientId());
+                preparedStmt.setInt(2, prescription.getDoctorId());
+                preparedStmt.setInt(3, prescription.getAppointmentId());
+                preparedStmt.setString(4, prescription.getHealthCondition().getHealthCondition());
+                preparedStmt.setString(5, prescription.getHealthCondition().getComments());
+
+                preparedStmt.setString(6, prescription.getHealthCondition().getExerciseRoutine());
+                preparedStmt.setString(7, prescription.getHealthCondition().getFoodSuggestion());
+
+                // inserting medicine list
+                int i=8;
+                for (Medicine medicine : medicines) {
+                    preparedStmt.setString(i, medicine.getMedicineName());
+                    i++;
+                    preparedStmt.setString(i, medicine.getMedicineDuration());
+                    i++;
+                    preparedStmt.setString(i, medicine.getComment());
+                    i++;
+                }
+
+                // inserting tests list
+                for (MedicalTest medicalTest : medicalTests) {
+                    preparedStmt.setString(i, medicalTest.getTestName());
+                    i++;
+                    preparedStmt.setString(i, medicalTest.getTestDescription());
+                    i++;
+                }
+
+                // inserting diseases list
+                for (Disease disease : diseases) {
+                    preparedStmt.setString(i, disease.getDiseaseName());
+                    i++;
+                    preparedStmt.setString(i, disease.getDiseaseType());
+                    i++;
+                    preparedStmt.setString(i, disease.getDescription());
+                    i++;
+                }
+
+                preparedStmt.execute();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
 }

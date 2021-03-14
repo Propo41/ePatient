@@ -14,7 +14,7 @@ public class Medicine {
     }
 
     public String getMedicineName() {
-        return medicineName.get();
+        return medicineName.getValue();
     }
 
     public SimpleStringProperty medicineNameProperty() {

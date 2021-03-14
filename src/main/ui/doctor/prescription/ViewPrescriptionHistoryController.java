@@ -1,4 +1,4 @@
-package main.ui.doctor.patients;
+package main.ui.doctor.prescription;
 
 import com.jfoenix.controls.JFXButton;
 import database.DoctorDao;
@@ -23,7 +23,6 @@ import model.Prescription;
 import util.Util;
 
 import java.net.URL;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 

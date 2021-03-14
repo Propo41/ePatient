@@ -5,14 +5,24 @@ import javafx.beans.property.SimpleStringProperty;
 public class MedicalTest {
     private final SimpleStringProperty testName;
     private String testDescription;
+    private String testDate;
+
 
     public MedicalTest(String testName, String testDescription) {
         this.testName = new SimpleStringProperty(testName);
         this.testDescription = testDescription;
     }
 
+    public String getTestDate() {
+        return testDate;
+    }
+
+    public void setTestDate(String testDate) {
+        this.testDate = testDate;
+    }
+
     public String getTestName() {
-        return testName.get();
+        return testName.getValue();
     }
 
     public SimpleStringProperty testNameProperty() {

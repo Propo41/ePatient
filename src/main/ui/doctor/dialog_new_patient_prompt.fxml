@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="25.0"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.DialogNewPatientPromptController">
+    <children>
+        <Label styleClass="title-text-dialog-2" text="You have a new Patient" textAlignment="CENTER" wrapText="true" />
+        <VBox prefHeight="82.0" spacing="10.0">
+            <children>
+                <Label styleClass="text-box-header" text="PATIENT ID" />
+                <TextField fx:id="patientIdTv" prefHeight="49.0" prefWidth="65.0" styleClass="text-field-no-edit" />
+            </children>
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+        </VBox>
+        <VBox prefHeight="82.0" spacing="10.0">
+            <children>
+                <Label styleClass="text-box-header" text="APPOINTMENT ID" />
+                <TextField fx:id="appointmentIdTv" prefHeight="49.0" prefWidth="65.0" styleClass="text-field-no-edit" />
+            </children>
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+        </VBox>
+        <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+            <children>
+                <JFXButton maxWidth="1920.0" onAction="#onCreatePrescriptionClick" prefHeight="50.0" prefWidth="843.0" styleClass="button-primary-small" text="CREATE A PRESCRIPTION" />
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
+    </padding>
+</VBox>

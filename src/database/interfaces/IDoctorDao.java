@@ -1,9 +1,6 @@
 package database.interfaces;
 
-import model.Appointment;
-import model.Doctor;
-import model.Patient;
-import model.Schedule;
+import model.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -30,5 +27,6 @@ public interface IDoctorDao {
      */
     ArrayList<Object> getPrescriptionHistory(String patientId, String keyword);
 
+    String createNewPrescription(Prescription prescription);
 
 }

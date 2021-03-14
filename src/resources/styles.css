@@ -204,7 +204,7 @@
 .button-secondary-listview {
     -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
-    -fx-background-image: url('/resources/icons/ic_remove.png');
+    -fx-background-image: url('/resources/icons/ic_delete.png');
     -fx-background-size: 20px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
