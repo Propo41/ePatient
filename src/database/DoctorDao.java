@@ -2,6 +2,7 @@ package database;
 
 import com.zaxxer.hikari.HikariDataSource;
 import database.interfaces.IDoctorDao;
+import model.Doctor;
 import model.Patient;
 import model.Schedule;
 import util.Util;
@@ -210,4 +211,101 @@ public class DoctorDao implements IDoctorDao {
         }
         return null;
     }
+
+    @Override
+    public void updateDoctorAttribute(String attribute, String data, int doctorId) {
+        connection = DatabaseHandler.getConnection();
+        String query = "update Doctor Set " + attribute + " = '" + data + "' where doctor_id= " + doctorId;
+        System.out.println(query);
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+    }
+
+    @Override
+    public ArrayList<String> getDoctorInfo(int doctorId) {
+
+        connection = DatabaseHandler.getConnection();
+        String query = "select * from Doctor where doctor_id = " + doctorId;
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<String> arrayList = new ArrayList<>();
+                while (resultSet.next()) {
+                    arrayList.add(resultSet.getString("doctor_name"));
+                    arrayList.add(resultSet.getString("doctor_specialist"));
+                    arrayList.add(resultSet.getString("hospital_affiliations"));
+                    arrayList.add(resultSet.getString("doctor_email"));
+                    arrayList.add(resultSet.getString("doctor_mobile"));
+                    arrayList.add(resultSet.getString("doctor_address"));
+                    arrayList.add(resultSet.getString("professional_experience"));
+                    arrayList.add(resultSet.getString("educaional_background"));
+                    arrayList.add(resultSet.getString("professional_experience"));
+                    arrayList.add(resultSet.getString("languages"));
+                    return arrayList;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Doctor getDoctorProfile(String doctorId) {
+        connection = DatabaseHandler.getConnection();
+        String query = "select * from Doctor where doctor_id=" + doctorId;
+        Doctor doctor = new Doctor();
+
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                resultSet.next();
+                doctor = new Doctor();
+                doctor.setDoctorId(resultSet.getString("doctor_id"));
+                doctor.setName(resultSet.getString("doctor_name"));
+                doctor.setPhone(resultSet.getString("doctor_phone")); // change this
+                doctor.setAddress(resultSet.getString("doctor_address"));
+                doctor.setEmail(resultSet.getString("doctor_email"));
+                doctor.setDepartment(resultSet.getString("department"));
+                doctor.setSpecialist(resultSet.getString("doctor_specialist"));
+                doctor.setAffiliations(resultSet.getString("hospital_affiliations"));
+                doctor.setProfessionalExperience(resultSet.getString("professional_experience"));
+                doctor.setEducationalBackground(resultSet.getString("educaional_background"));
+                doctor.setVisitFee(resultSet.getString("visit_fee"));
+                doctor.setJoinedDate(resultSet.getDate("joined_date"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return doctor;
+    }
+
+
+
+
+
 }

@@ -1,7 +1,8 @@
-package main.ui.admin.edit_doctor;
+package main.ui.admin.dashboard.edit_patient;
 
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import database.DatabaseHandler;
 import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,13 +16,18 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import model.Doctor;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import main.ui.admin.edit_doctor.AddFeaturesController;
+import main.ui.admin.edit_doctor.EditDoctorDialogController;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class EditDoctorController {
+public class EditPatientController {
     @FXML
     private Label doctor_name;
 
@@ -61,29 +67,29 @@ public class EditDoctorController {
     @FXML
     private ListView<HBox> chamberAddressList;
 
-
-    EditDoctorController editDoctorController;
+    DatabaseHandler connectMSSQL;
+    EditPatientController editDoctorController;
 
     public int selectedDoctorId;
     String educationalBackground, professionalExperience;
-    Doctor doctor;
-
-    public void setDoctorNumber(int doctorId, EditDoctorController editDoctorController) throws SQLException {
-
-        selectedDoctorId = doctorId;
+    ArrayList<String> doctorInfoList;
+    public void setDoctorNumber(int doctor, EditPatientController editDoctorController) throws SQLException {
+      //  System.out.println(doctor);
+        selectedDoctorId = doctor;
         this.editDoctorController = editDoctorController;
         DoctorDao doctorDao = new DoctorDao();
+        doctorInfoList = doctorDao.getDoctorInfo(selectedDoctorId);
 
-        doctor = doctorDao.getDoctorProfile(selectedDoctorId+"");
-        doctor_name.setText(doctor.getName());
-        specialist2.setText(doctor.getSpecialist());
-        hospitalAffiliations.setText(doctor.getAffiliations());
-        email.setText(doctor.getEmail());
-        contact.setText(doctor.getPhone());
-        address.setText(doctor.getAddress());
-        professionalSummary.setText(doctor.getProfessionalExperience());
-        professionalExperience = doctor.getProfessionalExperience();
-        educationalBackground = doctor.getEducationalBackground();
+        doctor_name.setText(doctorInfoList.get(0));
+        specialist2.setText(doctorInfoList.get(1));
+        hospitalAffiliations.setText(doctorInfoList.get(2));
+        email.setText(doctorInfoList.get(3));
+        contact.setText(doctorInfoList.get(4));
+        address.setText(doctorInfoList.get(5));
+        professionalSummary.setText(doctorInfoList.get(6));
+        professionalExperience = doctorInfoList.get(6);
+        educationalBackground = doctorInfoList.get(7);
+
 
         String[] educationList = educationalBackground.split(",");
         String[] experienceList = professionalExperience.split(",");
@@ -151,8 +157,6 @@ public class EditDoctorController {
         }
 
 
-
-
     }
 
 
@@ -203,7 +207,7 @@ public class EditDoctorController {
             JFXDialog dialog = new JFXDialog(myStackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
             AddFeaturesController dialogController = loader.getController();
-            dialogController.setTitle("Educational Background",editDoctorController);
+          //  dialogController.setTitle("Educational Background",editDoctorController);
             dialog.show();
         }catch (Exception e){
             e.printStackTrace();
@@ -221,7 +225,7 @@ public class EditDoctorController {
             JFXDialog dialog = new JFXDialog(myStackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
             AddFeaturesController dialogController = loader.getController();
-            dialogController.setTitle("Professional Experience",editDoctorController);
+           // dialogController.setTitle("Professional Experience",editDoctorController);
             dialog.show();
         }catch (Exception e){
             e.printStackTrace();
@@ -244,9 +248,8 @@ public class EditDoctorController {
             JFXDialog dialog = new JFXDialog(myStackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
             EditDoctorDialogController dialogController = loader.getController();
-            dialogController.setLabel(selectedDoctorId, doctor.getSpecialist(), doctor.getEmail(),
-                    doctor.getPhone(), doctor.getAffiliations(), doctor.getAffiliations(), dialog);
-            //change affiliations here according to ui
+            dialogController.setLabel(selectedDoctorId, doctorInfoList.get(1), doctorInfoList.get(3),
+                    doctorInfoList.get(4),doctorInfoList.get(8) ,doctorInfoList.get(2), dialog);
             dialog.show();
         }catch (Exception e){
             e.printStackTrace();
