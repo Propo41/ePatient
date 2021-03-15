@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="myStackPane" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.dashboard.edit_patient.EditPatientController">
+<StackPane fx:id="myStackPane" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.edit_patient.EditPatientController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../../resources/styles.css">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css">
          <left>
             <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
                <padding>
@@ -26,8 +26,8 @@
                </BorderPane.margin>
                <children>
                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="user-icon" />
-                  <Label fx:id="doctor_name" styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
-                  <Label fx:id="specialist21" maxWidth="100.0" styleClass="text-sub-heading-light" text="ID : HABI JABI" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="patientName" styleClass="text-sub-heading-bold" text="GABBIE CARTER" />
+                  <Label fx:id="patientId" maxWidth="100.0" styleClass="text-sub-heading-light" text="ID : HABI JABI" textAlignment="CENTER" wrapText="true" />
                   <Separator prefWidth="200.0">
                      <padding>
                         <Insets left="10.0" right="10.0" />
@@ -42,49 +42,49 @@
                      </VBox.margin>
                      <children>
                         <Label styleClass="text-sub-heading" text="DATE OF BIRTH" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="specialist2" maxWidth="100.0" styleClass="text-sub-heading-light" text="PROCTOLOGY" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="dateOfBirth" maxWidth="100.0" styleClass="text-sub-heading-light" text="PROCTOLOGY" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="WEIGHT" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="hospitalAffiliations" styleClass="text-sub-heading-light" text="xx" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="weight" styleClass="text-sub-heading-light" text="xx" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="AGE" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="contact" styleClass="text-sub-heading-light" text="+88000011111" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="age" styleClass="text-sub-heading-light" text="+88000011111" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="HEIGHT" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="email" styleClass="text-sub-heading-light" text="Henten@gmail.com" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="height" styleClass="text-sub-heading-light" text="Henten@gmail.com" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="GENDER" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="address" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="gender" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="CONTACT" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="address1" styleClass="text-sub-heading-light" text="+8800000000" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="contact" styleClass="text-sub-heading-light" text="+8800000000" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="EMAIL" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="address11" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="email" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="text-sub-heading" text="ADDRESS" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="address111" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="address" styleClass="text-sub-heading-light" text="DHANMONDI HABIJABI" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="2.0" VBox.vgrow="ALWAYS" />
@@ -114,84 +114,60 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                      <children>
-                        <VBox styleClass="text-content-background">
+                        <VBox styleClass="text-content-background" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label styleClass="text-box-header" text="HISTORY">
+                              <Label styleClass="text-box-header" text="SURGICAL HISTORY">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <TextArea fx:id="professionalSummary" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
+                              <TextArea fx:id="history" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
                            </children>
                         </VBox>
-                        <VBox styleClass="text-content-background-2">
+                        <VBox styleClass="text-content-background-2" VBox.vgrow="ALWAYS">
                            <children>
                               <HBox prefHeight="28.0" prefWidth="660.0">
-                                 <children>
-                                    <Label styleClass="text-box-header" text="LAB RESULTS">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addEducationalBackgroundClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
-                                       <HBox.margin>
-                                          <Insets left="7.0" top="2.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <ListView fx:id="educationalBackgroundList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../../resources/listview_styles_2.css" />
-                           </children>
-                        </VBox>
-                        <VBox styleClass="text-content-background-2">
-                           <children>
-                              <HBox prefHeight="28.0" prefWidth="660.0">
-                                 <children>
-                                    <Label styleClass="text-box-header" text="ALLERGIES">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addProfessionalExperienceClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
-                                       <HBox.margin>
-                                          <Insets left="7.0" top="2.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <ListView fx:id="professionalExperienceList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../../resources/listview_styles_2.css" />
-                           </children>
-                        </VBox>
-                        <HBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                              <VBox styleClass="text-content-background-2">
-                                 <children>
-                                    <Label styleClass="text-box-header" text="MEDICATIONS">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <ListView fx:id="avaiableDurationList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../../resources/listview_styles_2.css" />
-                                 </children>
-                              </VBox>
-                              <VBox styleClass="text-content-background-2">
                                  <children>
                                     <Label styleClass="text-box-header" text="MEDICAL HISTORY">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
                                     </Label>
-                                    <ListView fx:id="chamberAddressList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../../resources/listview_styles_2.css" />
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addAllergiesClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
+                                       <HBox.margin>
+                                          <Insets left="7.0" />
+                                       </HBox.margin>
+                                    </ImageView>
                                  </children>
-                              </VBox>
+                              </HBox>
+                              <ListView fx:id="medicalHistoryListView" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                            </children>
-                        </HBox>
+                        </VBox>
+                        <VBox styleClass="text-content-background-2" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox prefHeight="28.0" prefWidth="660.0">
+                                 <children>
+                                    <Label styleClass="text-box-header" text="SOCIAL HISTORY">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addMedicalHistory" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
+                                       <HBox.margin>
+                                          <Insets left="7.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="socialHistoryListView" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                           </children>
+                        </VBox>
                         <VBox VBox.vgrow="ALWAYS">
                            <children>
                               <VBox VBox.vgrow="ALWAYS" />

@@ -296,6 +296,52 @@ public class DoctorDao implements IDoctorDao {
         return patient;
     }
 
+
+    @Override
+    public HashMap<String, Boolean> getMedicalHistory(String patientId) {
+        connection = DatabaseHandler.getConnection();
+        String query ="select * from MedicalHistory where patient_id = " + patientId;
+
+        HashMap<String, Boolean> medicalHistory = new HashMap<>();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+
+                    medicalHistory.put("arthritis", resultSet.getBoolean("arthritis"));
+                    medicalHistory.put("asthma", resultSet.getBoolean("ashtma"));
+                    medicalHistory.put("cancer", resultSet.getBoolean("cancer"));
+                    medicalHistory.put("diabetes", resultSet.getBoolean("diabetes"));
+                    medicalHistory.put("hepatitis", resultSet.getBoolean("hepatitis"));
+                    medicalHistory.put("high blood pressure", resultSet.getBoolean("high_blood_pressure"));
+                    medicalHistory.put("high cholesterol", resultSet.getBoolean("high_cholesterol"));
+                    medicalHistory.put("hiv", resultSet.getBoolean("hiv"));
+                    medicalHistory.put("kidney disease", resultSet.getBoolean("kidney_disease"));
+                    medicalHistory.put("lung disease", resultSet.getBoolean("lung_disease"));
+                    medicalHistory.put("pneumonia", resultSet.getBoolean("pneumonia"));
+                    medicalHistory.put("sinus", resultSet.getBoolean("sinus"));
+                    medicalHistory.put("stroke", resultSet.getBoolean("stroke"));
+                    medicalHistory.put("thyroid problems", resultSet.getBoolean("thyroid_problems"));
+                    medicalHistory.put("tonsilities", resultSet.getBoolean("tonsilities"));
+                    medicalHistory.put("tuberculosis", resultSet.getBoolean("tuberculosis"));
+
+                }
+
+                return medicalHistory;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+
     @Override
     public ArrayList<Patient> getPatientList(String keyword) {
         connection = DatabaseHandler.getConnection();
@@ -427,6 +473,29 @@ public class DoctorDao implements IDoctorDao {
     public void updateDoctorAttribute(String attribute, String data, int doctorId) {
         connection = DatabaseHandler.getConnection();
         String query = "update Doctor Set " + attribute + " = '" + data + "' where doctor_id= " + doctorId;
+        System.out.println(query);
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+    }
+
+
+    @Override
+    public void updateSingleAttribute(String tableName,String attribute, String data, String patientId){
+        connection = DatabaseHandler.getConnection();
+        String query = "update "+  tableName + " Set " + attribute + " = '" + data + "' where patient_id = " + patientId;
         System.out.println(query);
         if (connection != null) {
             try{

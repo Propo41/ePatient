@@ -90,6 +90,19 @@ public class DatabaseHandler {
         return resultSet;
     }
 
+    public ResultSet getPatientMainAdmin(String name){
+        String query = "select patient_name,joined_date,patient_id from Patient where patient_name like '%"+ name + "%' ";
+        ResultSet resultSet = null;
+        try {
+            connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
 
 
     public boolean logInForm(String userID, String password, String userType) {

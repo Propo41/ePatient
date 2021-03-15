@@ -7,6 +7,7 @@ import model.Schedule;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IDoctorDao {
 
@@ -30,5 +31,7 @@ public interface IDoctorDao {
     ArrayList<Object> getPrescriptionHistory(String patientId, String keyword);
 
     void updateDoctorAttribute(String attribute, String data, int doctorId);
+    void updateSingleAttribute(String tableName,String attribute, String data, String patientId);
+    HashMap<String, Boolean> getMedicalHistory(String patientId);
 
 }

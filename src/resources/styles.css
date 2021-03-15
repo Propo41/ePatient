@@ -24,6 +24,7 @@
     -fx-color-combobox-prompt: #b0b0b0
 }
 
+
 .user-icon {
     -fx-image: url('icons/ic_profile_image.png');
 }
@@ -457,3 +458,8 @@
 .dialog-background{
     -fx-background-color: white;
 }
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+

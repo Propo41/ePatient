@@ -22,6 +22,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.ui.admin.edit_doctor.EditDoctorController;
+import main.ui.admin.edit_patient.EditPatientController;
 import util.Util;
 
 import java.io.IOException;
@@ -74,12 +75,12 @@ public class ViewPatientController implements Initializable {
         patientNameList = new ArrayList<String>();
         patientSince = new ArrayList<String>();
         doctorIdList = new ArrayList<Integer>();
-        ResultSet resultSet = connectMSSQL.getDoctorMainAdmin(patientSearchTv.getText());
+        ResultSet resultSet = connectMSSQL.getPatientMainAdmin(patientSearchTv.getText());
         //numberOfDoctorSearched = resultSet.getFetchSize();
         while (resultSet.next()) {
-            patientNameList.add(resultSet.getString("doctor_specialist"));
-            patientSince.add(resultSet.getString("doctor_name"));
-            doctorIdList.add(Integer.parseInt(resultSet.getString("doctor_id")));
+            patientNameList.add(resultSet.getString("patient_name"));
+            patientSince.add(resultSet.getString("joined_date"));
+            doctorIdList.add(Integer.parseInt(resultSet.getString("patient_id")));
             numberOfDoctorSearched++;
         }
         searchResultNumber.setText(numberOfDoctorSearched + " SEARCH RESULTS FOUND");
@@ -139,7 +140,7 @@ public class ViewPatientController implements Initializable {
         nameLabel.setWrapText(true);
         nameLabel.setTextAlignment(TextAlignment.CENTER);
 
-        Label subtitleLabel = new Label(patientSince.get(index));
+        Label subtitleLabel = new Label("Patient Since -\n" + patientSince.get(index));
         subtitleLabel.getStyleClass().add("text-card-subtitle");
         subtitleLabel.setWrapText(true);
         subtitleLabel.setTextAlignment(TextAlignment.CENTER);
@@ -158,12 +159,12 @@ public class ViewPatientController implements Initializable {
                 try {
 
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/edit_doctor.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_patient/edit_patient.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
 
                     try {
-                        EditDoctorController editDoctorController = fxmlLoader.getController();
-                        editDoctorController.setDoctorNumber(doctorIdList.get(index),editDoctorController);
+                        EditPatientController editPatientController = fxmlLoader.getController();
+                        editPatientController.setPatientNumber(doctorIdList.get(index),editPatientController);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

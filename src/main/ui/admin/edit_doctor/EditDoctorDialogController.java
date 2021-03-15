@@ -20,7 +20,7 @@ public class EditDoctorDialogController {
     private TextField contact;
 
     @FXML
-    private TextField languages;
+    private TextField address;
 
     @FXML
     private TextField hospitalAffiliations;
@@ -29,21 +29,23 @@ public class EditDoctorDialogController {
     int doctorId;
     String specialityText, emailText, contactText, languagesText, hospitalAffiliationsText;
     JFXDialog jfxDialog;
-    public void setLabel(int doctorId, String speciality, String email, String contact, String languages,
-                         String hospitalAffiliations, JFXDialog dialog) {
+    EditDoctorController editDoctorController;
+
+    public void setLabel(int doctorId, String speciality, String email, String contact, String address,
+                         String hospitalAffiliations, JFXDialog dialog, EditDoctorController editDoctorController) {
         this.jfxDialog = dialog;
         this.specialityText = speciality;
         this.emailText = email;
         this.contactText  = contact;
-        this.languagesText = languages;
+        this.languagesText = address;
         this.doctorId = doctorId;
 
         this.speciality.setText(speciality);
-        this.languages.setText(languages);
+        this.address.setText(address);
         this.email.setText(email);
         this.contact.setText(contact);
         this.hospitalAffiliations.setText(hospitalAffiliations);
-
+        this.editDoctorController = editDoctorController;
     }
 
     @FXML
@@ -51,14 +53,23 @@ public class EditDoctorDialogController {
         DoctorDao doctorDao = new DoctorDao();
         if(!specialityText.equals(speciality.getText())){
             doctorDao.updateDoctorAttribute("doctor_specialist",speciality.getText(),doctorId);
-        }else if(!emailText.equals(email.getText())){
-            doctorDao.updateDoctorAttribute("doctor_email",email.getText(),doctorId);
-        }else if(!contactText.equals(contact.getText())){
-            doctorDao.updateDoctorAttribute("doctor_mobile",contact.getText(),doctorId);
-        }else if(!hospitalAffiliationsText.equals(hospitalAffiliations.getText())){
-            doctorDao.updateDoctorAttribute("hospital_affiliations" ,hospitalAffiliations.getText(),doctorId);
-        }else if(!languagesText.equals(languagesText)){
-            doctorDao.updateDoctorAttribute("languages",languages.getText(),doctorId);
+            editDoctorController.recieveTextBackDialog("doctor_specialist",speciality.getText());
+        }
+        if(!emailText.equals(email.getText())) {
+            doctorDao.updateDoctorAttribute("doctor_email", email.getText(), doctorId);
+            editDoctorController.recieveTextBackDialog("doctor_email", email.getText());
+        }
+        if(!contactText.equals(contact.getText())) {
+            doctorDao.updateDoctorAttribute("doctor_phone", contact.getText(), doctorId);
+            editDoctorController.recieveTextBackDialog("doctor_phone", contact.getText());
+        }
+        if(!hospitalAffiliationsText.equals(hospitalAffiliations.getText())) {
+            doctorDao.updateDoctorAttribute("hospital_affiliations", hospitalAffiliations.getText(), doctorId);
+            editDoctorController.recieveTextBackDialog("hospital_affiliations", hospitalAffiliations.getText());
+        }
+        if(!languagesText.equals(languagesText)){
+            doctorDao.updateDoctorAttribute("doctor_address",address.getText(),doctorId);
+            editDoctorController.recieveTextBackDialog("doctor_address",address.getText());
         }
         jfxDialog.close();
     }

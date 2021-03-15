@@ -16,6 +16,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.ui.doctor.patients.ViewPatientController;
 import util.Util;
 
 
@@ -75,9 +76,6 @@ public class AdminMainController implements Initializable {
         guiButtonCurrent = navDashboardBtn;
         guiButtonPrevious = navDashboardBtn;
 
- /*       DoctorDao doctorDao = new DoctorDao(Util.getInstance().getUserId());
-        String name = doctorDao.getName();
-        doctorNameTv.setText(name);*/
 
         // initially load dashboard UI
         try {
@@ -88,6 +86,7 @@ public class AdminMainController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -135,14 +134,17 @@ public class AdminMainController implements Initializable {
             guiButtonCurrent = navPatientBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navPatientBtn;
+            System.out.println("yes");
             try {
                 frameLayout.getChildren().clear();
                 VBox root = FXMLLoader.load(getClass().getResource("/main/ui/admin/view_patients/view_patients.fxml"));
                 root = (VBox) makeResponsive(root, "vbox");
                 frameLayout.getChildren().add(root);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
     }
 
