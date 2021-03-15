@@ -1,13 +1,13 @@
 package database;
 
-import database.interfaces.IDoctorQueue;
+import database.interfaces.IDoctorQueueDao;
 import javafx.util.Pair;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DoctorQueueDao implements IDoctorQueue {
+public class DoctorQueueDaoDao implements IDoctorQueueDao {
     private Connection connection;
 
     @Override

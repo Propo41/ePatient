@@ -2,7 +2,7 @@ package database.interfaces;
 
 import javafx.util.Pair;
 
-public interface IDoctorQueue {
+public interface IDoctorQueueDao {
 
     /**
      * checks if there are any values stored at DoctorQueue Table

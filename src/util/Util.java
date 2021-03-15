@@ -28,9 +28,6 @@ public class Util {
     public static final int DIALOG_SCREEN_HEIGHT = 800;
     public static final int QUERY_DELAY = 2;
 
-    public static final int DIALOG_SCREEN_WIDTH_2 = 1200;
-    public static final int DIALOG_SCREEN_HEIGHT_2 = 900;
-
     // key -> patientID
     // value -> appointmentID
     private Pair<String, String> currentDoctorPatientQueue = new Pair<>("-1", "-1");

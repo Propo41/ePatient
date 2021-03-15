@@ -3,6 +3,7 @@ package main.ui.doctor.prescription;
 import com.jfoenix.controls.JFXButton;
 import database.DoctorDao;
 import database.PatientDao;
+import database.PrescriptionDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -50,8 +51,7 @@ public class ViewPrescriptionHistoryController implements Initializable {
             createPrescriptionHistory(patientId);
             resultFoundLabel.setVisible(false);
         } else {
-            DoctorDao doctorDao = new DoctorDao();
-            ArrayList<Object> _prescriptionList = doctorDao.getPrescriptionHistory(patientId, doctorNameTv.getText());
+            ArrayList<Object> _prescriptionList = new PrescriptionDao().getPrescriptionHistory(patientId, doctorNameTv.getText());
             resultFoundLabel.setVisible(true);
             resultFoundLabel.setText((_prescriptionList.size() == 0 ? "0" : _prescriptionList.size() - 1) + " RESULTS FOUND");
             // create patient's prescription history list
@@ -74,8 +74,7 @@ public class ViewPrescriptionHistoryController implements Initializable {
      */
     public void createPrescriptionHistory(String patientId) {
         this.patientId = patientId;
-        DoctorDao doctorDao = new DoctorDao();
-        ArrayList<Object> _prescriptionList = doctorDao.getPrescriptionHistory(patientId, "");
+        ArrayList<Object> _prescriptionList = new PrescriptionDao().getPrescriptionHistory(patientId, "");
         // create patient's prescription history list
         for (Object o : _prescriptionList) {
             HBox hBox = createCard(o);
@@ -135,7 +134,7 @@ public class ViewPrescriptionHistoryController implements Initializable {
                         stage.setResizable(false);
                         stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
                         ViewPrescriptionController controller = loader.getController();
-                        controller.setContent(prescription.getPrescriptionId());
+                        controller.setContent(prescription.getPrescriptionId(), patientNameLabel.getText());
                         stage.show();
                     }catch (Exception e){
                         e.printStackTrace();

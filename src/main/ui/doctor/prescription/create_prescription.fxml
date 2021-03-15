@@ -57,7 +57,7 @@
                                     </VBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                                  <VBox.margin>
                                     <Insets />
@@ -129,7 +129,7 @@
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                                  <VBox.margin>
                                     <Insets />
@@ -195,7 +195,7 @@
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                               </VBox>
                            </children>
@@ -267,7 +267,7 @@
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                               </VBox>
                            </children>

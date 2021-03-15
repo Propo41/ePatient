@@ -3,7 +3,7 @@ package main.ui.doctor;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import database.DoctorQueueDao;
+import database.DoctorQueueDaoDao;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -98,7 +98,6 @@ public class DoctorMainController implements Initializable {
 
 
         // createCardItems(4);
-
         startQueryingService();
 
 
@@ -106,7 +105,7 @@ public class DoctorMainController implements Initializable {
 
 
     private void startQueryingService() {
-        DoctorQueueDao doctorQueueDao = new DoctorQueueDao();
+        DoctorQueueDaoDao doctorQueueDao = new DoctorQueueDaoDao();
         timeline = new Timeline(
                 new KeyFrame(Duration.seconds(Util.QUERY_DELAY), e -> {
                     // query database here
@@ -181,7 +180,6 @@ public class DoctorMainController implements Initializable {
     void onNextPatientClick(ActionEvent event) {
         startQueryingService();
     }
-
 
     @FXML
     void onDashboardClick(ActionEvent event) {

@@ -2,6 +2,7 @@ package main.ui.doctor.prescription;
 
 import com.jfoenix.controls.JFXComboBox;
 import database.DoctorDao;
+import database.PrescriptionDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -118,7 +119,6 @@ public class CreatePrescriptionController implements Initializable {
     @FXML
     void onSaveClick(ActionEvent event) {
         // insert into database after checking for error
-        DoctorDao doctorDao = new DoctorDao();
         Prescription prescription = new Prescription();
         prescription.setAppointmentId(Util.getInstance().getCurrentDoctorPatientQueue().getValue());
         prescription.setPatientId(Util.getInstance().getCurrentDoctorPatientQueue().getKey());
@@ -133,7 +133,7 @@ public class CreatePrescriptionController implements Initializable {
         prescription.setMedicines(medicineObservableList);
         prescription.setMedicalTests(medicalTestObservableList);
 
-        doctorDao.createNewPrescription(prescription);
+        new PrescriptionDao().createNewPrescription(prescription);
     }
 
     @FXML

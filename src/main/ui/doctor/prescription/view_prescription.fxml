@@ -9,232 +9,152 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.prescription.ViewPrescriptionController">
+<StackPane fx:id="stackPaneRoot" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.prescription.ViewPrescriptionController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" VBox.vgrow="ALWAYS">
+      <VBox styleClass="window-background" stylesheets="@../../../../resources/styles.css">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox prefHeight="200.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="patientNameLabel" styleClass="text-sub-heading-bold-blue" text="PATIENT NAME" />
-                        <Label fx:id="patientIdLabel" styleClass="text-sub-heading" text="PATIENT ID: 12" />
-                        <Label fx:id="doctorLabel" styleClass="text-sub-heading" text="DOCTOR: " />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="dateOfPrescriptionLabel" styleClass="text-sub-heading" text="DATE OF PRESCRIPTION: " />
-                        <Label fx:id="prescriptionIdLabel" styleClass="text-sub-heading" text="PRESCRIPTION ID: " />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Separator prefHeight="5.0" prefWidth="845.0" />
-            <JFXTabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
-               <tabs>
-                  <Tab fx:id="healthCondTab" text="HEALTH CONDITION">
-                  <content>
-                        <VBox>
+                        <VBox prefHeight="200.0" spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                              <Label fx:id="patientNameLabel" styleClass="text-sub-heading-bold-blue" text="PATIENT NAME" />
+                              <Label fx:id="patientIdLabel" styleClass="text-sub-heading" text="PATIENT ID: 12" />
+                              <Label fx:id="doctorLabel" styleClass="text-sub-heading" text="DOCTOR ID: " />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="dateOfPrescriptionLabel" styleClass="text-sub-heading" text="DATE OF PRESCRIPTION: " />
+                              <Label fx:id="prescriptionIdLabel" styleClass="text-sub-heading" text="PRESCRIPTION ID: " />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator prefHeight="5.0" prefWidth="845.0" />
+                  <JFXTabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+                     <tabs>
+                        <Tab fx:id="healthCondTab" text="HEALTH CONDITION">
+                        <content>
+                              <VBox>
                                  <children>
-                                    <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="NEVER">
+                                    <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
                                        <children>
-                                          <Label styleClass="text-box-header" text="HEALTH CONDITION" />
-                                          <Label fx:id="healthConditionTv" prefHeight="55.0" prefWidth="854.0" styleClass="text-field-no-edit" VBox.vgrow="ALWAYS" />
+                                          <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="HEALTH CONDITION" />
+                                                <Label fx:id="healthConditionTv" prefHeight="55.0" prefWidth="854.0" styleClass="text-field-no-edit" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </VBox>
+                                          <VBox prefWidth="100.0" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="DIET SUGGESTION" />
+                                                <TextArea fx:id="dietSuggestionTv" editable="false" prefHeight="100.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefWidth="100.0" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="EXERCISE ROUTINE" />
+                                                <TextArea fx:id="examRoutineTv" editable="false" prefHeight="100.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <Label styleClass="text-box-header" text="COMMENTS" />
+                                                <TextArea fx:id="healthCommentTv" editable="false" prefHeight="120.0" prefWidth="745.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS" />
                                        </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
+                                       </padding>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </VBox>
-                                    <VBox prefWidth="100.0" spacing="10.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="DIET SUGGESTION" />
-                                          <TextArea fx:id="dietSuggestionTv" editable="false" prefHeight="100.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="100.0" spacing="10.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="EXERCISE ROUTINE" />
-                                          <TextArea fx:id="examRoutineTv" editable="false" prefHeight="100.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="COMMENTS" />
-                                          <TextArea fx:id="healthCommentTv" editable="false" prefHeight="120.0" prefWidth="745.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS" />
                                  </children>
-                                 <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
                               </VBox>
-                           </children>
-                        </VBox>
-                  </content>
-                  </Tab>
-                  <Tab text="OBSERVED DISEASES">
-                     <content>
-                        <VBox>
-                           <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                        </content>
+                        </Tab>
+                        <Tab text="OBSERVED DISEASES">
+                           <content>
+                              <VBox>
                                  <children>
-                                    <HBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
                                        <children>
-                                          <VBox prefHeight="82.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                                          <VBox styleClass="text-content-background" VBox.vgrow="ALWAYS">
                                              <children>
-                                                <Label styleClass="text-box-header" text="DISEASE NAME" />
-                                                <TextField fx:id="diseaseNameTv" editable="false" prefHeight="49.0" prefWidth="65.0" styleClass="text-field-normal" />
-                                             </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox prefHeight="82.0" prefWidth="444.0" spacing="10.0">
-                                             <children>
-                                                <Label styleClass="text-box-header" text="DISEASE TYPE" />
-                                                <Label fx:id="diseaseTypeTv" prefHeight="55.0" prefWidth="854.0" styleClass="text-field-no-edit" text="Label" />
+                                                <ListView fx:id="observedDiseases" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
                                              </children>
                                           </VBox>
                                        </children>
-                                    </HBox>
-                                    <VBox prefWidth="100.0" spacing="10.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="COMMENTS (IF ANY)" />
-                                          <TextArea fx:id="diseaseCommentsTv" prefHeight="100.0" prefWidth="833.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                     </VBox>
-                                    <HBox prefWidth="200.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="OBSERVED DISEASES" />
-                                       </children>
-                                    </HBox>
-                                    <ListView fx:id="observedDiseases" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
                                  </children>
-                                 <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
                               </VBox>
-                           </children>
-                        </VBox>
-                     </content>
-                  </Tab>
-                  <Tab text="SUGGEST MEDICAL TESTS">
-                     <content>
-                        <VBox>
-                           <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                           </content>
+                        </Tab>
+                        <Tab text="SUGGEST MEDICAL TESTS">
+                           <content>
+                              <VBox>
                                  <children>
-                                    <HBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <VBox prefHeight="82.0" prefWidth="421.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                                          <VBox styleClass="text-content-background" VBox.vgrow="ALWAYS">
                                              <children>
-                                                <Label styleClass="text-box-header" text="TEST NAME" />
-                                                <TextField fx:id="testNameTv" prefHeight="49.0" prefWidth="65.0" styleClass="text-field-normal" />
+                                                <ListView fx:id="testsListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
                                              </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
                                           </VBox>
                                        </children>
-                                    </HBox>
-                                    <VBox prefWidth="100.0" spacing="10.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="TEST DESCRIPTION (IF ANY)" />
-                                          <TextArea fx:id="testDescriptionTv" prefHeight="100.0" prefWidth="833.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
+                                       </padding>
                                     </VBox>
-                                    <HBox prefWidth="200.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="SUGGESTED TESTS" />
-                                       </children>
-                                    </HBox>
-                                    <ListView fx:id="testsListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
                                  </children>
-                                 <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                                 </padding>
                               </VBox>
-                           </children>
-                        </VBox>
-                     </content>
-                  </Tab>
-                  <Tab text="SUGGEST MEDICINES">
-                     <content>
-                        <VBox>
-                           <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+                           </content>
+                        </Tab>
+                        <Tab text="SUGGEST MEDICINES">
+                           <content>
+                              <VBox>
                                  <children>
-                                    <HBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
                                        <children>
-                                          <VBox prefHeight="82.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                                          <VBox styleClass="text-content-background" VBox.vgrow="ALWAYS">
                                              <children>
-                                                <Label styleClass="text-box-header" text="MEDICINE NAME" />
-                                                <TextField fx:id="medicineNameTv" prefHeight="49.0" prefWidth="65.0" styleClass="text-field-normal" />
+                                                <ListView fx:id="medicinesListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
                                              </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox prefHeight="82.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <Label styleClass="text-box-header" text="MEDICINE DURATION" />
-                                                <TextField fx:id="medicineDurationTv" prefHeight="49.0" prefWidth="65.0" styleClass="text-field-normal" />
-                                             </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
                                           </VBox>
                                        </children>
-                                    </HBox>
-                                    <VBox prefWidth="100.0" spacing="10.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="COMMENT" />
-                                          <TextArea fx:id="medicineCommentTv" prefHeight="100.0" prefWidth="833.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" wrapText="true" />
-                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
+                                       </padding>
                                     </VBox>
-                                    <HBox prefWidth="200.0">
-                                       <children>
-                                          <Label styleClass="text-box-header" text="SUGGESTED MEDICINES" />
-                                       </children>
-                                    </HBox>
-                                    <ListView fx:id="medicinesListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash.css" VBox.vgrow="ALWAYS" />
                                  </children>
-                                 <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                                 </padding>
                               </VBox>
-                           </children>
-                        </VBox>
-                     </content>
-                  </Tab>
-               </tabs>
-            </JFXTabPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-         </padding>
-         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </VBox.margin>
       </VBox>
    </children>
-</VBox>
+</StackPane>

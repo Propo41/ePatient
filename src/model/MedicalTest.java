@@ -6,7 +6,14 @@ public class MedicalTest {
     private final SimpleStringProperty testName;
     private String testDescription;
     private String testDate;
+    private String testReport;
 
+    public MedicalTest(String testName, String testDescription, String testDate, String testReport) {
+        this.testName = new SimpleStringProperty(testName);
+        this.testDescription = testDescription;
+        this.testDate = testDate;
+        this.testReport = testReport;
+    }
 
     public MedicalTest(String testName, String testDescription) {
         this.testName = new SimpleStringProperty(testName);
