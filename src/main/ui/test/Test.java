@@ -28,16 +28,16 @@ public class Test extends Application {
         launch(args);
 
 
-        int[] list = new int[]{1, 2, 2, 3, 3, 3, 4, 5, 5};
-        System.out.println(Arrays.toString(solution(list, 1)));
+        int[] list = new int[]{1, 2, 3};
+        System.out.println(Arrays.toString(solution(list, 0)));
     }
 
 
     public static int[] solution(int[] data, int n) {
-        if(Arrays.equals(data, new int[]{1, 2, 2, 3, 3, 3, 4, 5, 5})){
+       /* if(Arrays.equals(data, new int[]{1, 2, 2, 3, 3, 3, 4, 5, 5})){
             data = new int[]{1, 4};
             return data;
-        }
+        }*/
 
         HashMap<Integer, Integer> count = new HashMap<>();
         for (Integer integer : data) {

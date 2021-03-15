@@ -6,13 +6,36 @@ import java.time.LocalDate;
 
 public class Appointment {
     private String appointmentId;
+    private String patientId;
+    private String doctorId;
     private String patientName;
     private String reason;
     private LocalDate date;
     private Time startTime;
     private Time endTime;
+    private String doctorName;
 
     public Appointment() {
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
     }
 
     public String getAppointmentId() {
@@ -61,5 +84,9 @@ public class Appointment {
 
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 }

@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.skins.JFXDatePickerSkin;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
+import database.AppointmentDao;
 import database.DoctorDao;
+import database.PrescriptionDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -72,7 +74,7 @@ public class AppointmentsController implements Initializable {
     }
 
     private void initList(LocalDate date) {
-        ArrayList<Appointment> appointments = doctorDao.getAppointmentList(
+        ArrayList<Appointment> appointments = new AppointmentDao().getAppointmentInfo(
                 Util.getInstance().getUserId(),
                 date);
         // create appointment list
