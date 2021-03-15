@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.appointments.AppointmentsController">
+   <children>
+      <HBox>
+         <children>
+            <Label styleClass="text-content-title" text="APPOINTMENTS" />
+         </children>
+      </HBox>
+      <JFXTabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+         <tabs>
+            <Tab fx:id="healthCondTab" text="VIEW APPOINTMENTS">
+               <content>
+                  <VBox>
+                     <children>
+                        <VBox fx:id="root" prefHeight="847.0" spacing="15.0" styleClass="nav-background" stylesheets="@../../../../resources/styles.css">
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="patientSearchTv" prefHeight="50.0" promptText="ENTER PATIENT NAME OR PATIENT ID" styleClass="text-field-icon" HBox.hgrow="ALWAYS" />
+                                    <HBox fx:id="datePickerRoot" alignment="TOP_RIGHT" HBox.hgrow="NEVER">
+                                       <children>
+                                          <JFXButton onAction="#onSearchViewAppointmentsClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <Separator prefHeight="5.0" prefWidth="845.0" />
+                              <ListView fx:id="viewAppointmentsListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="CREATE NEW APPOINTMENT">
+               <content>
+                  <VBox>
+                     <children>
+                        <VBox fx:id="root1" prefHeight="847.0" spacing="15.0" styleClass="nav-background" stylesheets="@../../../../resources/styles.css">
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="doctorSearchTv" prefHeight="50.0" promptText="ENTER DOCTOR NAME OR DOCTOR ID" styleClass="text-field-icon" HBox.hgrow="ALWAYS" />
+                                    <HBox fx:id="datePickerRoot1" alignment="TOP_RIGHT" HBox.hgrow="NEVER">
+                                       <children>
+                                          <JFXButton onAction="#onSearchCreateAppointmentClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <Separator prefHeight="5.0" prefWidth="845.0" />
+                              <ListView fx:id="createAppointmentListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
+                              <HBox>
+                                 <children>
+                                    <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onCreateAppointmentClick" prefHeight="50.0" prefWidth="882.0" styleClass="button-primary-small" text="CREATE NEW APPOINTMENT" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</VBox>

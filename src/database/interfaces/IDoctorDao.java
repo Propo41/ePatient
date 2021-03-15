@@ -16,8 +16,6 @@ public interface IDoctorDao {
     String getTotalBill(String doctorId);
     Patient getPatientProfile(String patientId);
     ArrayList<Patient> getPatientList(String keyword);
-    ArrayList<Appointment> getAppointmentList(String doctorId, LocalDate date);
-
     void updateDoctorAttribute(String attribute, String data, int doctorId);
 
 }

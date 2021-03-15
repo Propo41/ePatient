@@ -65,8 +65,8 @@ public class Util {
     }
 
     /**
-     * @param time in 24hr format: "22:15"
-     * @return time in 12hr format hh:mm a
+     * @param time String in 24hr format: "22:15"
+     * @return String in 12hr format hh:mm a
      */
     public static String convert24to12format(String time) {
         try {

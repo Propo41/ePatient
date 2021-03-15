@@ -24,6 +24,9 @@
     -fx-color-combobox-prompt: #b0b0b0
 }
 
+.env-pane {
+    -fx-background-color: black;
+}
 .user-icon {
     -fx-image: url('icons/ic_profile_image.png');
 }
@@ -288,6 +291,13 @@
     -fx-font-size: 17;
 }
 
+.button-text-only-small-red {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-blue;
+    -fx-background-color: -fx-color-orange;
+    -fx-background-radius: 10;
+    -fx-font-size: 17;
+}
 
 /*END: Button styles*/
 
@@ -459,11 +469,19 @@
 .date-picker-style {
     -fx-border-color: -fx-color-ash-background;
     -fx-background-color: -fx-color-ash-background;
-
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
 }
 
 .date-picker:editable .date-picker-display-node {
     visibility: false;
+}
+
+.date-picker-style-white-bg {
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
 }
 
 .h-box-background {
