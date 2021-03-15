@@ -131,7 +131,19 @@ public class AdminMainController implements Initializable {
 
     @FXML
     void onPatientsClick(ActionEvent event) {
-
+        if (!guiButtonCurrent.equals(navPatientBtn)) {
+            guiButtonCurrent = navPatientBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navPatientBtn;
+            try {
+                frameLayout.getChildren().clear();
+                VBox root = FXMLLoader.load(getClass().getResource("/main/ui/admin/view_patients/view_patients.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

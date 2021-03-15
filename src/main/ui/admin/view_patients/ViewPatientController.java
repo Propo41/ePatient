@@ -1,4 +1,4 @@
-package main.ui.admin.view_doctor;
+package main.ui.admin.view_patients;
 
 import com.jfoenix.controls.JFXButton;
 import database.DatabaseHandler;
@@ -11,12 +11,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -33,19 +31,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class viewDoctorsController implements Initializable {
+public class ViewPatientController implements Initializable {
     @FXML
-    private ListView<HBox> doctorListView;
+    private ListView<HBox> patientListView;
 
     @FXML
-    private TextField doctorSearchTv;
+    private TextField patientSearchTv;
 
     @FXML
     private Label searchResultNumber;
 
     private DatabaseHandler connectMSSQL;
-    private ArrayList<String> doctorNameList;
-    private ArrayList<String> doctorSpealityList;
+    private ArrayList<String> patientNameList;
+    private ArrayList<String> patientSince;
     private ArrayList<Integer> doctorIdList;
     private int numberOfDoctorSearched;
     int count;
@@ -53,7 +51,7 @@ public class viewDoctorsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connectMSSQL = new DatabaseHandler();
-        doctorSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
+        patientSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
         //image.setImage(new Image("/resources/icons/ic_search.png"));
         searchResultNumber.setText("");
         count = 0;
@@ -66,21 +64,21 @@ public class viewDoctorsController implements Initializable {
 
     @FXML
     void onSearchBtnClick(ActionEvent event) throws SQLException {
-        String str = doctorSearchTv.getText();
+        String str = patientSearchTv.getText();
         if(str.equals("")){
            return;
         }
-        doctorListView.getItems().clear();
+        patientListView.getItems().clear();
         count = 0;
         numberOfDoctorSearched = 0;
-        doctorNameList = new ArrayList<String>();
-        doctorSpealityList = new ArrayList<String>();
+        patientNameList = new ArrayList<String>();
+        patientSince = new ArrayList<String>();
         doctorIdList = new ArrayList<Integer>();
-        ResultSet resultSet = connectMSSQL.getDoctorMainAdmin(doctorSearchTv.getText());
+        ResultSet resultSet = connectMSSQL.getDoctorMainAdmin(patientSearchTv.getText());
         //numberOfDoctorSearched = resultSet.getFetchSize();
         while (resultSet.next()) {
-            doctorNameList.add(resultSet.getString("doctor_specialist"));
-            doctorSpealityList.add(resultSet.getString("doctor_name"));
+            patientNameList.add(resultSet.getString("doctor_specialist"));
+            patientSince.add(resultSet.getString("doctor_name"));
             doctorIdList.add(Integer.parseInt(resultSet.getString("doctor_id")));
             numberOfDoctorSearched++;
         }
@@ -112,7 +110,7 @@ public class viewDoctorsController implements Initializable {
             hBox.getChildren().add(vBox);
             i--;
         }
-        doctorListView.getItems().add(hBox);
+        patientListView.getItems().add(hBox);
 
     }
 
@@ -136,12 +134,12 @@ public class viewDoctorsController implements Initializable {
         icon.setFitWidth(70);
         icon.setFitHeight(70);
 
-        Label nameLabel = new Label(doctorNameList.get(index));
+        Label nameLabel = new Label(patientNameList.get(index));
         nameLabel.getStyleClass().add("text-sub-heading-bold");
         nameLabel.setWrapText(true);
         nameLabel.setTextAlignment(TextAlignment.CENTER);
 
-        Label subtitleLabel = new Label(doctorSpealityList.get(index));
+        Label subtitleLabel = new Label(patientSince.get(index));
         subtitleLabel.getStyleClass().add("text-card-subtitle");
         subtitleLabel.setWrapText(true);
         subtitleLabel.setTextAlignment(TextAlignment.CENTER);
@@ -156,7 +154,7 @@ public class viewDoctorsController implements Initializable {
             public void handle(ActionEvent event) {
                 System.out.println(index);
                 System.out.println(doctorIdList.get(index));
-                System.out.println(doctorNameList.get(index));
+                System.out.println(patientNameList.get(index));
                 try {
 
 
@@ -171,7 +169,7 @@ public class viewDoctorsController implements Initializable {
                     }
 
                     Stage stage = new Stage();
-                    stage.setTitle(doctorNameList.get(index));
+                    stage.setTitle(patientNameList.get(index));
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));

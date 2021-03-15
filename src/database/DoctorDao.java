@@ -13,12 +13,17 @@ import java.util.HashMap;
 
 public class DoctorDao implements IDoctorDao {
 
+    private String doctorId;
     private Connection connection;
     private int totalVisits;
+
 
     public DoctorDao() {
     }
 
+    public DoctorDao(String doctorId) {
+        this.doctorId = doctorId;
+    }
 
     @Override
     public String getTotalAppointments(String doctorId) {
