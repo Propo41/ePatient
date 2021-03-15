@@ -372,5 +372,26 @@ public class DoctorDao implements IDoctorDao {
 
     }
 
+    @Override
+    public void updateDoctorAttribute(String attribute, String data, int doctorId) {
+        connection = DatabaseHandler.getConnection();
+        String query = "update Doctor Set " + attribute + " = '" + data + "' where doctor_id= " + doctorId;
+        System.out.println(query);
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
 }
