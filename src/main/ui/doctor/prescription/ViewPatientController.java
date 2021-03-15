@@ -1,4 +1,4 @@
-package main.ui.doctor.patients;
+package main.ui.doctor.prescription;
 
 import com.jfoenix.controls.JFXButton;
 import database.DoctorDao;
@@ -6,13 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import model.Patient;
 import util.Util;
 

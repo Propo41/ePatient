@@ -24,7 +24,7 @@
       <Label styleClass="text-content-title" text="MY APPOINTMENTS" />
       <HBox spacing="10.0">
          <children>
-            <HBox fx:id="datePickerRoot" alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="601.0" spacing="10.0" styleClass="h-box-background" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="601.0" spacing="10.0" styleClass="h-box-background" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
@@ -39,6 +39,14 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
+                  <HBox fx:id="datePickerRoot" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </HBox>
                </children>
             </HBox>
             <JFXButton fx:id="searchButton" onAction="#onSearchClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />

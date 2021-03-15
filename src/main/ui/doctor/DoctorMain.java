@@ -1,10 +1,12 @@
 package main.ui.doctor;
 
+import database.DoctorDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Prescription;
 import util.Util;
 
 // for test only. delete it

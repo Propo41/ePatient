@@ -5,16 +5,16 @@ import javafx.beans.property.SimpleStringProperty;
 public class Disease {
     private final SimpleStringProperty diseaseName;
     private String diseaseType;
-    private String comments;
+    private String description;
 
-    public Disease(String disease, String diseaseType, String comments) {
+    public Disease(String disease, String diseaseType, String description) {
         this.diseaseName = new SimpleStringProperty(disease);
         this.diseaseType = diseaseType;
-        this.comments = comments;
+        this.description = description;
     }
 
     public String getDiseaseName() {
-        return diseaseName.get();
+        return diseaseName.getValue();
     }
 
     public SimpleStringProperty diseaseNameProperty() {
@@ -33,12 +33,12 @@ public class Disease {
         this.diseaseType = diseaseType;
     }
 
-    public String getComments() {
-        return comments;
+    public String getDescription() {
+        return description;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

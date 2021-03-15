@@ -2,6 +2,7 @@ package database;
 
 import com.zaxxer.hikari.HikariDataSource;
 import database.interfaces.IDoctorDao;
+import javafx.collections.ObservableList;
 import model.*;
 import util.Util;
 
@@ -372,58 +373,6 @@ public class DoctorDao implements IDoctorDao {
     }
 
     @Override
-    public ArrayList<Object> getPrescriptionHistory(String patientId, String keyword) {
-        connection = DatabaseHandler.getConnection();
-        String query = "select Appointment.patient_id, Doctor.doctor_id, Doctor.doctor_name, " +
-                "Appointment.reason, Appointment.date_of_appointment, Prescription.prescription_id " +
-                "from (Prescription inner join Appointment " +
-                "on Prescription.appointment_id = Appointment.appointment_id) " +
-                "inner join Doctor " +
-                "on Doctor.doctor_id = Appointment.doctor_id " +
-                "where (" +
-                "Appointment.patient_id = " + patientId + " and" +
-                " Appointment.appointment_status = 1 and " +
-                "(Doctor.doctor_id LIKE '%" + keyword + "%' OR " +
-                "Doctor.doctor_name LIKE '%" + keyword + "%' " +
-                ")) ";
-        ArrayList<Object> appointmentsList = new ArrayList<>();
-        HashMap<String, Boolean> isHeader = new HashMap<>();
-        if (connection != null) {
-            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
-                while (resultSet.next()) {
-                    String doctorName = resultSet.getString("doctor_name");
-                    String doctorId = resultSet.getString("doctor_id");
-                    String reason = resultSet.getString("reason");
-                    Date dateOfAppointment = resultSet.getDate("date_of_appointment");
-                    String prescriptionId = resultSet.getString("prescription_id");
-
-                    // if header not initially put, make it a new header
-                    if (isHeader.get(doctorName) == null) {
-                        appointmentsList.add(doctorName);
-                        appointmentsList.add(new Prescription(patientId, doctorId,
-                                doctorName, reason, dateOfAppointment, prescriptionId));
-                        isHeader.put(doctorName, true);
-                    } else {
-                        appointmentsList.add(new Prescription(patientId, doctorId,
-                                doctorName, reason, dateOfAppointment, prescriptionId));
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return appointmentsList;
-
-    }
-
-    @Override
     public void updateDoctorAttribute(String attribute, String data, int doctorId) {
         connection = DatabaseHandler.getConnection();
         String query = "update Doctor Set " + attribute + " = '" + data + "' where doctor_id= " + doctorId;
@@ -442,7 +391,7 @@ public class DoctorDao implements IDoctorDao {
                 }
             }
         }
-        return;
     }
+
 
 }

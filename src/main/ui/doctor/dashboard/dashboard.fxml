@@ -10,84 +10,63 @@
 <?import javafx.scene.layout.*?>
 
 
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.dashboard.DashboardController">
+<VBox fx:id="root" spacing="10.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.dashboard.DashboardController">
    <children>
-      <VBox fx:id="root" spacing="10.0" stylesheets="@../../../../resources/styles.css">
+      <Label layoutX="50.0" layoutY="30.0" styleClass="text-content-title" text="DASHBOARD" />
+      <Separator layoutX="50.0" layoutY="69.0" prefHeight="5.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" VBox.vgrow="ALWAYS" />
+      <HBox layoutX="45.0" layoutY="94.0" prefHeight="285.0" prefWidth="845.0" spacing="20.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" VBox.vgrow="SOMETIMES">
          <children>
-            <Label layoutX="50.0" layoutY="30.0" styleClass="text-content-title" text="DASHBOARD" />
-            <Separator layoutX="50.0" layoutY="69.0" prefHeight="5.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" VBox.vgrow="ALWAYS" />
-            <HBox layoutX="45.0" layoutY="94.0" prefHeight="285.0" prefWidth="845.0" spacing="20.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" VBox.vgrow="SOMETIMES">
+            <VBox prefHeight="285.0" prefWidth="514.0" spacing="10.0" styleClass="card-background" HBox.hgrow="ALWAYS">
                <children>
-                  <StackPane prefHeight="271.0" prefWidth="432.0" styleClass="card-background" HBox.hgrow="ALWAYS">
+                  <Label styleClass="card-title" text="VISITING HOURS" />
+                  <ListView fx:id="visitingHoursListView" prefHeight="200.0" prefWidth="299.0" stylesheets="@../../../../resources/listview_styles_white.css" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="271.0" prefWidth="413.0" spacing="15.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefWidth="300.0" spacing="5.0" styleClass="card-background" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox prefHeight="271.0" prefWidth="265.0" spacing="10.0">
-                           <children>
-                              <Label styleClass="card-title" text="VISITING HOURS" />
-                              <ListView fx:id="visitingHoursListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_white.css" />
-                           </children>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </VBox>
+                        <Label styleClass="card-title" text="TOTAL VISITS" />
+                        <Label fx:id="totalVisitsTv" alignment="CENTER" style="-fx-font-size: 25;" styleClass="text-sub-heading" text="64" textAlignment="CENTER" wrapText="true" />
                      </children>
-                  </StackPane>
-                  <VBox prefHeight="271.0" prefWidth="413.0" spacing="15.0">
-                     <children>
-                        <StackPane prefHeight="243.0" prefWidth="345.0" styleClass="card-background">
-                           <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="122.0" prefWidth="300.0" spacing="5.0">
-                                 <children>
-                                    <Label styleClass="card-title" text="TOTAL VISITS" />
-                                    <Label fx:id="totalVisitsTv" alignment="CENTER" style="-fx-font-size: 25;" styleClass="text-sub-heading" text="64" textAlignment="CENTER" wrapText="true" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="30.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </StackPane>
-                        <StackPane prefHeight="243.0" prefWidth="345.0" styleClass="card-background">
-                           <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="123.0" prefWidth="304.0" spacing="5.0">
-                                 <children>
-                                    <Label styleClass="card-title" text="TOTAL APPOINTMENT" />
-                                    <Label fx:id="totalAppointmentTv" alignment="CENTER" style="-fx-font-size: 25;" styleClass="text-sub-heading" text="415" textAlignment="CENTER" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="30.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </StackPane>
-                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
                   </VBox>
-                  <StackPane prefHeight="243.0" prefWidth="345.0" styleClass="card-background" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" prefWidth="304.0" spacing="5.0" styleClass="card-background" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="243.0" prefWidth="308.0" spacing="20.0" StackPane.alignment="CENTER">
-                           <children>
-                              <Label alignment="CENTER" style="-fx-font-size: 30;" styleClass="card-title" text="TOTAL BILLED" textAlignment="CENTER" wrapText="true">
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="totalBilledTv" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 25;" styleClass="text-sub-heading" text="BDT 415" textAlignment="CENTER" />
-                           </children>
-                        </VBox>
+                        <Label styleClass="card-title" text="TOTAL APPOINTMENT" />
+                        <Label fx:id="totalAppointmentTv" alignment="CENTER" style="-fx-font-size: 25;" styleClass="text-sub-heading" text="415" textAlignment="CENTER" />
                      </children>
-                  </StackPane>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </VBox>
                </children>
-            </HBox>
-            <AnchorPane layoutX="50.0" layoutY="376.0" prefHeight="26.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="243.0" prefWidth="308.0" spacing="20.0" styleClass="card-background" HBox.hgrow="ALWAYS">
                <children>
-                  <Label layoutY="10.0" styleClass="card-title" text="RECENT PATIENTS" AnchorPane.leftAnchor="0.0" />
-                  <Button fx:id="button" layoutX="732.0" layoutY="11.0" mnemonicParsing="false" text="Button" />
+                  <Label alignment="CENTER" style="-fx-font-size: 30;" styleClass="card-title" text="TOTAL BILLED" textAlignment="CENTER" wrapText="true">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="totalBilledTv" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 25;" styleClass="text-sub-heading" text="BDT 415" textAlignment="CENTER" />
                </children>
-            </AnchorPane>
-            <ListView fx:id="patientListView" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-         </padding>
-      </VBox>
+      </HBox>
+      <AnchorPane layoutX="50.0" layoutY="376.0" prefHeight="26.0" prefWidth="845.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
+         <children>
+            <Label layoutY="10.0" styleClass="card-title" text="RECENT PATIENTS" AnchorPane.leftAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <ListView fx:id="patientListView" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
    </children>
-</StackPane>
+   <padding>
+      <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+   </padding>
+</VBox>

@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,9 +20,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import database.DoctorDao;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.ui.doctor.patients.ViewPatientController;
+import main.ui.doctor.prescription.ViewPatientController;
 import model.Patient;
 import model.Schedule;
 import util.Util;
@@ -35,8 +33,6 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
-    @FXML
-    private VBox root;
 
     @FXML
     private ListView<HBox> visitingHoursListView;
@@ -48,18 +44,11 @@ public class DashboardController implements Initializable {
     private Label totalAppointmentTv;
 
     @FXML
-    private JFXButton showMorePatientsBtn;
-
-    @FXML
     private Label totalBilledTv;
 
     @FXML
     private ListView<HBox> patientListView;
 
-    @FXML
-    private StackPane stackPane;
-    @FXML
-    private Button button;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,8 +68,7 @@ public class DashboardController implements Initializable {
             JFXButton button = (JFXButton) btnContainer.getChildren().get(0);
             int index = i;
             button.setOnAction(event ->
-
-            viewMore(recentPatientList.get(index)));
+                    viewMore(recentPatientList.get(index)));
             patientListView.getItems().add(hBox);
         }
 
@@ -91,32 +79,12 @@ public class DashboardController implements Initializable {
             visitingHoursListView.getItems().add(hBox);
         }
 
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try{
-                    JFXDialogLayout content = new JFXDialogLayout();
-                    content.getStyleClass().add("jfx-dialog-overlay-pane");
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dialog.fxml"));
-                    loader.load();
-                    JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
-                    dialog.getStyleClass().add("jfx-dialog-layout");
-                    DialogController dialogController = loader.getController();
-                    dialogController.setLabel("Mustofa sucks");
-                    dialog.show();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
 
     }
 
     private void viewMore(Patient patient) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../patients/view_patient.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../prescription/view_patient.fxml"));
 
             Stage stage = new Stage();
             stage.setTitle(patient.getName());
@@ -128,8 +96,7 @@ public class DashboardController implements Initializable {
             stage.show();
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

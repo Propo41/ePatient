@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -30,13 +31,8 @@ import java.util.ResourceBundle;
 public class AppointmentsController implements Initializable {
     @FXML
     private HBox datePickerRoot;
-
     @FXML
     private Label selectedDateLabel;
-
-    @FXML
-    private JFXButton searchButton;
-
     @FXML
     private ListView<HBox> prescriptionList;
 
@@ -57,17 +53,25 @@ public class AppointmentsController implements Initializable {
         HBox.setHgrow(datePicker, Priority.NEVER);
         datePickerRoot.getChildren().add(datePicker);
 
+        // disable previous dates from the datepicker dialog
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today) < 0);
+            }
+        });
+
         datePicker.setOnAction(event -> {
             selectedDate = datePicker.getValue();
             selectedDateLabel.setText(selectedDate.toString());
         });
 
-        initList(datePicker.getValue());
-
+        initList(LocalDate.now());
 
     }
 
-    private void initList(LocalDate date){
+    private void initList(LocalDate date) {
         ArrayList<Appointment> appointments = doctorDao.getAppointmentList(
                 Util.getInstance().getUserId(),
                 date);
