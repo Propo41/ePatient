@@ -1,28 +1,20 @@
-package main.ui.doctor.patients;
+package main.ui.doctor.prescription;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTabPane;
-import javafx.beans.property.SimpleStringProperty;
+import database.DoctorDao;
+import database.PrescriptionDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import model.Disease;
-import model.MedicalTest;
-import model.Medicine;
+import model.*;
+import util.Util;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CreatePrescriptionController implements Initializable {
@@ -91,32 +83,17 @@ public class CreatePrescriptionController implements Initializable {
         // DISEASES
         diseaseObservableList = FXCollections.observableList(new ArrayList<>());
         diseasesListView.setItems(diseaseObservableList);
-        diseasesListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                 diseaseSelectedItemIndex = diseasesListView.getSelectionModel().getSelectedIndex();
-            }
-        });
+        diseasesListView.setOnMouseClicked(event -> diseaseSelectedItemIndex = diseasesListView.getSelectionModel().getSelectedIndex());
 
         // MEDICAL TESTS
         medicalTestObservableList = FXCollections.observableList(new ArrayList<>());
         testsListView.setItems(medicalTestObservableList);
-        testsListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                medicalTestsSelectedItemIndex = testsListView.getSelectionModel().getSelectedIndex();
-            }
-        });
+        testsListView.setOnMouseClicked(event -> medicalTestsSelectedItemIndex = testsListView.getSelectionModel().getSelectedIndex());
 
         // MEDICINE
         medicineObservableList = FXCollections.observableList(new ArrayList<>());
         medicineListView.setItems(medicineObservableList);
-        medicineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                medicineSelectedItemIndex = medicineListView.getSelectionModel().getSelectedIndex();
-            }
-        });
+        medicineListView.setOnMouseClicked(event -> medicineSelectedItemIndex = medicineListView.getSelectionModel().getSelectedIndex());
 
         // INITIALIZING COMBO BOXES
         healthCondCb.getItems().addAll("a", "b", "c", "d", "e", "Severe");
@@ -142,7 +119,21 @@ public class CreatePrescriptionController implements Initializable {
     @FXML
     void onSaveClick(ActionEvent event) {
         // insert into database after checking for error
+        Prescription prescription = new Prescription();
+        prescription.setAppointmentId(Util.getInstance().getCurrentDoctorPatientQueue().getValue());
+        prescription.setPatientId(Util.getInstance().getCurrentDoctorPatientQueue().getKey());
+        prescription.setDoctorId(Util.getInstance().getUserId());
+        prescription.setHealthCondition(new HealthCondition(
+                dietSuggestionTv.getText(),
+                examRoutineTv.getText(),
+                healthCondition,
+                healthCommentTv.getText()
+        ));
+        prescription.setDiseases(diseaseObservableList);
+        prescription.setMedicines(medicineObservableList);
+        prescription.setMedicalTests(medicalTestObservableList);
 
+        new PrescriptionDao().createNewPrescription(prescription);
     }
 
     @FXML

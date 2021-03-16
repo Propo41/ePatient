@@ -1,5 +1,7 @@
 package util;
 
+import javafx.util.Pair;
+
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -24,9 +26,12 @@ public class Util {
 
     public static final int DIALOG_SCREEN_WIDTH = 1000;
     public static final int DIALOG_SCREEN_HEIGHT = 800;
+    public static final int QUERY_DELAY = 2;
 
-    public static final int DIALOG_SCREEN_WIDTH_2 = 1200;
-    public static final int DIALOG_SCREEN_HEIGHT_2 = 900;
+    // key -> patientID
+    // value -> appointmentID
+    private Pair<String, String> currentDoctorPatientQueue = new Pair<>("-1", "-1");
+
 
     public static Util getInstance() {
         if (instance == null)
@@ -35,6 +40,13 @@ public class Util {
         return instance;
     }
 
+    public Pair<String, String> getCurrentDoctorPatientQueue() {
+        return currentDoctorPatientQueue;
+    }
+
+    public void setCurrentDoctorPatientQueue(Pair<String, String> currentDoctorPatientQueue) {
+        this.currentDoctorPatientQueue = currentDoctorPatientQueue;
+    }
 
     public String getUserId() {
         return userId;
@@ -53,8 +65,8 @@ public class Util {
     }
 
     /**
-     * @param time in 24hr format: "22:15"
-     * @return time in 12hr format hh:mm a
+     * @param time String in 24hr format: "22:15"
+     * @return String in 12hr format hh:mm a
      */
     public static String convert24to12format(String time) {
         try {

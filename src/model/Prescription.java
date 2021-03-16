@@ -1,14 +1,23 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Prescription {
     private String patientId;
     private String doctorId;
     private String doctorName;
+    private String appointmentId;
     private String reason;
+    private String comment;
     private Date dateOfPrescription;
     private String prescriptionId;
+    private ObservableList<MedicalTest> medicalTests;
+    private ObservableList<Disease> diseases;
+    private ObservableList<Medicine> medicines;
+    private HealthCondition healthCondition;
 
 
     public Prescription() {
@@ -24,16 +33,64 @@ public class Prescription {
         this.prescriptionId = prescriptionId;
     }
 
-    public String getPatientId() {
-        return patientId;
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getAppointmentId() {
+        return Integer.parseInt(appointmentId);
+    }
+
+    public void setAppointmentId(String appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+    public HealthCondition getHealthCondition() {
+        return healthCondition;
+    }
+
+    public void setHealthCondition(HealthCondition healthCondition) {
+        this.healthCondition = healthCondition;
+    }
+
+    public ObservableList<MedicalTest> getMedicalTests() {
+        return medicalTests;
+    }
+
+    public void setMedicalTests(ObservableList<MedicalTest> medicalTests) {
+        this.medicalTests = medicalTests;
+    }
+
+    public ObservableList<Disease> getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(ObservableList<Disease> diseases) {
+        this.diseases = diseases;
+    }
+
+    public ObservableList<Medicine> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(ObservableList<Medicine> medicines) {
+        this.medicines = medicines;
+    }
+
+    public int getPatientId() {
+        return Integer.parseInt(patientId);
     }
 
     public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public int getDoctorId() {
+        return Integer.parseInt(doctorId);
     }
 
     public void setDoctorId(String doctorId) {

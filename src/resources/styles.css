@@ -24,7 +24,6 @@
     -fx-color-combobox-prompt: #b0b0b0
 }
 
-
 .user-icon {
     -fx-image: url('icons/ic_profile_image.png');
 }
@@ -39,8 +38,15 @@
     -fx-pref-height: 40;
 }
 
+.pdf-icon {
+    -fx-image: url('/resources/icons/ic_pdf.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+
 .delete-icon {
-    -fx-image: url('icons/ic_remove.png');
+    -fx-image: url('icons/ic_delete.png');
     -fx-pref-width: 10;
     -fx-pref-height: 10;
 }
@@ -217,6 +223,31 @@
     -fx-background-position: center;
 }
 
+
+
+/* transparent button with image that will be used inside listview */
+.button-inline-listview {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-background-image: url('/resources/icons/ic_view.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+}
+
+/* transparent button with image that will be used inside listview */
+.button-pdf {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-background-image: url('/resources/icons/ic_pdf.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+}
+
+
 /* orange button */
 .button-tertiary {
     -fx-font-family: "Segoe UI Semibold";
@@ -257,6 +288,13 @@
     -fx-font-size: 17;
 }
 
+.button-text-only-small-red {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-blue;
+    -fx-background-color: -fx-color-orange;
+    -fx-background-radius: 10;
+    -fx-font-size: 17;
+}
 
 /*END: Button styles*/
 
@@ -428,11 +466,19 @@
 .date-picker-style {
     -fx-border-color: -fx-color-ash-background;
     -fx-background-color: -fx-color-ash-background;
-
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
 }
 
 .date-picker:editable .date-picker-display-node {
     visibility: false;
+}
+
+.date-picker-style-white-bg {
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
 }
 
 .h-box-background {
@@ -444,7 +490,7 @@
 }
 
 /* combo box styling*/
-.jfx-combo-box{
+.jfx-combo-box {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     -fx-font-size: 13;
@@ -455,7 +501,7 @@
     -fx-padding: 10;
 }
 
-.dialog-background{
+.dialog-background {
     -fx-background-color: white;
 }
 

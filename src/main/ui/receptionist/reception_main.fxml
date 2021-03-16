@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-
-<StackPane fx:id="stackPaneRoot" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.DoctorMainController">
+<StackPane fx:id="stackPaneRoot" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.ReceptionMainController">
    <children>
       <BorderPane prefHeight="857.0" prefWidth="1200.0" styleClass="window-background" stylesheets="@../../../resources/styles.css">
           <left>
@@ -28,7 +26,7 @@
                               <Insets top="20.0" />
                           </VBox.margin>
                       </ImageView>
-                      <Label fx:id="doctorNameTv" styleClass="text-sub-heading" text="DOCTOR" />
+                      <Label fx:id="receptionNameTv" styleClass="text-sub-heading" text="RECEPTIONIST" />
                       <Separator prefWidth="200.0" />
                       <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="250.0">
                           <children>
@@ -39,22 +37,17 @@
                               </Label>
                           </children>
                       </HBox>
-                      <JFXButton fx:id="navDashboardBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onDashboardClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-selected" text="DASHBOARD">
+                      <JFXButton fx:id="navAppointmentsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onAppointmentsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-selected" text="APPOINTMENTS">
                           <padding>
                               <Insets left="30.0" />
                           </padding>
                       </JFXButton>
-                      <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PRESCRIPTIONS">
+                      <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PATIENTS">
                           <padding>
                               <Insets left="30.0" />
                           </padding>
                       </JFXButton>
-                  <JFXButton fx:id="navMyProfileBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onProfileClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="MY PROFILE">
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </JFXButton>
-                  <JFXButton fx:id="navAppointmentsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onAppointmentsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="MY APPOINTMENTS">
+                  <JFXButton fx:id="navTestReportsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onTestReportsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="TEST REPORTS">
                      <padding>
                         <Insets left="30.0" />
                      </padding>
@@ -69,11 +62,6 @@
                         </Label>
                      </children>
                   </HBox>
-                  <JFXButton fx:id="navNextPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onNextPatientClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="NEXT PATIENT">
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </JFXButton>
                   <JFXButton fx:id="navSettingsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onSettingsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="SETTINGS">
                      <padding>
                         <Insets left="30.0" />

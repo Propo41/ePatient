@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.CreatePrescriptionController">
+<VBox styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.prescription.CreatePrescriptionController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" VBox.vgrow="ALWAYS">
          <children>
@@ -57,7 +57,7 @@
                                     </VBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                                  <VBox.margin>
                                     <Insets />
@@ -129,7 +129,7 @@
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                                  <VBox.margin>
                                     <Insets />
@@ -195,7 +195,7 @@
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                               </VBox>
                            </children>
@@ -267,7 +267,7 @@
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
                                  </padding>
                               </VBox>
                            </children>

@@ -1,16 +1,14 @@
-package main.ui.doctor;
+package main.ui.receptionist;
 
-import database.DoctorDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Prescription;
 import util.Util;
 
 // for test only. delete it
-public class DoctorMain extends Application {
+public class ReceptionMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -18,7 +16,7 @@ public class DoctorMain extends Application {
         Util.getInstance().setUserId("1");
         Util.getInstance().setUserType("doctor");
 
-        Parent root = FXMLLoader.load(getClass().getResource("doctor_main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("reception_main.fxml"));
         primaryStage.setTitle("a World");
         Scene scene = new Scene(root, Util.SCREEN_WIDTH, Util.SCREEN_HEIGHT); // ratio is 1.4:1
         scene.getStylesheets().addAll(getClass().getResource("/resources/styles.css").toExternalForm());

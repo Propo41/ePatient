@@ -2,6 +2,7 @@ package database;
 
 import com.zaxxer.hikari.HikariDataSource;
 import database.interfaces.IDoctorDao;
+import javafx.collections.ObservableList;
 import model.*;
 import util.Util;
 
@@ -383,37 +384,6 @@ public class DoctorDao implements IDoctorDao {
         return patientList;
     }
 
-    @Override
-    public ArrayList<Appointment> getAppointmentList(String doctorId, LocalDate date) {
-        connection = DatabaseHandler.getConnection();
-        String query = "select Patient.patient_name, Appointment.reason, Appointment.date_of_appointment, " +
-                "Appointment.start_time, Appointment.end_time " +
-                "from Appointment left join Patient " +
-                "on Appointment.patient_id = Patient.patient_id " +
-                "where date_of_appointment = '" + date + "' and doctor_id = " + doctorId + " and appointment_status = 0";
-        ArrayList<Appointment> appointmentsList = new ArrayList<>();
-        if (connection != null) {
-            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
-                while (resultSet.next()) {
-                    Appointment appointment = new Appointment();
-                    appointment.setPatientName(resultSet.getString("patient_name"));
-                    appointment.setReason(resultSet.getString("reason"));
-                    appointment.setDate(resultSet.getDate("date_of_appointment").toLocalDate());
-                    appointment.setStartTime(resultSet.getTime("start_time"));
-                    appointment.setEndTime(resultSet.getTime("end_time"));
-                    appointmentsList.add(appointment);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return appointmentsList;
 
     }
 

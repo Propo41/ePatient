@@ -1,8 +1,9 @@
-package main.ui.doctor;
+package main.ui.receptionist;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import database.DoctorDao;
 import database.DoctorQueueDaoDao;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -22,25 +23,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import database.DoctorDao;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import main.ui.doctor.DialogNewPatientPromptController;
 import util.Util;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DoctorMainController implements Initializable {
+public class ReceptionMainController implements Initializable {
     @FXML
     private AnchorPane frameLayout;
 
     @FXML
     private JFXButton navSupportBtn;
-
-    @FXML
-    private JFXButton navDashboardBtn;
 
     @FXML
     private JFXButton navAppointmentsBtn;
@@ -55,26 +52,16 @@ public class DoctorMainController implements Initializable {
     private JFXButton navPatientBtn;
 
     @FXML
-    private JFXButton navMyProfileBtn;
+    private StackPane stackPaneRoot;
+
+    @FXML
+    private JFXButton navTestReportsBtn;
+
+    @FXML
+    private Label receptionNameTv;
 
     @FXML
     private JFXButton navLogOutBtn;
-
-    @FXML
-    private Label doctorNameTv;
-
-    @FXML
-    private ListView<HBox> listView;
-
-    @FXML
-    private TextField patientIdTv;
-
-    @FXML
-    private TextField appointmentIdTv;
-
-
-    @FXML
-    private StackPane stackPaneRoot;
 
     private JFXButton guiButtonCurrent;
     private JFXButton guiButtonPrevious;
@@ -83,76 +70,24 @@ public class DoctorMainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        guiButtonCurrent = navDashboardBtn;
-        guiButtonPrevious = navDashboardBtn;
+        guiButtonCurrent = navAppointmentsBtn;
+        guiButtonPrevious = navAppointmentsBtn;
 
         DoctorDao doctorDao = new DoctorDao();
         String name = doctorDao.getName(Util.getInstance().getUserId());
-        doctorNameTv.setText(name);
+        receptionNameTv.setText(name);
 
-        // initially load dashboard UI
+        // initially load appointments UI
         try {
             frameLayout.getChildren().clear();
-            VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
+            VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
             root = (VBox) makeResponsive(root, "vbox");
             frameLayout.getChildren().add(root);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        // createCardItems(4);
-        startQueryingService();
-
-
     }
 
-
-    private void startQueryingService() {
-        DoctorQueueDaoDao doctorQueueDao = new DoctorQueueDaoDao();
-        timeline = new Timeline(
-                new KeyFrame(Duration.seconds(Util.QUERY_DELAY), e -> {
-                    // query database here
-                    // if data is found, then show alert dialog and then stop service.
-                    System.out.println("service running...");
-                    Pair<String, String> res = doctorQueueDao.fetchQueue(Util.getInstance().getUserId());
-                    if (res != null) {
-                        // update ui
-                        // stop service
-                        Util util = Util.getInstance();
-                        if (!util.getCurrentDoctorPatientQueue().equals(res)) {
-                            openNewPatientDialog(res);
-                            stopQueryingService();
-                            Util.getInstance().setCurrentDoctorPatientQueue(res);
-                        }
-
-                    }
-                })
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-    private void openNewPatientDialog(Pair<String, String> res) {
-        try {
-            JFXDialogLayout content = new JFXDialogLayout();
-            content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dialog_new_patient_prompt.fxml"));
-            loader.load();
-            dialog = new JFXDialog(stackPaneRoot, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
-            dialog.getStyleClass().add("jfx-dialog-layout");
-            DialogNewPatientPromptController dialogController = loader.getController();
-            dialogController.setIds(res);
-            dialog.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void stopQueryingService() {
-        System.out.println("service stopped...");
-        timeline.stop();
-    }
 
     private Parent makeResponsive(Parent root, String node) {
         switch (node) {
@@ -180,67 +115,6 @@ public class DoctorMainController implements Initializable {
         return null;
     }
 
-    @FXML
-    void onNextPatientClick(ActionEvent event) {
-        startQueryingService();
-    }
-
-    @FXML
-    void onDashboardClick(ActionEvent event) {
-        if (!guiButtonCurrent.equals(navDashboardBtn)) {
-            guiButtonCurrent = navDashboardBtn;
-            guiChangeButtonStyle();
-            guiButtonPrevious = navDashboardBtn;
-            try {
-                frameLayout.getChildren().clear();
-                VBox root = FXMLLoader.load(getClass().getResource("dashboard/dashboard.fxml"));
-                root = (VBox) makeResponsive(root, "vbox");
-                frameLayout.getChildren().add(root);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    @FXML
-    void onPatientsClick(ActionEvent event) {
-        if (!guiButtonCurrent.equals(navPatientBtn)) {
-            guiButtonCurrent = navPatientBtn;
-            guiChangeButtonStyle();
-            guiButtonPrevious = navPatientBtn;
-            try {
-                frameLayout.getChildren().clear();
-                VBox root = FXMLLoader.load(getClass().getResource("prescription/prescription.fxml"));
-                root = (VBox) makeResponsive(root, "vbox");
-                frameLayout.getChildren().add(root);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }
-
-    @FXML
-    void onProfileClick(ActionEvent event) {
-        if (!guiButtonCurrent.equals(navMyProfileBtn)) {
-            guiButtonCurrent = navMyProfileBtn;
-            guiChangeButtonStyle();
-            guiButtonPrevious = navMyProfileBtn;
-            try {
-                frameLayout.getChildren().clear();
-                VBox root = FXMLLoader.load(getClass().getResource("profile/profile.fxml"));
-                root = (VBox) makeResponsive(root, "vbox");
-                frameLayout.getChildren().add(root);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-
-    }
 
     @FXML
     void onAppointmentsClick(ActionEvent event) {
@@ -253,13 +127,37 @@ public class DoctorMainController implements Initializable {
                 VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
                 root = (VBox) makeResponsive(root, "vbox");
                 frameLayout.getChildren().add(root);
-
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
+
         }
     }
+
+    @FXML
+    void onTestReportsClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onPatientsClick(ActionEvent event) {
+        if (!guiButtonCurrent.equals(navPatientBtn)) {
+            guiButtonCurrent = navPatientBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navPatientBtn;
+            try {
+                frameLayout.getChildren().clear();
+                VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
 
     @FXML
     void onSettingsClick(ActionEvent event) {
@@ -278,7 +176,6 @@ public class DoctorMainController implements Initializable {
 
     @FXML
     void onLogOutClick(ActionEvent event) {
-        stopQueryingService();
         Stage stage = (Stage) guiButtonCurrent.getScene().getWindow();
         stage.close();
         try{
