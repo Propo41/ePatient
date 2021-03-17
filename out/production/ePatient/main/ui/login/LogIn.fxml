@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="857.0" maxWidth="1200.0" minHeight="571.333" minWidth="800.0" prefHeight="857.0" prefWidth="1200.0" style="-fx-background-color: #2784FF;" stylesheets="@../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.login.LogInController">
+<StackPane maxHeight="857.0" maxWidth="1200.0" minHeight="571.333" minWidth="800.0" prefHeight="857.0" prefWidth="1200.0" style="-fx-background-color: #2784FF;" stylesheets="@../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.login.LogInController">
     <children>
       <ImageView fitHeight="522.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" smooth="false" StackPane.alignment="CENTER_LEFT">
          <image>
@@ -55,16 +49,16 @@
                                 <Font name="Redressed Regular" size="69.0" />
                             </font>
                         </Label>
-                  <TextField fx:id="userId" prefHeight="55.0" promptText="ENTER USER ID" styleClass="text-field-normal">
+                  <TextField fx:id="userId" prefHeight="55.0" promptText="USER ID" styleClass="text-field-normal">
                      <VBox.margin>
                         <Insets left="150.0" right="150.0" top="50.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="userPassword" prefHeight="55.0" promptText="ENTER PASSWORD" styleClass="text-field-normal">
+                  <PasswordField fx:id="userPassword" promptText="PASSWORD" styleClass="text-field-normal">
                      <VBox.margin>
                         <Insets left="150.0" right="150.0" top="50.0" />
                      </VBox.margin>
-                  </TextField>
+                  </PasswordField>
                   <JFXButton maxWidth="1.7976931348623157E308" onAction="#loginClicked" prefHeight="55.0" styleClass="button-primary" text="LOGIN">
                      <VBox.margin>
                         <Insets left="150.0" right="150.0" top="50.0" />

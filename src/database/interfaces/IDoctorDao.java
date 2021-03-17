@@ -15,10 +15,10 @@ public interface IDoctorDao {
     Doctor getDoctorProfile(String doctorId);
     String getTotalVisits(String doctorId);
     String getTotalBill(String doctorId);
-    Patient getPatientProfile(String patientId);
+
     ArrayList<Patient> getPatientList(String keyword);
     void updateDoctorAttribute(String attribute, String data, int doctorId);
     void updateSingleAttribute(String tableName,String attribute, String data, String patientId);
-    HashMap<String, Boolean> getMedicalHistory(String patientId);
-
+    void deleteTuple(String tableName, String attributeSelection,String id);
+    ArrayList<Doctor> getDoctorBasicInfo(String name);
 }

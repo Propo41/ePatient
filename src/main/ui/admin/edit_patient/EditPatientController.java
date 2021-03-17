@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import database.DoctorDao;
+import database.PatientDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,19 +80,18 @@ public class EditPatientController {
     ArrayList<Boolean> medicalHistoryValue;
     ArrayList<String> socialHistoryKey;
     ArrayList<Boolean> socialHistoryValue;
-    DoctorDao doctorDao;
 
     public void setPatientNumber(int patientId1, EditPatientController editPatientController) throws SQLException {
       //  System.out.println(doctor);
+
         medicalHistoryKey = new ArrayList<>();
         medicalHistoryValue = new ArrayList<>();
         socialHistoryKey = new ArrayList<>();
         socialHistoryValue = new ArrayList<>();
-        doctorDao = new DoctorDao();
 
         selectedPatientId = patientId1;
         this.editPatientController = editPatientController;
-        patient = doctorDao.getPatientProfile(selectedPatientId+"");
+        patient = new PatientDao().getPatientProfile(selectedPatientId+"");
 
         patientName.setText(patient.getName());
         patientId.setText("Patient ID: " + patient.getId());
@@ -143,7 +143,7 @@ public class EditPatientController {
         medicalHistoryMap.clear();
         medicalHistoryListView.getItems().clear();
         medicalHistoryKey.clear();
-        medicalHistoryMap = doctorDao.getMedicalHistory(selectedPatientId+"");
+        medicalHistoryMap = new PatientDao().getMedicalHistory(selectedPatientId+"");
 
         Set set = medicalHistoryMap.entrySet();
         Iterator iterator = set.iterator();
@@ -166,7 +166,7 @@ public class EditPatientController {
         medicalHistoryMap.clear();
         medicalHistoryListView.getItems().clear();
         medicalHistoryKey.clear();
-        medicalHistoryMap = doctorDao.getMedicalHistory(selectedPatientId+"");
+        medicalHistoryMap = new PatientDao().getMedicalHistory(selectedPatientId+"");
 
         Set set = medicalHistoryMap.entrySet();
         Iterator iterator = set.iterator();

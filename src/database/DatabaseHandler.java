@@ -2,11 +2,13 @@ package database;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import model.Doctor;
 import util.Util;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class DatabaseHandler {
@@ -76,19 +78,6 @@ public class DatabaseHandler {
         return Integer.parseInt(val);
     }
 
-
-    public ResultSet getDoctorMainAdmin(String name){
-        String query = "select doctor_specialist,doctor_name,doctor_id from Doctor where doctor_name like '%"+ name + "%' ";
-        ResultSet resultSet = null;
-        try {
-            connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
 
     public ResultSet getPatientMainAdmin(String name){
         String query = "select patient_name,joined_date,patient_id from Patient where patient_name like '%"+ name + "%' ";

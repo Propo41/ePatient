@@ -21,13 +21,14 @@
     -fx-color-ash-background: #E5E5E5;
     -fx-color-white: #FFFFFF;
     -fx-color-black: #333333;
+    -fx-color-combobox-prompt: #b0b0b0
 }
 
 .user-icon {
     -fx-image: url('icons/ic_profile_image.png');
 }
 
-.add-icon{
+.add-icon {
     -fx-image: url('icons/ic_add.png');
 }
 
@@ -37,10 +38,28 @@
     -fx-pref-height: 40;
 }
 
+.pdf-icon {
+    -fx-image: url('/resources/icons/ic_pdf.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+
 .delete-icon {
     -fx-image: url('icons/ic_delete.png');
     -fx-pref-width: 10;
     -fx-pref-height: 10;
+}
+
+/*changes the background colour of the dialog*/
+.jfx-dialog-layout {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*makes the JFXDialog rounded*/
+.jfx-dialog-overlay-pane > StackPane {
+    -fx-background-radius: 20;
+    -fx-background-color: white;
 }
 
 .title-text {
@@ -87,7 +106,6 @@
     -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-line-height: 16px;
-    -fx-font-weight: 700;
     -fx-display: flex;
     -fx-align-items: center;
     -fx-text-align: center;
@@ -174,7 +192,7 @@
 
 }
 
-/* green button */
+/* orange  button */
 .button-secondary {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
@@ -184,7 +202,7 @@
 
 }
 
-/* green button */
+/* orange button */
 .button-secondary-small {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
@@ -194,6 +212,41 @@
     -fx-padding: 10;
 
 }
+
+/* orange button for list view delete */
+.button-secondary-listview {
+    -fx-background-color: -fx-color-orange;
+    -fx-background-radius: 10;
+    -fx-background-image: url('/resources/icons/ic_remove.png');
+    -fx-background-size: 20px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+
+
+/* transparent button with image that will be used inside listview */
+.button-inline-listview {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-background-image: url('/resources/icons/ic_view.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+}
+
+/* transparent button with image that will be used inside listview */
+.button-pdf {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-background-image: url('/resources/icons/ic_pdf.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+}
+
 
 /* orange button */
 .button-tertiary {
@@ -235,6 +288,13 @@
     -fx-font-size: 17;
 }
 
+.button-text-only-small-red {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-blue;
+    -fx-background-color: -fx-color-orange;
+    -fx-background-radius: 10;
+    -fx-font-size: 17;
+}
 
 /*END: Button styles*/
 
@@ -269,7 +329,7 @@
 
 }
 
-.text-prompt{
+.text-prompt {
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
@@ -282,11 +342,12 @@
 
 }
 
-.text-label-ash-background{
+.text-label-ash-background {
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
 }
+
 .text-field-no-edit {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
@@ -300,7 +361,6 @@
 .text-field-no-edit .scroll-pane:fitToWidth .viewport .content {
     -fx-background-color: -fx-color-ash-background;
 }
-
 
 
 /*used for vbox background*/
@@ -326,9 +386,9 @@
     -fx-background-color: -fx-color-ash;
 }
 
+
 .jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab-selected-line {
     -fx-border-color: -fx-color-blue;
-
 }
 
 .jfx-tab-pane:top .depth-container .tab-header-area .headers-region .tab:selected:top .jfx-rippler .tab-container .tab-label {
@@ -406,13 +466,20 @@
 .date-picker-style {
     -fx-border-color: -fx-color-ash-background;
     -fx-background-color: -fx-color-ash-background;
-
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
 }
 
 .date-picker:editable .date-picker-display-node {
     visibility: false;
 }
 
+.date-picker-style-white-bg {
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
 
 .h-box-background {
     -fx-background-color: -fx-color-ash-background;
@@ -421,3 +488,24 @@
     -fx-padding: 10 10 10 10;
 
 }
+
+/* combo box styling*/
+.jfx-combo-box {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 10;
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-ash-dark;
+    -jfx-focus-color: white;
+    -jfx-unfocus-color: white;
+    -fx-padding: 10;
+}
+
+.dialog-background {
+    -fx-background-color: white;
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+

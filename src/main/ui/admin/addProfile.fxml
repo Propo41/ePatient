@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+
 <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../resources/styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.AddProfileController">
    <content>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;">
+      <VBox style="-fx-background-color: #FFFFFF;">
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="20.0" />
          </padding>
@@ -23,7 +24,7 @@
                   <Insets left="15.0" right="15.0" />
                </VBox.margin>
             </Separator>
-            <HBox maxHeight="320.0" prefHeight="159.0" prefWidth="1100.0" VBox.vgrow="ALWAYS">
+            <HBox VBox.vgrow="ALWAYS">
                <children>
                   <VBox HBox.hgrow="ALWAYS">
                      <HBox.margin>
@@ -185,7 +186,7 @@
                </children>
             </HBox>
             <Separator maxHeight="5.0" maxWidth="1.7976931348623157E308" minHeight="0.0" style="-fx-border-width: 10;" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
@@ -221,7 +222,8 @@
                   <JFXButton maxWidth="1.7976931348623157E308" onAction="#saveClicked" prefHeight="44.0" prefWidth="1047.0" styleClass="button-primary" text="SAVE" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets left="20.0" right="10.0" />
-                     </VBox.margin></JFXButton>
+                     </VBox.margin>
+                  </JFXButton>
                </children>
             </VBox>
          </children>

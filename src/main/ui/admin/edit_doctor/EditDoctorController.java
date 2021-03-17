@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class EditDoctorController {
+
     @FXML
     private Label doctor_name;
 
@@ -90,67 +91,25 @@ public class EditDoctorController {
 
         for (int i = 0; i < educationList.length ; i++) {
             HBox hBox = createCard(educationList[i].trim());
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    educationalBackgroundList.getItems().remove(finalI);
-                }
-            });
             educationalBackgroundList.getItems().add(hBox);
         }
 
         for (int i = 0; i < experienceList.length; i++){
             HBox hBox = createCard(experienceList[i].trim());
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    professionalExperienceList.getItems().remove(finalI);
-                }
-            });
             professionalExperienceList.getItems().add(hBox);
         }
 
 
         for (int i = 0; i < 2; i++) {
             HBox hBox = createCard("habijabi");
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    avaiableDurationList.getItems().remove(finalI);
-                }
-            });
             avaiableDurationList.getItems().add(hBox);
         }
 
 
         for (int i = 0; i < 2; i++) {
             HBox hBox = createCard("habijabi");
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    chamberAddressList.getItems().remove(finalI);
-                }
-            });
             chamberAddressList.getItems().add(hBox);
         }
-
-
 
 
     }
@@ -160,30 +119,12 @@ public class EditDoctorController {
         DoctorDao doctorDao = new DoctorDao();
         if(attribute.equals("Educational Background")) {
             HBox hBox = createCard(addItem);
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = educationalBackgroundList.getItems().size();
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event){
-                    educationalBackgroundList.getItems().remove(finalI);
-                }
-            });
             educationalBackgroundList.getItems().add(hBox);
             String newData = educationalBackground + "," +addItem;
             doctorDao.updateDoctorAttribute("educaional_background",newData,selectedDoctorId);
 
         }else if(attribute.equals("Professional Experience")){
             HBox hBox = createCard(addItem);
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = professionalExperienceList.getItems().size();
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    professionalExperienceList.getItems().remove(finalI);
-                }
-            });
             professionalExperienceList.getItems().add(hBox);
             String newData = professionalExperience + "," +addItem;
             doctorDao.updateDoctorAttribute("professional_experience",newData,selectedDoctorId);
@@ -292,21 +233,20 @@ public class EditDoctorController {
         nameLabel.setAlignment(Pos.CENTER);
         vBox1.getChildren().addAll(nameLabel);
 
-        ImageView icon2 = new ImageView();
-        icon2.getStyleClass().add("delete-icon");
-        icon2.setFitWidth(30);
-        icon2.setFitHeight(30);
-
-        HBox hBox1 = new HBox();
-        HBox.setHgrow(hBox1, Priority.ALWAYS);
-        hBox1.setAlignment(Pos.CENTER_RIGHT);
-        hBox1.getChildren().add(icon2);
-
-        hBox.getChildren().addAll(vBox, vBox1, hBox1);
+        hBox.getChildren().addAll(vBox, vBox1);
 
         return hBox;
 
     }
 
+    @FXML
+    void onEducationalBackgroundDeleteClick(MouseEvent event) {
+        System.out.println("hi");
+    }
+
+    @FXML
+    void onProfessionalExperienceDeleteClick(MouseEvent event) {
+        System.out.println("bye");
+    }
 
 }

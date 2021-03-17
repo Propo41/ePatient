@@ -14,10 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import main.ui.doctor.patients.ViewPatientController;
-import util.Util;
 
 
 import java.io.IOException;
