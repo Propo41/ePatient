@@ -13,4 +13,6 @@ public interface IPatientDao {
     Patient getPatientProfile(String patientId);
     ArrayList<Patient> getPatientBasicInfo(String name);
     void deleteTuple(String doctor, String doctor_id, String s);
+    void addPatient(Patient patient, String joiningDate, String dateOfBirth);
+    int addMedicalHistory(HashMap<String, Integer> hashMap);
 }

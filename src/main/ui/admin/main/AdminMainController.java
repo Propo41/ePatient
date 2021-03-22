@@ -130,7 +130,7 @@ public class AdminMainController implements Initializable {
             guiButtonCurrent = navPatientBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navPatientBtn;
-            System.out.println("yes");
+
             try {
                 frameLayout.getChildren().clear();
                 VBox root = FXMLLoader.load(getClass().getResource("/main/ui/admin/view_patients/view_patients.fxml"));

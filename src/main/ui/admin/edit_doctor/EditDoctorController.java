@@ -68,6 +68,8 @@ public class EditDoctorController {
     public int selectedDoctorId;
     String educationalBackground, professionalExperience;
     Doctor doctor;
+    String[] educationList;
+    String[] experienceList;
 
     public void setDoctorNumber(int doctorId, EditDoctorController editDoctorController) throws SQLException {
 
@@ -86,19 +88,23 @@ public class EditDoctorController {
         this.professionalExperience = doctor.getProfessionalExperience();
         this.educationalBackground = doctor.getEducationalBackground();
 
-        String[] educationList = educationalBackground.split(",");
-        String[] experienceList = professionalExperience.split(",");
+        if(!educationalBackground.equals(",")) {
 
-        for (int i = 0; i < educationList.length ; i++) {
-            HBox hBox = createCard(educationList[i].trim());
-            educationalBackgroundList.getItems().add(hBox);
+            educationList = educationalBackground.split(",");
+            for (int i = 0; i < educationList.length ; i++) {
+                HBox hBox = createCard(educationList[i].trim());
+                educationalBackgroundList.getItems().add(hBox);
+            }
+
         }
 
-        for (int i = 0; i < experienceList.length; i++){
-            HBox hBox = createCard(experienceList[i].trim());
-            professionalExperienceList.getItems().add(hBox);
+        if(!professionalExperience.equals("") ) {
+            experienceList = professionalExperience.split(",");
+            for (int i = 0; i < experienceList.length; i++){
+                HBox hBox = createCard(experienceList[i].trim());
+                professionalExperienceList.getItems().add(hBox);
+            }
         }
-
 
         for (int i = 0; i < 2; i++) {
             HBox hBox = createCard("habijabi");
@@ -111,24 +117,31 @@ public class EditDoctorController {
             chamberAddressList.getItems().add(hBox);
         }
 
-
     }
 
 
     public void recieveTextBack(String addItem, String attribute){
         DoctorDao doctorDao = new DoctorDao();
-        if(attribute.equals("Educational Background")) {
+        if(attribute.equals("Educational Background")){
             HBox hBox = createCard(addItem);
-            educationalBackgroundList.getItems().add(hBox);
             String newData = educationalBackground + "," +addItem;
+            if(educationalBackground.length()==0){
+                newData =  addItem;
+            }
             doctorDao.updateDoctorAttribute("educaional_background",newData,selectedDoctorId);
+            educationalBackgroundList.getItems().add(hBox);
+
 
         }else if(attribute.equals("Professional Experience")){
             HBox hBox = createCard(addItem);
-            professionalExperienceList.getItems().add(hBox);
             String newData = professionalExperience + "," +addItem;
+            if(professionalExperience.length()==0){
+                newData = addItem;
+            }
             doctorDao.updateDoctorAttribute("professional_experience",newData,selectedDoctorId);
+            professionalExperienceList.getItems().add(hBox);
         }
+
     }
 
 
@@ -146,8 +159,6 @@ public class EditDoctorController {
         }
 
     }
-
-
 
     @FXML
     void addEducationalBackgroundClick(MouseEvent event) throws IOException {
@@ -241,12 +252,16 @@ public class EditDoctorController {
 
     @FXML
     void onEducationalBackgroundDeleteClick(MouseEvent event) {
-        System.out.println("hi");
+        educationalBackgroundList.getItems().clear();
+        educationalBackground = "";
+        new DoctorDao().updateDoctorAttribute("educaional_background", "",selectedDoctorId);
     }
 
     @FXML
     void onProfessionalExperienceDeleteClick(MouseEvent event) {
-        System.out.println("bye");
+        professionalExperienceList.getItems().clear();
+        professionalExperience = "";
+        new DoctorDao().updateDoctorAttribute("professional_experience", "",selectedDoctorId);
     }
 
 }

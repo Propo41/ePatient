@@ -209,5 +209,107 @@ public class PatientDao implements IPatientDao {
         return;
     }
 
+    @Override
+    public void addPatient(Patient patient, String joiningDate, String dateOfBirth) {
+
+        String query ="INSERT INTO Patient (patient_name, patient_email, patient_contact, patient_address, " +
+                "patient_gender, patient_blood_group, patient_age, patient_height, patient_weight, joined_date, " +
+                "patient_emergency_contact, patient_dob) VALUES ( '" + patient.getName() + "','" + patient.getEmail()
+                +"','"+ patient.getContact() +"','"+ patient.getAddress() + "','" + patient.getGender() + "','" +
+                patient.getBloodGroup() + "','" + patient.getAge() + "','" + patient.getHeight() + "','" +
+                patient.getWeight() + "','" + "2008-11-11" + "','" + patient.getEmergencyContact()
+                + "','" + " 2008-11-11 " + "')";
+
+
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+
+    }
+
+    @Override
+    public int addMedicalHistory( HashMap<String, Integer> hashMap) {
+        String val="";
+
+        String query1 = " select TOP 1 patient_id from Patient order by patient_id desc";
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query1)) {
+                resultSet.next();
+                val=  resultSet.getString("patient_id");
+                insertMedicalHistory(hashMap, Integer.parseInt(val));
+                return Integer.parseInt(val);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return 0;
+
+    }
+
+    private void insertMedicalHistory(HashMap<String, Integer> hashMap, int value) {
+
+        String query = "INSERT INTO MedicalHistory (patient_id, high_blood_pressure, high_cholesterol, kidney_disease, thyroid_problems, tuberculosis, sinus, tonsilities, lung_disease, ashtma, seasonal_allergies , arthritis, cancer,stroke, diabetes, pneumonia, hiv,hepatitis) " +
+                " VALUES (" + value + "," +
+                hashMap.get("high_blood_pressure").toString()
+                + "," +  hashMap.get("high_cholesterol").toString()
+                + "," + hashMap.get("kidney_disease").toString()
+                + "," + hashMap.get("thyroid_problems").toString()
+                + "," + hashMap.get("tuberculosis").toString()
+                + "," + hashMap.get("sinus").toString()
+                + "," + hashMap.get("tonsilities").toString()
+                + "," + hashMap.get("lung_disease").toString()
+                + "," + hashMap.get("ashtma").toString()
+                // + "," + hashMap.get("seasonal_allergies").toString()
+                + "," + "0"
+                + "," + hashMap.get("arthritis").toString()
+                + "," + hashMap.get("cancer").toString()
+                + "," + hashMap.get("stroke").toString()
+                + "," + hashMap.get("diabetes").toString()
+                + "," + hashMap.get("pneumonia").toString()
+                + "," + hashMap.get("hiv").toString()
+                + "," + hashMap.get("hepatitis").toString()
+                + ")";
+
+
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+    }
+
+
 }
 

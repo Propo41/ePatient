@@ -157,7 +157,6 @@ public class AddProfileController implements Initializable {
         }catch (Exception ex){
 
         }
-
     }
 
 
