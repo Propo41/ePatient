@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.appointments.AppointmentsController">
+<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.appointments.AppointmentsController">
    <children>
       <HBox>
          <children>
@@ -18,7 +21,7 @@
       </HBox>
       <JFXTabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
          <tabs>
-            <Tab fx:id="healthCondTab" text="VIEW APPOINTMENTS">
+            <Tab fx:id="viewAppointmentsTab" text="VIEW APPOINTMENTS">
                <content>
                   <VBox>
                      <children>
@@ -27,9 +30,14 @@
                               <HBox spacing="10.0">
                                  <children>
                                     <TextField fx:id="patientSearchTv" prefHeight="50.0" promptText="ENTER PATIENT NAME OR PATIENT ID" styleClass="text-field-icon" HBox.hgrow="ALWAYS" />
-                                    <HBox fx:id="datePickerRoot" alignment="TOP_RIGHT" HBox.hgrow="NEVER">
+                                    <HBox fx:id="datePickerRoot" alignment="TOP_RIGHT" spacing="5.0" HBox.hgrow="NEVER">
                                        <children>
                                           <JFXButton onAction="#onSearchViewAppointmentsClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
+                                          <VBox alignment="CENTER" styleClass="date-picker-parent" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <JFXDatePicker fx:id="datePicker" defaultColor="#0acf83" prefHeight="27.0" prefWidth="15.0" styleClass="date-picker-style-white-bg" />
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </HBox>
                                  </children>
@@ -45,7 +53,7 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab text="CREATE NEW APPOINTMENT">
+            <Tab fx:id="createAppointmentTab" text="CREATE NEW APPOINTMENT">
                <content>
                   <VBox>
                      <children>

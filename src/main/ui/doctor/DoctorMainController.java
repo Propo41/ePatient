@@ -3,7 +3,7 @@ package main.ui.doctor;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import database.DoctorQueueDaoDao;
+import database.DoctorQueueDao;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,7 +28,6 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import util.Util;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -109,7 +108,7 @@ public class DoctorMainController implements Initializable {
 
 
     private void startQueryingService() {
-        DoctorQueueDaoDao doctorQueueDao = new DoctorQueueDaoDao();
+        DoctorQueueDao doctorQueueDao = new DoctorQueueDao();
         timeline = new Timeline(
                 new KeyFrame(Duration.seconds(Util.QUERY_DELAY), e -> {
                     // query database here

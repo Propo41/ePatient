@@ -4,7 +4,7 @@
     <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <Languages>
         <language minSize="22" name="Style Sheets" />
-        <language minSize="233" name="Java" />
+        <language minSize="305" name="Java" />
       </Languages>
     </inspection_tool>
   </profile>

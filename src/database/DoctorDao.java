@@ -338,15 +338,13 @@ public class DoctorDao implements IDoctorDao {
         return patientList;
     }
 
-
-
     @Override
     public void updateDoctorAttribute(String attribute, String data, int doctorId) {
         connection = DatabaseHandler.getConnection();
         String query = "update Doctor Set " + attribute + " = '" + data + "' where doctor_id= " + doctorId;
         System.out.println(query);
         if (connection != null) {
-            try{
+            try {
                 Statement statement = connection.createStatement();
                 statement.execute(query);
             } catch (Exception e) {
@@ -359,6 +357,80 @@ public class DoctorDao implements IDoctorDao {
                 }
             }
         }
+    }
+
+    @Override
+    public ArrayList<Doctor> getDoctorList(String keyword) {
+        connection = DatabaseHandler.getConnection();
+        String query = "select * from Doctor " +
+                "where ( " +
+                "Doctor.doctor_id like '%" + keyword + "%' " +
+                "OR Doctor.doctor_name like '%" + keyword + "%')";
+
+        ArrayList<Doctor> doctorList = new ArrayList<>();
+
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    Doctor doctor = new Doctor();
+                    doctor.setDoctorId(resultSet.getString("doctor_id"));
+                    doctor.setName(resultSet.getString("doctor_name"));
+                    doctor.setPhone(resultSet.getString("doctor_phone"));
+                    doctor.setAddress(resultSet.getString("doctor_address"));
+                    doctor.setEmail(resultSet.getString("doctor_email"));
+                    doctor.setDepartment(resultSet.getString("department"));
+                    doctor.setSpecialist(resultSet.getString("doctor_specialist"));
+                    doctor.setAffiliations(resultSet.getString("hospital_affiliations"));
+                    doctor.setProfessionalExperience(resultSet.getString("professional_experience"));
+                    doctor.setEducationalBackground(resultSet.getString("educaional_background"));
+                    doctor.setVisitFee(resultSet.getString("visit_fee"));
+                    doctor.setJoinedDate(resultSet.getDate("joined_date"));
+                    doctorList.add(doctor);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return doctorList;
+    }
+
+    @Override
+    public ArrayList<Appointment> getSchedule(String doctorId, LocalDate date) {
+        connection = DatabaseHandler.getConnection();
+        String query = "select * from " +
+                "Appointment left join Patient " +
+                "on Appointment.patient_id = Patient.patient_id " +
+                "where (doctor_id = " + 1 + " and date_of_appointment ='" + date + "' and appointment_status = 0) ";
+        ArrayList<Appointment> schedule = new ArrayList<>();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    Appointment appointment = new Appointment();
+                    appointment.setStartTime(resultSet.getTime("start_time"));
+                    appointment.setEndTime(resultSet.getTime("end_time"));
+                    appointment.setPatientName(resultSet.getString("patient_name"));
+                    appointment.setReason(resultSet.getString("reason"));
+                    schedule.add(appointment);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return schedule;
     }
 
 

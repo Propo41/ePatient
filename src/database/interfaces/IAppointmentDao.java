@@ -5,9 +5,9 @@ import model.Appointment;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public interface IAppointment {
+public interface IAppointmentDao {
     /**
-     * @return all the appointments for the given date
+     * @return all the appointments for the given date in ascending order.
      */
     ArrayList<Appointment> getAppointmentInfo(LocalDate date);
     /**

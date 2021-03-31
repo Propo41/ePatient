@@ -15,6 +15,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -23,7 +25,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import main.ui.doctor.prescription.ViewPatientController;
 import main.ui.doctor.prescription.ViewPrescriptionHistoryController;
+import main.ui.receptionist.appointments.dialog.ViewScheduleController;
 import model.Appointment;
+import model.Doctor;
 import model.Patient;
 import util.Util;
 
@@ -37,8 +41,6 @@ public class AppointmentsController implements Initializable {
     @FXML
     private HBox datePickerRoot;
 
-    @FXML
-    private Label resultsFoundLabel;
 
     @FXML
     private TextField doctorSearchTv;
@@ -63,16 +65,19 @@ public class AppointmentsController implements Initializable {
 
     private LocalDate selectedDate;
 
+    @FXML
+    private JFXDatePicker datePicker;
+
+
+    @FXML
+    private Tab createAppointmentTab;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         patientSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
+        doctorSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
+
         selectedDate = LocalDate.now();
-
-        JFXDatePicker datePicker = new JFXDatePicker();
-        datePicker.getStyleClass().add("date-picker-style-white-bg");
-        HBox.setHgrow(datePicker, Priority.NEVER);
-        datePickerRoot.getChildren().add(datePicker);
-
         // disable previous dates from the datepicker dialog
         datePicker.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
@@ -89,9 +94,16 @@ public class AppointmentsController implements Initializable {
 
         });
 
-        initList(selectedDate);
+        initList(selectedDate); // loads the default date
+
+      /*  tabPane.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
+            String tabName = tabPane.getSelectionModel().getSelectedItem().getText();
+
+        });*/
+
 
     }
+
 
     private void initList(LocalDate date) {
         viewAppointmentsListView.getItems().clear();
@@ -125,6 +137,9 @@ public class AppointmentsController implements Initializable {
 
     @FXML
     void onSearchCreateAppointmentClick(ActionEvent event) {
+        ArrayList<Doctor> doctorList = new DoctorDao().getDoctorList(doctorSearchTv.getText());
+        // resultsFoundLabel.setText(doctorList.size() + " SEARCH RESULTS FOUND");
+        createCardItems(doctorList);
 
     }
 
@@ -168,13 +183,14 @@ public class AppointmentsController implements Initializable {
         VBox vBox1 = new VBox();
         hBox1.getChildren().add(vBox1);
         vBox1.setSpacing(5);
+        vBox1.setAlignment(Pos.CENTER_LEFT);
 
         JFXButton approveBtn = new JFXButton("APPROVE");
         approveBtn.getStyleClass().add("button-text-only-small");
         vBox1.getChildren().add(approveBtn);
 
         JFXButton cancelBtn = new JFXButton("CANCEL");
-        approveBtn.getStyleClass().add("button-text-only-small-red");
+        cancelBtn.getStyleClass().add("button-text-only-small-red");
         vBox1.getChildren().add(cancelBtn);
 
         approveBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -194,6 +210,115 @@ public class AppointmentsController implements Initializable {
         hBox.getChildren().addAll(icon, vBox, hBox1);
         return hBox;
 
+    }
+
+
+    /**
+     * creates the desired number of items, passed as a parameter
+     */
+    private void createCardItems(ArrayList<Doctor> doctorList) {
+        int maxItemsPerRow = 5;
+        int rows = doctorList.size() / 5;
+        while (rows != 0) {
+            createCardsPerRow(maxItemsPerRow, doctorList);
+            rows--;
+        }
+        createCardsPerRow(doctorList.size() % maxItemsPerRow, doctorList);
+    }
+
+    /**
+     * creates i number of items, with each row having $maxItemsPerRow items
+     * called implicitly from createCardItems()
+     */
+    private void createCardsPerRow(int i, ArrayList<Doctor> doctorList) {
+        i--; // used since the array index starts from 0
+        HBox hBox = new HBox();
+        hBox.setSpacing(10);
+        while (i != -1) {
+            VBox vBox = createCardGrid(doctorList.get(i));
+            // vBox.setMaxWidth(290);
+            hBox.getChildren().add(vBox);
+            i--;
+        }
+        createAppointmentListView.getItems().add(hBox);
+
+    }
+
+    /*
+     * creates a single card item
+     * called implicitly from createCardsPerRow()
+     */
+    private VBox createCardGrid(Doctor doctor) {
+        VBox vBox = new VBox();
+        vBox.getStyleClass().add("card-background");
+        vBox.setPadding(new Insets(20.0d, 20.0d, 20.0d, 20.0d));
+        vBox.setSpacing(8);
+        vBox.setPrefWidth(220);
+        vBox.setAlignment(Pos.TOP_CENTER);
+        HBox.setHgrow(vBox, Priority.SOMETIMES);
+
+        ImageView icon = new ImageView();
+        icon.getStyleClass().add("user-icon");
+        icon.setFitWidth(70);
+        icon.setFitHeight(70);
+
+        VBox labelContainer = new VBox();
+        VBox.setVgrow(labelContainer, Priority.ALWAYS);
+        labelContainer.setAlignment(Pos.TOP_CENTER);
+
+        Label nameLabel = new Label(doctor.getName());
+        nameLabel.getStyleClass().add("text-sub-heading-bold");
+        nameLabel.setWrapText(true);
+        nameLabel.setTextAlignment(TextAlignment.CENTER);
+
+        Label subtitleLabel = new Label("Specialist in " + doctor.getSpecialist());
+        subtitleLabel.getStyleClass().add("text-card-subtitle");
+        subtitleLabel.setWrapText(true);
+        subtitleLabel.setTextAlignment(TextAlignment.CENTER);
+
+        labelContainer.getChildren().add(nameLabel);
+        labelContainer.getChildren().add(subtitleLabel);
+
+        JFXButton viewBtn = new JFXButton();
+        viewBtn.setText("VIEW SCHEDULE");
+        viewBtn.setPrefWidth(220);
+        viewBtn.getStyleClass().add("button-primary-small");
+        viewBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("./dialog/view_schedule.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("Schedule | " + doctor.getName());
+                    stage.setResizable(false);
+                    stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+                    ViewScheduleController controller = loader.getController();
+                    controller.setContent(doctor.getDoctorId());
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        JFXButton prescriptionBtn = new JFXButton();
+        prescriptionBtn.setText("COPY ID");
+        prescriptionBtn.setPrefWidth(220);
+        prescriptionBtn.getStyleClass().add("button-tertiary-small");
+        prescriptionBtn.setOnAction(event -> {
+            final Clipboard clipboard = Clipboard.getSystemClipboard();
+            final ClipboardContent content = new ClipboardContent();
+            content.putString(doctor.getDoctorId());
+            clipboard.setContent(content);
+
+        });
+
+        vBox.getChildren().add(icon);
+        vBox.getChildren().add(labelContainer);
+        vBox.getChildren().add(viewBtn);
+        vBox.getChildren().add(prescriptionBtn);
+
+        return vBox;
     }
 
 }

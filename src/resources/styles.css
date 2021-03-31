@@ -285,18 +285,18 @@
 /* text button with smaller font and white background*/
 .button-text-only-small {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: -fx-color-blue;
-    -fx-background-color: white;
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-blue;
     -fx-background-radius: 10;
-    -fx-font-size: 17;
+    -fx-font-size: 13;
 }
 
 .button-text-only-small-red {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: -fx-color-blue;
+    -fx-text-fill: white;
     -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
-    -fx-font-size: 17;
+    -fx-font-size: 13;
 }
 
 /*END: Button styles*/
@@ -466,6 +466,20 @@
 
 }
 
+/* date picker */
+
+.date-picker-parent{
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 5;
+    -fx-border-color: -fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-background;
+}
+.date-picker-parent:hover{
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 5;
+}
 .date-picker-style {
     -fx-border-color: -fx-color-ash-background;
     -fx-background-color: -fx-color-ash-background;
@@ -478,10 +492,24 @@
 }
 
 .date-picker-style-white-bg {
+    -fx-border-color: -fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-background;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+
+.date-picker-style-ash-bg {
     -fx-border-color: white;
     -fx-background-color: white;
     -fx-pref-width: 0;
     -fx-pref-height: 0;
+}
+
+.date-picker-style-ash-bg:editable .arrow-button .jfx-svg-glyph{
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+
 }
 
 .h-box-background {

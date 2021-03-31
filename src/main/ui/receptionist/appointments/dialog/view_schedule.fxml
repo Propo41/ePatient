@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="900.0" spacing="10.0" styleClass="content-background" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.appointments.dialog.ViewScheduleController">
+    <padding>
+        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+    </padding>
+    <Label styleClass="title-text-dialog" text="Schedule" />
+    <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
+        <VBox prefHeight="614.0" prefWidth="650.0" HBox.hgrow="ALWAYS">
+            <ListView fx:id="scheduleListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
+        </VBox>
+        <VBox prefHeight="614.0" prefWidth="214.0" spacing="10.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefHeight="213.0" prefWidth="222.0" spacing="10.0" styleClass="card-background">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <Label styleClass="card-title" text="PICK A DAY" />
+                <JFXDatePicker fx:id="datePicker" defaultColor="#2784ff" styleClass="date-picker-style-ash-bg" />
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="213.0" prefWidth="222.0" spacing="10.0" styleClass="card-background">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <Label styleClass="card-title" text="LABELS" />
+            </VBox>
+        </VBox>
+    </HBox>
+    <JFXButton onAction="#onDismissClick" prefHeight="55.0" prefWidth="880.0" styleClass="button-primary-medium" text="DISMISS" />
+</VBox>

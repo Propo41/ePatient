@@ -1,6 +1,6 @@
 package database;
 
-import database.interfaces.IAppointment;
+import database.interfaces.IAppointmentDao;
 import model.Appointment;
 
 import java.sql.Connection;
@@ -9,19 +9,20 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class AppointmentDao implements IAppointment {
+public class AppointmentDao implements IAppointmentDao {
     private Connection connection;
 
     @Override
     public ArrayList<Appointment> getAppointmentInfo(LocalDate date) {
+        // by default it orders in ascending order
         connection = DatabaseHandler.getConnection();
         String query = "select * " +
                 "from (Appointment left join Doctor " +
-                "on Appointment.doctor_id = Doctor.doctor_id) " +
-                "left join Patient " +
-                "on Appointment.patient_id = Patient.patient_id " +
-                "where appointment_status = 0 and date_of_appointment = '" + date + "' " +
-                "ORDER BY Appointment.date_of_appointment DESC ";
+                "    on Appointment.doctor_id = Doctor.doctor_id) " +
+                "    left join Patient on Appointment.patient_id = Patient.patient_id " +
+                "where appointment_status = 0 " +
+                "  and date_of_appointment = '" + date + "' " +
+                "ORDER BY Appointment.start_time";
         ArrayList<Appointment> appointmentsList = new ArrayList<>();
         if (connection != null) {
             try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
