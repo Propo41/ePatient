@@ -93,12 +93,6 @@ public class AppointmentsController implements Initializable {
 
         initList(selectedDate); // loads the default date
 
-      /*  tabPane.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
-            String tabName = tabPane.getSelectionModel().getSelectedItem().getText();
-
-        });*/
-
-
     }
 
 
@@ -114,7 +108,6 @@ public class AppointmentsController implements Initializable {
         }
 
     }
-
 
     @FXML
     void onSearchViewAppointmentsClick(ActionEvent event) {

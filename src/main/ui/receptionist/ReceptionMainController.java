@@ -91,9 +91,6 @@ public class ReceptionMainController implements Initializable {
         }
     }
 
-
-
-
     private Parent makeResponsive(Parent root, String node) {
         if (node.equals("vbox")) {
             VBox vBox = (VBox) root;
@@ -128,7 +125,6 @@ public class ReceptionMainController implements Initializable {
         }
         return null;
     }
-
 
     @FXML
     void onAppointmentsClick(ActionEvent event) {
@@ -222,7 +218,6 @@ public class ReceptionMainController implements Initializable {
 
     @FXML
     void onViewPatientsClick(ActionEvent event) {
-
         if (!guiButtonCurrent.equals(navViewPatientBtn)) {
             guiButtonCurrent = navViewPatientBtn;
             guiChangeButtonStyle();
