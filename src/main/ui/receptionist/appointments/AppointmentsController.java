@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import database.AppointmentDao;
 import database.DoctorDao;
+import database.DoctorQueueDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,15 +24,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import main.ui.doctor.prescription.ViewPatientController;
-import main.ui.doctor.prescription.ViewPrescriptionHistoryController;
-import main.ui.receptionist.appointments.dialog.ViewScheduleController;
+import main.ui.receptionist.appointments.dialog.viewSchedule.ViewScheduleController;
 import model.Appointment;
 import model.Doctor;
-import model.Patient;
 import util.Util;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -113,6 +110,7 @@ public class AppointmentsController implements Initializable {
         for (Appointment appointment : appointments) {
             HBox hBox = createCard(appointment);
             viewAppointmentsListView.getItems().add(hBox);
+
         }
 
     }
@@ -128,6 +126,7 @@ public class AppointmentsController implements Initializable {
             for (Appointment appointment : appointments) {
                 HBox hBox = createCard(appointment);
                 viewAppointmentsListView.getItems().add(hBox);
+
             }
         } else {
             initList(selectedDate);
@@ -137,6 +136,7 @@ public class AppointmentsController implements Initializable {
 
     @FXML
     void onSearchCreateAppointmentClick(ActionEvent event) {
+        createAppointmentListView.getItems().clear();
         ArrayList<Doctor> doctorList = new DoctorDao().getDoctorList(doctorSearchTv.getText());
         // resultsFoundLabel.setText(doctorList.size() + " SEARCH RESULTS FOUND");
         createCardItems(doctorList);
@@ -145,6 +145,16 @@ public class AppointmentsController implements Initializable {
 
     @FXML
     void onCreateAppointmentClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dialog/createAppointment/create_appointment.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Create Appointment");
+            stage.setResizable(false);
+            stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -164,7 +174,7 @@ public class AppointmentsController implements Initializable {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER_LEFT);
         vBox.setSpacing(5);
-        vBox.setPrefWidth(500);
+        vBox.setPrefWidth(200);
 
         Label nameLabel = new Label(appointment.getPatientName());
         nameLabel.getStyleClass().add("text-sub-heading");
@@ -179,6 +189,17 @@ public class AppointmentsController implements Initializable {
         HBox hBox1 = new HBox();
         HBox.setHgrow(hBox1, Priority.ALWAYS);
         hBox1.setAlignment(Pos.CENTER_RIGHT);
+
+        VBox docVBox = new VBox();
+        docVBox.setAlignment(Pos.CENTER_LEFT);
+        docVBox.setSpacing(5);
+        Label doctorLabel = new Label(appointment.getDoctorName());
+        doctorLabel.getStyleClass().add("text-sub-heading");
+        Label doctorIdLabel = new Label("Doctor ID: " + appointment.getDoctorId());
+        doctorIdLabel.getStyleClass().add("text-sub-heading-light");
+        Label reasonLabel = new Label("Reason: " +  appointment.getReason());
+        reasonLabel.getStyleClass().add("text-sub-heading-light");
+        docVBox.getChildren().addAll(doctorLabel, doctorIdLabel, reasonLabel);
 
         VBox vBox1 = new VBox();
         hBox1.getChildren().add(vBox1);
@@ -196,18 +217,23 @@ public class AppointmentsController implements Initializable {
         approveBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                new DoctorQueueDao().insertIntoQueue(
+                        appointment.getDoctorId(),
+                        appointment.getPatientId(),
+                        appointment.getAppointmentId());
+
+                new AppointmentDao().approveAppointment(Integer.parseInt(appointment.getAppointmentId()));
+                System.out.println("clicked on appointment id: " + appointment.getAppointmentId());
+                initList(selectedDate); // refreshes the list
 
             }
         });
 
-        cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        cancelBtn.setOnAction(event -> {
 
-            }
         });
 
-        hBox.getChildren().addAll(icon, vBox, hBox1);
+        hBox.getChildren().addAll(icon, vBox, docVBox, hBox1);
         return hBox;
 
     }
@@ -287,7 +313,7 @@ public class AppointmentsController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("./dialog/view_schedule.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dialog/viewSchedule/view_schedule.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Schedule | " + doctor.getName());
                     stage.setResizable(false);

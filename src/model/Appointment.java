@@ -18,6 +18,18 @@ public class Appointment {
     public Appointment() {
     }
 
+    public Appointment(String patientId, String doctorId,
+                       Time startTime, Time endTime,
+                       String reason, LocalDate date) {
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.reason = reason;
+        this.date = date;
+
+    }
+
     public String getPatientId() {
         return patientId;
     }

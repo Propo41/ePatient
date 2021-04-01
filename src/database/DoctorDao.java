@@ -111,7 +111,6 @@ public class DoctorDao implements IDoctorDao {
     @Override
     public ArrayList<Schedule> getDoctorVisitingHours(String doctorId) {
         connection = DatabaseHandler.getConnection();
-
         ArrayList<Schedule> visitingHours = new ArrayList<>();
         String query = "select * from Schedule where doctor_id='" + doctorId + "'";
         if (connection != null) {
@@ -303,7 +302,7 @@ public class DoctorDao implements IDoctorDao {
         String query = "select * from Patient " +
                 "where " +
                 "(patient_name LIKE '%" + keyword + "%'" +
-                " OR patient_id LIKE '% " + keyword + "%')";
+                " OR patient_id LIKE '%" + keyword + "%')";
         ArrayList<Patient> patientList = new ArrayList<>();
 
         if (connection != null) {
@@ -365,12 +364,12 @@ public class DoctorDao implements IDoctorDao {
         String query = "select * from Doctor " +
                 "where ( " +
                 "Doctor.doctor_id like '%" + keyword + "%' " +
+                "OR Doctor.doctor_specialist like '%" + keyword + "%' " +
                 "OR Doctor.doctor_name like '%" + keyword + "%')";
-
         ArrayList<Doctor> doctorList = new ArrayList<>();
-
         if (connection != null) {
-            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     Doctor doctor = new Doctor();
                     doctor.setDoctorId(resultSet.getString("doctor_id"));

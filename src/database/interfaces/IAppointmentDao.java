@@ -16,4 +16,7 @@ public interface IAppointmentDao {
     ArrayList<Appointment> getAppointmentInfo(String doctorId, LocalDate date);
 
     ArrayList<Appointment> getAppointmentInfoByKeyword(String keyword, LocalDate date);
+    void createAppointment(Appointment appointment);
+    void approveAppointment(int appointmentId);
+    void declineAppointment(int appointmentId);
 }

@@ -1,4 +1,4 @@
-package main.ui.receptionist.appointments.dialog;
+package main.ui.receptionist.appointments.dialog.viewSchedule;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Appointment;
 import model.Schedule;
 import util.Util;
@@ -30,6 +31,9 @@ public class ViewScheduleController implements Initializable {
     private static final int VISITING_DURATION = 30; // 30 mins assumed
     @FXML
     private ListView<HBox> scheduleListView;
+    @FXML
+    private Label label;
+
     private LocalDate selectedDate;
 
     @FXML
@@ -39,17 +43,14 @@ public class ViewScheduleController implements Initializable {
 
     @FXML
     void onDismissClick(ActionEvent event) {
-
-
+        Stage stage = (Stage) label.getScene().getWindow();
+        stage.close();
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         selectedDate = LocalDate.now();
-
-
         datePicker.setOnAction(event -> {
             selectedDate = datePicker.getValue();
             initItems(selectedDate);
@@ -59,7 +60,7 @@ public class ViewScheduleController implements Initializable {
 
         // getting doctor visiting hours
         visitingHours = new DoctorDao().getDoctorVisitingHours(Util.getInstance().getUserId());
-       // initItems(selectedDate);
+        initItems(selectedDate);
 
     }
 
@@ -81,6 +82,7 @@ public class ViewScheduleController implements Initializable {
         String c = time.substring(6, 8);
         int res = Integer.parseInt(b) + VISITING_DURATION;
         b = String.valueOf(res % 60);
+        String l;
         if (b.equals("0")) {
             b = "00";
         }
@@ -100,10 +102,10 @@ public class ViewScheduleController implements Initializable {
                 String[] str = y.split(":");
                 if (str[0].length() == 1) {
                     a = "0" + str[0];
-                    time = a + ":" + str[1];
+                    l = a + ":" + str[1];
+                    return l;
                 }
-
-                return time;
+                return y;
             }
         } else {
             return a + ":" + b + " " + c;
@@ -113,9 +115,8 @@ public class ViewScheduleController implements Initializable {
 
     private void initItems(LocalDate date) {
         scheduleListView.getItems().clear();
-        ArrayList<Appointment> schedule = new DoctorDao().getSchedule(String.valueOf(1), date);
+        ArrayList<Appointment> schedule = new DoctorDao().getSchedule(doctorId, date);
         System.out.println("schedule: " + schedule);
-
         Schedule s = isDoctorAvailable(date);
         if (s != null) {
             System.out.println("doctor starts: " + s.getStartTime());
@@ -126,18 +127,24 @@ public class ViewScheduleController implements Initializable {
             String formattedString = "";
 
             while (!t.equals(s.getEndTime())) {
-                if (i < l) {
-                    formattedString = Util.convert24to12format(schedule.get(i).getStartTime().toString());
-                }
-                if (t.equals(formattedString)) {
-                    HBox hBox = createCard(schedule.get(i), t, false);
-                    scheduleListView.getItems().add(hBox);
-                } else {
+                if (l == 0) {
                     HBox hBox = createCard(null, t, true);
                     scheduleListView.getItems().add(hBox);
+                } else {
+                    if (i < l) {
+                        formattedString = Util.convert24to12format(schedule.get(i).getStartTime().toString());
+                    }
+                    if (t.equals(formattedString)) {
+                        HBox hBox = createCard(schedule.get(i), t, false);
+                        scheduleListView.getItems().add(hBox);
+                        i++;
+                    } else {
+                        HBox hBox = createCard(null, t, true);
+                        scheduleListView.getItems().add(hBox);
+                    }
                 }
 
-                i++;
+
                 t = incrementTime(t);
             }
 

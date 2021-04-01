@@ -2,10 +2,10 @@ package database;
 
 import database.interfaces.IDoctorQueueDao;
 import javafx.util.Pair;
+import model.Appointment;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DoctorQueueDao implements IDoctorQueueDao {
     private Connection connection;
@@ -34,6 +34,35 @@ public class DoctorQueueDao implements IDoctorQueueDao {
             }
         }
         return null;
+    }
+
+    @Override
+    public void insertIntoQueue(String doctorId, String patientId, String appointmentId) {
+        connection = DatabaseHandler.getConnection();
+        String query = "if exists(SELECT * from DoctorQueue where doctor_id= " + doctorId + ")" +
+                "begin " +
+                "UPDATE DoctorQueue set patient_id= " + patientId + " where doctor_id= " + doctorId + " " +
+                "end " +
+                "else " +
+                "begin " +
+                "insert into DoctorQueue(doctor_id, patient_id, appointment_id) " +
+                "values(" + doctorId + "," + patientId + "," + appointmentId + ") " +
+                "end ";
+
+        if (connection != null) {
+            try (PreparedStatement preparedStmt = connection.prepareStatement(query)) {
+                preparedStmt.execute();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

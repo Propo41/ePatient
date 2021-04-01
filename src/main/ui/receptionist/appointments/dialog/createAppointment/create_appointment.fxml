@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane fx:id="stackPaneRoot" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.appointments.dialog.createAppointment.CreateAppointmentController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" stylesheets="@../../../../../../resources/styles.css">
+          <children>
+              <Label styleClass="title-text-dialog-2" text="Create Appointment" />
+              <Separator prefHeight="5.0" prefWidth="845.0" />
+              <VBox prefWidth="100.0" spacing="10.0" VBox.vgrow="NEVER">
+                  <children>
+                      <Label styleClass="text-box-header" text="PATIENT" />
+                      <TextField fx:id="patientTv" promptText="ENTER PATIENT ID" styleClass="text-field-normal" />
+                  </children>
+                  <padding>
+                      <Insets right="10.0" />
+                  </padding>
+              </VBox>
+              <VBox prefWidth="100.0" spacing="10.0">
+                  <children>
+                      <Label styleClass="text-box-header" text="DOCTOR" />
+                      <TextField fx:id="doctorTv" promptText="ENTER DOCTOR ID" styleClass="text-field-normal" />
+                  </children>
+                  <padding>
+                      <Insets right="10.0" />
+                  </padding>
+              </VBox>
+              <VBox prefWidth="100.0" spacing="10.0">
+                  <children>
+                      <Label styleClass="text-box-header" text="REASON FOR APPOINTMENT" />
+                      <TextField fx:id="reasonTv" promptText="ENTER REASON FOR APPOINTMENT" styleClass="text-field-normal" />
+                  </children>
+                  <padding>
+                      <Insets right="10.0" />
+                  </padding>
+              </VBox>
+              <VBox prefWidth="100.0" spacing="10.0">
+                  <children>
+                      <Label styleClass="text-box-header" text="DATE" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="601.0" spacing="10.0" styleClass="h-box-background">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../../../../../../resources/icons/ic_calender.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="selectedDateLabel" prefHeight="19.0" prefWidth="475.0" styleClass="text-prompt-in-hbox" text="SET A DATE FROM THE CALENDER ICON" HBox.hgrow="SOMETIMES">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <HBox fx:id="datePickerRoot" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <children>
+                              <JFXDatePicker fx:id="datePicker" defaultColor="#2784ff" styleClass="date-picker" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  </children>
+                  <padding>
+                      <Insets right="10.0" />
+                  </padding>
+              </VBox>
+            <VBox prefWidth="100.0" spacing="10.0">
+               <children>
+                  <HBox prefHeight="19.0" prefWidth="835.0" spacing="25.0">
+                     <children>
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="text-box-header" text="TIME" />
+                              <JFXComboBox fx:id="availableTimePicker" prefHeight="49.0" prefWidth="714.0" promptText="SELECT AVAILABLE TIME" styleClass="combo-box-style" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label disable="true" styleClass="text-box-header" text="DURATION" />
+                              <TextField fx:id="patientTv311" disable="true" prefHeight="49.0" prefWidth="400.0" promptText="ENTER DURATION" styleClass="text-field-normal" text="ASSUMED 30 MINUTES" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                    <Button mnemonicParsing="false" onAction="#onCreateAppointmentClick" prefHeight="44.0" prefWidth="883.0" styleClass="button-primary-medium" text="CREATE APPOINTMENT">
+                        <VBox.margin>
+                            <Insets top="30.0" />
+                        </VBox.margin>
+                    </Button>
+               </children>
+            </VBox>
+          </children>
+          <padding>
+              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+          </padding>
+      </VBox>
+   </children>
+</StackPane>

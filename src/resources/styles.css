@@ -337,6 +337,25 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
 }
+.text-prompt-in-hbox{
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-combobox-prompt;
+
+}
+
+.combo-box-style{
+    -fx-prompt-text-fill: -fx-color-combobox-prompt;
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -jfx-focus-color: -fx-color-combobox-prompt;
+
+}
+
+.combo-box-style .cell{
+    -fx-text-fill: -fx-color-combobox-prompt;
+    -fx-font: 13px "Segoe UI Semibold";
+}
 
 .text-field-icon:focused {
     -fx-border-color: -fx-color-blue;
@@ -418,6 +437,7 @@
     -fx-background-radius: 10;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
+
 }
 
 .nav-button-unselected {
@@ -516,7 +536,7 @@
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     /*padding: top right bottom left*/
-    -fx-padding: 10 10 10 10;
+    -fx-padding: 15;
 
 }
 

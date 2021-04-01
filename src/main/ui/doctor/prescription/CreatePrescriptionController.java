@@ -112,8 +112,6 @@ public class CreatePrescriptionController implements Initializable {
             }
         });
 
-
-
     }
 
     @FXML
@@ -153,14 +151,12 @@ public class CreatePrescriptionController implements Initializable {
     @FXML
     void onDeleteTestItemClick(ActionEvent event) {
         medicalTestObservableList.remove(medicalTestsSelectedItemIndex);
-
     }
 
     @FXML
     void onMedicineDeleteItemClick(ActionEvent event) {
         medicineObservableList.remove(medicineSelectedItemIndex);
     }
-
 
     @FXML
     void onTestsAddClick(ActionEvent event) {
@@ -171,7 +167,8 @@ public class CreatePrescriptionController implements Initializable {
 
     @FXML
     void onMedicineAddClick(ActionEvent event) {
-        medicineObservableList.add(new Medicine(medicineNameTv.getText(), medicineDurationTv.getText(), medicineCommentTv.getText()));
+        medicineObservableList.add(new Medicine(medicineNameTv.getText(),
+                medicineDurationTv.getText(), medicineCommentTv.getText()));
         medicineNameTv.clear();
         medicineDurationTv.clear();
         medicineCommentTv.clear();

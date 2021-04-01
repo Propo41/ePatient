@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.CreatePrescriptionController">
+<VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" stylesheets="@../../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.patients.CreatePrescriptionController">
    <children>
       <Label styleClass="title-text-dialog-2" text="Appointment Info" />
       <Separator prefHeight="5.0" prefWidth="845.0" />

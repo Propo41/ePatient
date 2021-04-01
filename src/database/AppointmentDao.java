@@ -3,9 +3,7 @@ package database;
 import database.interfaces.IAppointmentDao;
 import model.Appointment;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -127,5 +125,63 @@ public class AppointmentDao implements IAppointmentDao {
             }
         }
         return appointmentsList;
+    }
+
+    @Override
+    public void createAppointment(Appointment appointment) {
+        connection = DatabaseHandler.getConnection();
+
+        String query = "INSERT INTO Appointment " +
+                "(patient_id, doctor_id, start_time, end_time, reason, date_of_appointment, appointment_status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, 0)";
+
+        if (connection != null) {
+            try (PreparedStatement preparedStmt = connection.prepareStatement(query)) {
+                preparedStmt.setInt(1, Integer.parseInt(appointment.getPatientId()));
+                preparedStmt.setInt(2, Integer.parseInt(appointment.getDoctorId()));
+                preparedStmt.setTime(3, appointment.getStartTime());
+                preparedStmt.setTime(4, appointment.getEndTime());
+                preparedStmt.setString(5, appointment.getReason());
+                preparedStmt.setDate(6, Date.valueOf(appointment.getDate()));
+                preparedStmt.execute();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void approveAppointment(int appointmentId) {
+        connection = DatabaseHandler.getConnection();
+        String query = "UPDATE Appointment set appointment_status = 1 where appointment_id = " + appointmentId;
+        if (connection != null) {
+            try (PreparedStatement preparedStmt = connection.prepareStatement(query)) {
+                preparedStmt.execute();
+                System.out.println("value updated");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+    }
+
+    @Override
+    public void declineAppointment(int appointmentId) {
+
+
     }
 }
