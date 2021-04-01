@@ -2,6 +2,7 @@ package main.ui.doctor.prescription;
 
 import com.jfoenix.controls.JFXButton;
 import database.DoctorDao;
+import database.PatientDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -99,8 +100,8 @@ public class ViewPatientController implements Initializable {
     }
 
     public void setContent(String patientId) {
-        DoctorDao doctorDao = new DoctorDao();
-        Patient patient = doctorDao.getPatientProfile(patientId);
+        PatientDao patientDao = new PatientDao();
+        Patient patient = patientDao.getPatientProfile(patientId);
         contactLabel.setText(patient.getContact());
         bloodGroupLabel.setText(patient.getBloodGroup());
         genderLabel.setText(patient.getGender());

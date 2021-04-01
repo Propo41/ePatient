@@ -4,6 +4,7 @@ import model.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IDoctorDao {
 
@@ -20,4 +21,8 @@ public interface IDoctorDao {
     ArrayList<Doctor> getDoctorList(String keyword);
     ArrayList<Appointment> getSchedule(String doctorId, LocalDate date);
 
+    void updateSingleAttribute(String tableName,String attribute, String data, String patientId);
+    void deleteTuple(String tableName, String attributeSelection,String id);
+    ArrayList<Doctor> getDoctorBasicInfo(String name);
+    ArrayList<MedicalTestDetails> getTestReport(String name);
 }

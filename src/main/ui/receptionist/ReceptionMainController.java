@@ -16,13 +16,26 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.util.Pair;
+import main.ui.doctor.DialogNewPatientPromptController;
+import main.ui.receptionist.patient.add_patient.AddPatientController;
+import main.ui.receptionist.test_report.AddTestReportDialogController;
+import main.ui.receptionist.test_report.ViewTestReportController;
 import util.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReceptionMainController implements Initializable {
+
+    @FXML
+    private StackPane myStackPane;
+
     @FXML
     private AnchorPane frameLayout;
 
@@ -33,13 +46,19 @@ public class ReceptionMainController implements Initializable {
     private JFXButton navAppointmentsBtn;
 
     @FXML
+    private JFXButton navViewAllTestReportBtn;
+
+    @FXML
     private JFXButton navSettingsBtn;
 
     @FXML
     private JFXButton navReportBug;
 
     @FXML
-    private JFXButton navPatientBtn;
+    private JFXButton navAddPatientBtn;
+
+    @FXML
+    private JFXButton navViewPatientBtn;
 
     @FXML
     private StackPane stackPaneRoot;
@@ -79,28 +98,39 @@ public class ReceptionMainController implements Initializable {
     }
 
 
+
+
     private Parent makeResponsive(Parent root, String node) {
-        switch (node) {
-            case "vbox":
-                VBox vBox = (VBox) root;
-                // to make the contents of the frame responsive
-                vBox.setPrefWidth(930);
-                vBox.setPrefHeight(847);
-                AnchorPane.setTopAnchor(vBox, 0.0d);
-                AnchorPane.setBottomAnchor(vBox, 0.0d);
-                AnchorPane.setLeftAnchor(vBox, 0.0d);
-                AnchorPane.setRightAnchor(vBox, 0.0d);
-                return vBox;
-            case "scrollpane":
-                ScrollPane scrollPane = (ScrollPane) root;
-                // to make the contents of the frame responsive
-                scrollPane.setPrefWidth(930);
-                scrollPane.setPrefHeight(847);
-                AnchorPane.setTopAnchor(scrollPane, 0.0d);
-                AnchorPane.setBottomAnchor(scrollPane, 0.0d);
-                AnchorPane.setLeftAnchor(scrollPane, 0.0d);
-                AnchorPane.setRightAnchor(scrollPane, 0.0d);
-                return scrollPane;
+        if (node.equals("vbox")) {
+            VBox vBox = (VBox) root;
+            // to make the contents of the frame responsive
+            vBox.setPrefWidth(930);
+            vBox.setPrefHeight(847);
+            AnchorPane.setTopAnchor(vBox, 0.0d);
+            AnchorPane.setBottomAnchor(vBox, 0.0d);
+            AnchorPane.setLeftAnchor(vBox, 0.0d);
+            AnchorPane.setRightAnchor(vBox, 0.0d);
+            return vBox;
+        }else if(node.equals("ScrollPane")){
+            ScrollPane scrollPane = (ScrollPane) root;
+            // to make the contents of the frame responsive
+            scrollPane.setPrefWidth(930);
+            scrollPane.setPrefHeight(847);
+            AnchorPane.setTopAnchor(scrollPane, 0.0d);
+            AnchorPane.setBottomAnchor(scrollPane, 0.0d);
+            AnchorPane.setLeftAnchor(scrollPane, 0.0d);
+            AnchorPane.setRightAnchor(scrollPane, 0.0d);
+            return scrollPane;
+        }else if(node.equals("BorderPane")){
+            BorderPane borderPane = (BorderPane) root;
+            // to make the contents of the frame responsive
+            borderPane.setPrefWidth(930);
+            borderPane.setPrefHeight(847);
+            AnchorPane.setTopAnchor(borderPane, 0.0d);
+            AnchorPane.setBottomAnchor(borderPane, 0.0d);
+            AnchorPane.setLeftAnchor(borderPane, 0.0d);
+            AnchorPane.setRightAnchor(borderPane, 0.0d);
+            return borderPane;
         }
         return null;
     }
@@ -125,9 +155,96 @@ public class ReceptionMainController implements Initializable {
     }
 
     @FXML
+    void navViewAllTestReportBtnClick(ActionEvent event) {
+        if (!guiButtonCurrent.equals(navViewAllTestReportBtn)) {
+            guiButtonCurrent = navViewAllTestReportBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navViewAllTestReportBtn;
+            try {
+                frameLayout.getChildren().clear();
+                VBox root = FXMLLoader.load(getClass().getResource("test_report_history/view_test_report_history.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    @FXML
     void onTestReportsClick(ActionEvent event) {
+        if (!guiButtonCurrent.equals(navTestReportsBtn)) {
+            guiButtonCurrent = navTestReportsBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navTestReportsBtn;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/test_report/view_test_report.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+
+                ViewTestReportController viewTestReportController = fxmlLoader.getController();
+                viewTestReportController.init(myStackPane);
+                frameLayout.getChildren().clear();
+                VBox root1 = fxmlLoader.load(getClass().getResource("test_report/view_test_report.fxml"));
+
+                root1 = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root1);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+    @FXML
+    void onAddPatientsClick(ActionEvent event) {
+        if (!guiButtonCurrent.equals(navAddPatientBtn)) {
+            guiButtonCurrent = navAddPatientBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navAddPatientBtn;
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/patient/add_patient/add_patient.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+
+                AddPatientController addPatientController = fxmlLoader.getController();
+                addPatientController.init(myStackPane);
+                frameLayout.getChildren().clear();
+                ScrollPane root1 = fxmlLoader.load(getClass().getResource("/main/ui/receptionist/patient/add_patient/add_patient.fxml"));
+
+                root1 = (ScrollPane) makeResponsive(root, "ScrollPane");
+                frameLayout.getChildren().add(root1);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }
+
+    @FXML
+    void onViewPatientsClick(ActionEvent event) {
+
+        if (!guiButtonCurrent.equals(navViewPatientBtn)) {
+            guiButtonCurrent = navViewPatientBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navViewPatientBtn;
+            try {
+                frameLayout.getChildren().clear();
+                VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 
     @FXML
     void onPatientsClick(ActionEvent event) {
@@ -188,5 +305,7 @@ public class ReceptionMainController implements Initializable {
         guiButtonPrevious.getStyleClass().clear();
         guiButtonPrevious.getStyleClass().add("nav-button-unselected");
     }
+
+
 
 }

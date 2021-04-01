@@ -2,6 +2,7 @@ package main.ui.admin.view_doctor;
 
 import com.jfoenix.controls.JFXButton;
 import database.DatabaseHandler;
+import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,8 +25,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.ui.admin.edit_doctor.EditDoctorController;
+import model.Doctor;
 import util.Util;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -33,7 +36,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class viewDoctorsController implements Initializable {
+public class ViewDoctorsController implements Initializable {
     @FXML
     private ListView<HBox> doctorListView;
 
@@ -43,50 +46,35 @@ public class viewDoctorsController implements Initializable {
     @FXML
     private Label searchResultNumber;
 
-    private DatabaseHandler connectMSSQL;
-    private ArrayList<String> doctorNameList;
-    private ArrayList<String> doctorSpealityList;
-    private ArrayList<Integer> doctorIdList;
-    private int numberOfDoctorSearched;
     int count;
+    ArrayList<Doctor> doctorArrayList;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connectMSSQL = new DatabaseHandler();
         doctorSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
         //image.setImage(new Image("/resources/icons/ic_search.png"));
         searchResultNumber.setText("");
         count = 0;
     }
 
-    /*
-     * creates the desired number of items, passed as a parameter
-     */
-
 
     @FXML
     void onSearchBtnClick(ActionEvent event) throws SQLException {
+        getDoctors();
+    }
+
+    private void getDoctors() throws SQLException {
+        doctorArrayList = new ArrayList<>();
         String str = doctorSearchTv.getText();
         if(str.equals("")){
-           return;
+            return;
         }
         doctorListView.getItems().clear();
         count = 0;
-        numberOfDoctorSearched = 0;
-        doctorNameList = new ArrayList<String>();
-        doctorSpealityList = new ArrayList<String>();
-        doctorIdList = new ArrayList<Integer>();
-        ResultSet resultSet = connectMSSQL.getDoctorMainAdmin(doctorSearchTv.getText());
-        //numberOfDoctorSearched = resultSet.getFetchSize();
-        while (resultSet.next()) {
-            doctorNameList.add(resultSet.getString("doctor_specialist"));
-            doctorSpealityList.add(resultSet.getString("doctor_name"));
-            doctorIdList.add(Integer.parseInt(resultSet.getString("doctor_id")));
-            numberOfDoctorSearched++;
-        }
-        searchResultNumber.setText(numberOfDoctorSearched + " SEARCH RESULTS FOUND");
-        createCardItems(numberOfDoctorSearched);
-
+        doctorArrayList = new DoctorDao().getDoctorBasicInfo(doctorSearchTv.getText());
+        searchResultNumber.setText(doctorArrayList.size() + " SEARCH RESULTS FOUND");
+        createCardItems(doctorArrayList.size());
     }
 
     private void createCardItems(int items) {
@@ -99,10 +87,6 @@ public class viewDoctorsController implements Initializable {
         createCardsPerRow(items % maxItemsPerRow);
     }
 
-    /*
-     * creates i number of items, with each row having $maxItemsPerRow items
-     * called implicitly from createCardItems()
-     */
     private void createCardsPerRow(int i) {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
@@ -113,13 +97,9 @@ public class viewDoctorsController implements Initializable {
             i--;
         }
         doctorListView.getItems().add(hBox);
-
     }
 
-    /*
-     * creates a single card item
-     * called implicitly from createCardsPerRow()
-     */
+
     private VBox createCard() {
         int index = count;
         count++;
@@ -136,12 +116,12 @@ public class viewDoctorsController implements Initializable {
         icon.setFitWidth(70);
         icon.setFitHeight(70);
 
-        Label nameLabel = new Label(doctorNameList.get(index));
+        Label nameLabel = new Label(doctorArrayList.get(index).getSpecialist());
         nameLabel.getStyleClass().add("text-sub-heading-bold");
         nameLabel.setWrapText(true);
         nameLabel.setTextAlignment(TextAlignment.CENTER);
 
-        Label subtitleLabel = new Label(doctorSpealityList.get(index));
+        Label subtitleLabel = new Label(doctorArrayList.get(index).getName());
         subtitleLabel.getStyleClass().add("text-card-subtitle");
         subtitleLabel.setWrapText(true);
         subtitleLabel.setTextAlignment(TextAlignment.CENTER);
@@ -154,9 +134,7 @@ public class viewDoctorsController implements Initializable {
         viewBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(index);
-                System.out.println(doctorIdList.get(index));
-                System.out.println(doctorNameList.get(index));
+
                 try {
 
 
@@ -165,13 +143,14 @@ public class viewDoctorsController implements Initializable {
 
                     try {
                         EditDoctorController editDoctorController = fxmlLoader.getController();
-                        editDoctorController.setDoctorNumber(doctorIdList.get(index),editDoctorController);
+                        editDoctorController.setDoctorNumber(Integer.parseInt(doctorArrayList.get(index).getDoctorId())
+                                ,editDoctorController);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
 
                     Stage stage = new Stage();
-                    stage.setTitle(doctorNameList.get(index));
+                    stage.setTitle(doctorArrayList.get(index).getName());
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
@@ -195,7 +174,13 @@ public class viewDoctorsController implements Initializable {
         prescriptionBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                new DoctorDao().deleteTuple("Doctor","doctor_id",
+                        doctorArrayList.get(index).getDoctorId()+"");
+                try {
+                    getDoctors();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
 

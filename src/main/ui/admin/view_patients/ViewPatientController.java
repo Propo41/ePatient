@@ -2,6 +2,8 @@ package main.ui.admin.view_patients;
 
 import com.jfoenix.controls.JFXButton;
 import database.DatabaseHandler;
+import database.DoctorDao;
+import database.PatientDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,6 +24,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.ui.admin.edit_doctor.EditDoctorController;
+import main.ui.admin.edit_patient.EditPatientController;
+import model.Patient;
 import util.Util;
 
 import java.io.IOException;
@@ -41,50 +45,36 @@ public class ViewPatientController implements Initializable {
     @FXML
     private Label searchResultNumber;
 
-    private DatabaseHandler connectMSSQL;
-    private ArrayList<String> patientNameList;
-    private ArrayList<String> patientSince;
-    private ArrayList<Integer> doctorIdList;
-    private int numberOfDoctorSearched;
     int count;
+
+    ArrayList<Patient> patientArrayList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connectMSSQL = new DatabaseHandler();
+
         patientSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
         //image.setImage(new Image("/resources/icons/ic_search.png"));
         searchResultNumber.setText("");
         count = 0;
     }
 
-    /*
-     * creates the desired number of items, passed as a parameter
-     */
-
 
     @FXML
     void onSearchBtnClick(ActionEvent event) throws SQLException {
+        getPatients();
+    }
+
+    private void getPatients() {
+        patientArrayList = new ArrayList<>();
         String str = patientSearchTv.getText();
         if(str.equals("")){
-           return;
+            return;
         }
         patientListView.getItems().clear();
         count = 0;
-        numberOfDoctorSearched = 0;
-        patientNameList = new ArrayList<String>();
-        patientSince = new ArrayList<String>();
-        doctorIdList = new ArrayList<Integer>();
-        ResultSet resultSet = connectMSSQL.getDoctorMainAdmin(patientSearchTv.getText());
-        //numberOfDoctorSearched = resultSet.getFetchSize();
-        while (resultSet.next()) {
-            patientNameList.add(resultSet.getString("doctor_specialist"));
-            patientSince.add(resultSet.getString("doctor_name"));
-            doctorIdList.add(Integer.parseInt(resultSet.getString("doctor_id")));
-            numberOfDoctorSearched++;
-        }
-        searchResultNumber.setText(numberOfDoctorSearched + " SEARCH RESULTS FOUND");
-        createCardItems(numberOfDoctorSearched);
-
+        patientArrayList = new PatientDao().getPatientBasicInfo(patientSearchTv.getText());
+        searchResultNumber.setText(patientArrayList.size() + " SEARCH RESULTS FOUND");
+        createCardItems(patientArrayList.size());
     }
 
     private void createCardItems(int items) {
@@ -97,27 +87,7 @@ public class ViewPatientController implements Initializable {
         createCardsPerRow(items % maxItemsPerRow);
     }
 
-    /*
-     * creates i number of items, with each row having $maxItemsPerRow items
-     * called implicitly from createCardItems()
-     */
-    private void createCardsPerRow(int i) {
-        HBox hBox = new HBox();
-        hBox.setSpacing(10);
-        while(i!=0){
-            VBox vBox = createCard();
-            // vBox.setMaxWidth(290);
-            hBox.getChildren().add(vBox);
-            i--;
-        }
-        patientListView.getItems().add(hBox);
 
-    }
-
-    /*
-     * creates a single card item
-     * called implicitly from createCardsPerRow()
-     */
     private VBox createCard() {
         int index = count;
         count++;
@@ -134,12 +104,12 @@ public class ViewPatientController implements Initializable {
         icon.setFitWidth(70);
         icon.setFitHeight(70);
 
-        Label nameLabel = new Label(patientNameList.get(index));
+        Label nameLabel = new Label(patientArrayList.get(index).getName());
         nameLabel.getStyleClass().add("text-sub-heading-bold");
         nameLabel.setWrapText(true);
         nameLabel.setTextAlignment(TextAlignment.CENTER);
 
-        Label subtitleLabel = new Label(patientSince.get(index));
+        Label subtitleLabel = new Label("Patient Since -\n" + patientArrayList.get(index).getJoinedDate());
         subtitleLabel.getStyleClass().add("text-card-subtitle");
         subtitleLabel.setWrapText(true);
         subtitleLabel.setTextAlignment(TextAlignment.CENTER);
@@ -152,31 +122,26 @@ public class ViewPatientController implements Initializable {
         viewBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(index);
-                System.out.println(doctorIdList.get(index));
-                System.out.println(patientNameList.get(index));
+
                 try {
 
-
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/edit_doctor.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_patient/edit_patient.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
 
                     try {
-                        EditDoctorController editDoctorController = fxmlLoader.getController();
-                        editDoctorController.setDoctorNumber(doctorIdList.get(index),editDoctorController);
+                        EditPatientController editPatientController = fxmlLoader.getController();
+                        editPatientController.setPatientNumber( Integer.parseInt(patientArrayList.get(index).getId())
+                                ,editPatientController);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
 
                     Stage stage = new Stage();
-                    stage.setTitle(patientNameList.get(index));
+                    stage.setTitle(patientArrayList.get(index).getName());
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root, Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
                     stage.show();
-
-                    // Hide this current window (if this is what you want)
-                    //((Node)(event.getSource())).getScene().getWindow().hide();
 
                 }
                 catch (IOException e) {
@@ -193,6 +158,9 @@ public class ViewPatientController implements Initializable {
         prescriptionBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                new PatientDao().deleteTuple("Patient","patient_id",
+                        patientArrayList.get(index).getId()+"");
+                getPatients();
 
             }
         });
@@ -204,6 +172,20 @@ public class ViewPatientController implements Initializable {
         vBox.getChildren().add(prescriptionBtn);
 
         return vBox;
+    }
+
+
+    private void createCardsPerRow(int i) {
+        HBox hBox = new HBox();
+        hBox.setSpacing(10);
+        while(i!=0){
+            VBox vBox = createCard();
+            // vBox.setMaxWidth(290);
+            hBox.getChildren().add(vBox);
+            i--;
+        }
+        patientListView.getItems().add(hBox);
+
     }
 }
 

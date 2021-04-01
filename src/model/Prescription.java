@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Prescription {
     private String patientId;
+    private String patientName;
     private String doctorId;
     private String doctorName;
     private String appointmentId;
@@ -19,7 +20,6 @@ public class Prescription {
     private ObservableList<Medicine> medicines;
     private HealthCondition healthCondition;
 
-
     public Prescription() {
     }
 
@@ -31,6 +31,14 @@ public class Prescription {
         this.reason = reason;
         this.dateOfPrescription = dateOfPrescription;
         this.prescriptionId = prescriptionId;
+    }
+
+    public String getPatientName(){
+        return this.patientName;
+    }
+
+    public void setPatientName(String patientName){
+        this.patientName = patientName;
     }
 
     public String getComment() {

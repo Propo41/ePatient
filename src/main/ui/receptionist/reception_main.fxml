@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="stackPaneRoot" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.ReceptionMainController">
+<StackPane fx:id="myStackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.ReceptionMainController">
    <children>
       <BorderPane prefHeight="857.0" prefWidth="1200.0" styleClass="window-background" stylesheets="@../../../resources/styles.css">
           <left>
@@ -42,12 +45,22 @@
                               <Insets left="30.0" />
                           </padding>
                       </JFXButton>
-                      <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PATIENTS">
+                      <JFXButton fx:id="navAddPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onAddPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="ADD PATIENT">
                           <padding>
                               <Insets left="30.0" />
                           </padding>
                       </JFXButton>
+                  <JFXButton fx:id="navViewPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="15.0" layoutY="258.0" onAction="#onViewPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="VIEW PATIENTS">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </JFXButton>
                   <JFXButton fx:id="navTestReportsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onTestReportsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="TEST REPORTS">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="navViewAllTestReportBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#navViewAllTestReportBtnClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="TEST REPORTS 2">
                      <padding>
                         <Insets left="30.0" />
                      </padding>
@@ -88,11 +101,8 @@
          <center>
             <AnchorPane fx:id="frameLayout" styleClass="content-background">
                <BorderPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets />
                </BorderPane.margin>
-               <padding>
-                  <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-               </padding>
             </AnchorPane>
          </center>
       </BorderPane>

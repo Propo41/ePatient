@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="847.0" spacing="15.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.view_doctor.viewDoctorsController">
+<VBox prefHeight="847.0" spacing="15.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.view_doctor.ViewDoctorsController">
    <children>
       <Label styleClass="text-content-title" text="DOCTORS" />
       <HBox spacing="10.0">

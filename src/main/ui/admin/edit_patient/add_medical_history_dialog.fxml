@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.edit_patient.AddMedicalHistoryDialogController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefWidth="100.0" StackPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" styleClass="title-text-dialog-2" text="MEDICAL INFO">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <ScrollPane hbarPolicy="NEVER">
+               <content>
+                  <VBox prefHeight="539.0" prefWidth="649.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="HIGH BLOOD PRESSURE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="high_blood_pressure" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="HIGH CHOLESTROL" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="high_cholesterol" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="KIDNEY DISEASE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="kidney_disease" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="THYROID PROBLEMS" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="thyroid_problems" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="TUBERCULOSIS" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="tuberculosis" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="SINUS" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="sinus" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="TONSILITIES" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="tonsilities" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="LUNG DIESEASE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="lung_disease" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="ASHTMA" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="ashtma" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="SEASONAL ALLERGIES" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="seasonal_allergies" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="ARTHRITIS" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="arthritis" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="CANCER" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="cancer" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="STROKE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="stroke" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="DIABETES" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="diabetes" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="PNEUMONIA" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="pneumonia" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="HIV" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="hiv" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefWidth="250.0" styleClass="text-box-header" text="HEPATITIS" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="hepatitis" maxWidth="1.7976931348623157E308" promptText="NONE" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ScrollPane>
+            <VBox alignment="CENTER_LEFT">
+               <children>
+                  <JFXButton maxWidth="1.7976931348623157E308" onAction="#onSaveClicked" prefHeight="44.0" prefWidth="1047.0" styleClass="button-primary" text="SAVE">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </VBox>
+   </children>
+</StackPane>

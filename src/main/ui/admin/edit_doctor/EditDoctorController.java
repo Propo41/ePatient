@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import database.DoctorDao;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -12,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -22,6 +20,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class EditDoctorController {
+
     @FXML
     private Label doctor_name;
 
@@ -47,9 +46,6 @@ public class EditDoctorController {
     private Label address;
 
     @FXML
-    private TextArea professionalSummary;
-
-    @FXML
     private ListView<HBox> educationalBackgroundList;
 
     @FXML
@@ -58,99 +54,52 @@ public class EditDoctorController {
     @FXML
     private ListView<HBox> avaiableDurationList;
 
-    @FXML
-    private ListView<HBox> chamberAddressList;
-
-
     EditDoctorController editDoctorController;
 
     public int selectedDoctorId;
     String educationalBackground, professionalExperience;
     Doctor doctor;
+    String[] educationList;
+    String[] experienceList;
 
     public void setDoctorNumber(int doctorId, EditDoctorController editDoctorController) throws SQLException {
 
-        selectedDoctorId = doctorId;
+        this.selectedDoctorId = doctorId;
         this.editDoctorController = editDoctorController;
         DoctorDao doctorDao = new DoctorDao();
 
-        doctor = doctorDao.getDoctorProfile(selectedDoctorId+"");
-        doctor_name.setText(doctor.getName());
-        specialist2.setText(doctor.getSpecialist());
-        hospitalAffiliations.setText(doctor.getAffiliations());
-        email.setText(doctor.getEmail());
-        contact.setText(doctor.getPhone());
-        address.setText(doctor.getAddress());
-        professionalSummary.setText(doctor.getProfessionalExperience());
-        professionalExperience = doctor.getProfessionalExperience();
-        educationalBackground = doctor.getEducationalBackground();
+        this.doctor = doctorDao.getDoctorProfile(selectedDoctorId+"");
+        this.doctor_name.setText(doctor.getName());
+        this.specialist2.setText(doctor.getSpecialist());
+        this.hospitalAffiliations.setText(doctor.getAffiliations());
+        this.email.setText(doctor.getEmail());
+        this.contact.setText(doctor.getPhone());
+        this.address.setText(doctor.getAddress());
+        this.professionalExperience = doctor.getProfessionalExperience();
+        this.educationalBackground = doctor.getEducationalBackground();
 
-        String[] educationList = educationalBackground.split(",");
-        String[] experienceList = professionalExperience.split(",");
+        if(!educationalBackground.equals(",")) {
 
-        for (int i = 0; i < educationList.length ; i++) {
-            HBox hBox = createCard(educationList[i].trim());
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    educationalBackgroundList.getItems().remove(finalI);
-                }
-            });
-            educationalBackgroundList.getItems().add(hBox);
+            educationList = educationalBackground.split(",");
+            for (int i = 0; i < educationList.length ; i++) {
+                HBox hBox = createCard(educationList[i].trim());
+                educationalBackgroundList.getItems().add(hBox);
+            }
+
         }
 
-        for (int i = 0; i < experienceList.length; i++){
-            HBox hBox = createCard(experienceList[i].trim());
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    professionalExperienceList.getItems().remove(finalI);
-                }
-            });
-            professionalExperienceList.getItems().add(hBox);
+        if(!professionalExperience.equals("") ) {
+            experienceList = professionalExperience.split(",");
+            for (int i = 0; i < experienceList.length; i++){
+                HBox hBox = createCard(experienceList[i].trim());
+                professionalExperienceList.getItems().add(hBox);
+            }
         }
-
 
         for (int i = 0; i < 2; i++) {
             HBox hBox = createCard("habijabi");
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    avaiableDurationList.getItems().remove(finalI);
-                }
-            });
             avaiableDurationList.getItems().add(hBox);
         }
-
-
-        for (int i = 0; i < 2; i++) {
-            HBox hBox = createCard("habijabi");
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = i;
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("Tile pressed " + finalI);
-                    chamberAddressList.getItems().remove(finalI);
-                }
-            });
-            chamberAddressList.getItems().add(hBox);
-        }
-
-
 
 
     }
@@ -158,39 +107,41 @@ public class EditDoctorController {
 
     public void recieveTextBack(String addItem, String attribute){
         DoctorDao doctorDao = new DoctorDao();
-        if(attribute.equals("Educational Background")) {
+        if(attribute.equals("Educational Background")){
             HBox hBox = createCard(addItem);
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = educationalBackgroundList.getItems().size();
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event){
-                    educationalBackgroundList.getItems().remove(finalI);
-                }
-            });
-            educationalBackgroundList.getItems().add(hBox);
             String newData = educationalBackground + "," +addItem;
+            if(educationalBackground.length()==0){
+                newData =  addItem;
+            }
             doctorDao.updateDoctorAttribute("educaional_background",newData,selectedDoctorId);
-
+            educationalBackgroundList.getItems().add(hBox);
         }else if(attribute.equals("Professional Experience")){
             HBox hBox = createCard(addItem);
-            HBox btnContainer = (HBox) hBox.getChildren().get(2);
-            ImageView button = (ImageView) btnContainer.getChildren().get(0);
-            int finalI = professionalExperienceList.getItems().size();
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    professionalExperienceList.getItems().remove(finalI);
-                }
-            });
-            professionalExperienceList.getItems().add(hBox);
             String newData = professionalExperience + "," +addItem;
+            if(professionalExperience.length()==0){
+                newData = addItem;
+            }
             doctorDao.updateDoctorAttribute("professional_experience",newData,selectedDoctorId);
+            professionalExperienceList.getItems().add(hBox);
         }
+
     }
 
 
+    public void recieveTextBackDialog(String attribute, String addedItem){
+        if(attribute.equals("doctor_specialist")){
+            specialist2.setText(addedItem);
+        }else if(attribute.equals("doctor_email")){
+            email.setText(addedItem);
+        }else if(attribute.equals("doctor_phone")){
+            contact.setText(addedItem);
+        }else if(attribute.equals("hospital_affiliations")){
+            hospitalAffiliations.setText(addedItem);
+        }else if(attribute.equals("doctor_address")){
+            address.setText(addedItem);
+        }
+
+    }
 
     @FXML
     void addEducationalBackgroundClick(MouseEvent event) throws IOException {
@@ -198,11 +149,11 @@ public class EditDoctorController {
         try{
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/add_features_dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/add_features_doctor_dialog.fxml"));
             loader.load();
             JFXDialog dialog = new JFXDialog(myStackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
-            AddFeaturesController dialogController = loader.getController();
+            AddFeaturesDoctorDialogController dialogController = loader.getController();
             dialogController.setTitle("Educational Background",editDoctorController);
             dialog.show();
         }catch (Exception e){
@@ -216,11 +167,11 @@ public class EditDoctorController {
         try{
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/add_features_dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/add_features_doctor_dialog.fxml"));
             loader.load();
             JFXDialog dialog = new JFXDialog(myStackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
-            AddFeaturesController dialogController = loader.getController();
+            AddFeaturesDoctorDialogController dialogController = loader.getController();
             dialogController.setTitle("Professional Experience",editDoctorController);
             dialog.show();
         }catch (Exception e){
@@ -245,7 +196,7 @@ public class EditDoctorController {
             dialog.getStyleClass().add("jfx-dialog-layout");
             EditDoctorDialogController dialogController = loader.getController();
             dialogController.setLabel(selectedDoctorId, doctor.getSpecialist(), doctor.getEmail(),
-                    doctor.getPhone(), doctor.getAffiliations(), doctor.getAffiliations(), dialog);
+                    doctor.getPhone(), doctor.getAffiliations(), doctor.getAddress(), dialog,editDoctorController);
             //change affiliations here according to ui
             dialog.show();
         }catch (Exception e){
@@ -276,21 +227,24 @@ public class EditDoctorController {
         nameLabel.setAlignment(Pos.CENTER);
         vBox1.getChildren().addAll(nameLabel);
 
-        ImageView icon2 = new ImageView();
-        icon2.getStyleClass().add("delete-icon");
-        icon2.setFitWidth(30);
-        icon2.setFitHeight(30);
-
-        HBox hBox1 = new HBox();
-        HBox.setHgrow(hBox1, Priority.ALWAYS);
-        hBox1.setAlignment(Pos.CENTER_RIGHT);
-        hBox1.getChildren().add(icon2);
-
-        hBox.getChildren().addAll(vBox, vBox1, hBox1);
+        hBox.getChildren().addAll(vBox, vBox1);
 
         return hBox;
 
     }
 
+    @FXML
+    void onEducationalBackgroundDeleteClick(MouseEvent event) {
+        educationalBackgroundList.getItems().clear();
+        educationalBackground = "";
+        new DoctorDao().updateDoctorAttribute("educaional_background", "",selectedDoctorId);
+    }
+
+    @FXML
+    void onProfessionalExperienceDeleteClick(MouseEvent event) {
+        professionalExperienceList.getItems().clear();
+        professionalExperience = "";
+        new DoctorDao().updateDoctorAttribute("professional_experience", "",selectedDoctorId);
+    }
 
 }

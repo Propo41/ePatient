@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -99,60 +98,78 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                      <children>
-                        <VBox styleClass="text-content-background">
+                        <HBox>
                            <children>
-                              <Label styleClass="text-box-header" text="PROFESSIONAL SUMMARY">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextArea fx:id="professionalSummary" editable="false" prefHeight="140.0" styleClass="text-field-no-edit" stylesheets="@../../../../resources/listview_styles_2.css" text="ASSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" wrapText="true" />
-                           </children>
-                        </VBox>
-                        <VBox styleClass="text-content-background-2">
-                           <children>
-                              <HBox prefHeight="28.0" prefWidth="660.0">
+                              <VBox styleClass="text-content-background-2">
                                  <children>
-                                    <Label styleClass="text-box-header" text="EDUCATIONAL BACKGROUND">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addEducationalBackgroundClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
-                                       <HBox.margin>
-                                          <Insets left="7.0" top="2.0" />
-                                       </HBox.margin>
-                                    </ImageView>
+                                    <HBox prefHeight="28.0" prefWidth="660.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="EDUCATIONAL BACKGROUND">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addEducationalBackgroundClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
+                                             <HBox.margin>
+                                                <Insets left="7.0" top="2.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <ListView fx:id="educationalBackgroundList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                                  </children>
-                              </HBox>
-                              <ListView fx:id="educationalBackgroundList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <JFXButton maxHeight="1.7976931348623157E308" onMouseClicked="#onEducationalBackgroundDeleteClick" prefWidth="75.0" styleClass="button-secondary-listview" text=" ">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </JFXButton>
                            </children>
-                        </VBox>
-                        <VBox styleClass="text-content-background-2">
+                        </HBox>
+                        <HBox>
                            <children>
-                              <HBox prefHeight="28.0" prefWidth="660.0">
+                              <VBox styleClass="text-content-background-2">
                                  <children>
-                                    <Label styleClass="text-box-header" text="PROFESSIONAL EXPERINCE">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addProfessionalExperienceClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
-                                       <HBox.margin>
-                                          <Insets left="7.0" top="2.0" />
-                                       </HBox.margin>
-                                    </ImageView>
+                                    <HBox prefHeight="28.0" prefWidth="660.0">
+                                       <children>
+                                          <Label styleClass="text-box-header" text="PROFESSIONAL EXPERINCE">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#addProfessionalExperienceClick" pickOnBounds="true" preserveRatio="true" styleClass="add-icon">
+                                             <HBox.margin>
+                                                <Insets left="7.0" top="2.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <ListView fx:id="professionalExperienceList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ListView>
                                  </children>
-                              </HBox>
-                              <ListView fx:id="professionalExperienceList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <JFXButton maxHeight="1.7976931348623157E308" onMouseClicked="#onProfessionalExperienceDeleteClick" prefWidth="75.0" styleClass="button-secondary-listview" text=" ">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </JFXButton>
                            </children>
-                        </VBox>
+                        </HBox>
                         <HBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <VBox styleClass="text-content-background-2">
@@ -163,16 +180,6 @@
                                        </padding>
                                     </Label>
                                     <ListView fx:id="avaiableDurationList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
-                                 </children>
-                              </VBox>
-                              <VBox styleClass="text-content-background-2">
-                                 <children>
-                                    <Label styleClass="text-box-header" text="CHAMBER ADDRESS">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <ListView fx:id="chamberAddressList" prefHeight="163.0" prefWidth="660.0" stylesheets="@../../../../resources/listview_styles_ash.css" />
                                  </children>
                               </VBox>
                            </children>

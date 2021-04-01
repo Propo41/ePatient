@@ -9,89 +9,95 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="857.0" prefWidth="1200.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.main.AdminMainController">
 
-    <left>
-        <VBox alignment="TOP_CENTER" prefHeight="847.0" prefWidth="250.0" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </BorderPane.margin>
-            <children>
-                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../../resources/icons/ic_profile_image.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </ImageView>
-                <Label fx:id="doctorNameTv" styleClass="text-sub-heading" text="DOCTOR" />
-                <Separator prefWidth="200.0" />
-                <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="250.0">
-                    <children>
-                        <Label alignment="TOP_LEFT" styleClass="text-sub-heading-light" text="GENERAL">
-                            <HBox.margin>
-                                <Insets left="30.0" />
-                            </HBox.margin>
+<StackPane fx:id="myStackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.main.AdminMainController">
+   <children>
+      <BorderPane prefHeight="857.0" prefWidth="1200.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css">
+      
+          <left>
+              <VBox alignment="TOP_CENTER" prefHeight="847.0" prefWidth="250.0" spacing="10.0" styleClass="nav-background" BorderPane.alignment="CENTER">
+                  <BorderPane.margin>
+                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </BorderPane.margin>
+                  <children>
+                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../../../../resources/icons/ic_profile_image.png" />
+                          </image>
+                          <VBox.margin>
+                              <Insets top="20.0" />
+                          </VBox.margin>
+                      </ImageView>
+                      <Label fx:id="doctorNameTv" styleClass="text-sub-heading" text="DOCTOR" />
+                      <Separator prefWidth="200.0" />
+                      <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="250.0">
+                          <children>
+                              <Label alignment="TOP_LEFT" styleClass="text-sub-heading-light" text="GENERAL">
+                                  <HBox.margin>
+                                      <Insets left="30.0" />
+                                  </HBox.margin>
+                              </Label>
+                          </children>
+                      </HBox>
+                      <JFXButton fx:id="navDashboardBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onDashboardClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-selected" text="DASHBOARD">
+                          <padding>
+                              <Insets left="30.0" />
+                          </padding>
+                      </JFXButton>
+                      <JFXButton fx:id="navViewDoctorButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onViewDoctorClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="VIEW DOCTORS">
+                          <padding>
+                              <Insets left="30.0" />
+                          </padding>
+                      </JFXButton>
+                  <JFXButton fx:id="navAddADoctorBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onAddDoctorClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="ADD DOCTOR">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PATIENTS">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </JFXButton>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="250.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" styleClass="text-sub-heading-light" text="TOOLS">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
                         </Label>
-                    </children>
-                </HBox>
-                <JFXButton fx:id="navDashboardBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onDashboardClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-selected" text="DASHBOARD">
-                    <padding>
+                     </children>
+                  </HBox>
+                  <JFXButton fx:id="navSettingsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onSettingsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="SETTINGS">
+                     <padding>
                         <Insets left="30.0" />
-                    </padding>
-                </JFXButton>
-                <JFXButton fx:id="navViewDoctorButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onViewDoctorClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="VIEW DOCTORS">
-                    <padding>
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="navReportBug" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onReportBugClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="REPORT A BUG">
+                     <padding>
                         <Insets left="30.0" />
-                    </padding>
-                </JFXButton>
-            <JFXButton fx:id="navAddADoctorBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onAddDoctorClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="ADD DOCTOR">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="navPatientBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onPatientsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PATIENTS">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </JFXButton>
-            <Separator prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="250.0">
-               <children>
-                  <Label alignment="TOP_LEFT" styleClass="text-sub-heading-light" text="TOOLS">
-                     <HBox.margin>
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="navSupportBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onSupportClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="SUPPORT">
+                     <padding>
                         <Insets left="30.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <JFXButton fx:id="navSettingsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onSettingsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="SETTINGS">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="navReportBug" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onReportBugClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="REPORT A BUG">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="navSupportBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onSupportClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="SUPPORT">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="navLogOutBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onLogOutClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="LOG OUT">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </JFXButton>
-            </children>
-        </VBox>
-    </left>
-   <center>
-      <AnchorPane fx:id="frameLayout" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="navLogOutBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onLogOutClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="LOG OUT">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </JFXButton>
+                  </children>
+              </VBox>
+          </left>
+         <center>
+            <AnchorPane fx:id="frameLayout" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

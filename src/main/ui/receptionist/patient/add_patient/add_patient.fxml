@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../../resources/styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.patient.add_patient.AddPatientController">
+    <content>
+        <VBox style="-fx-background-color: #FFFFFF;">
+            <padding>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="20.0" />
+            </padding>
+            <children>
+                <Label prefWidth="361.0" styleClass="text-sub-heading-blue" text="ADD PATIENT">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+                <Separator maxHeight="5.0" maxWidth="1.7976931348623157E308" minHeight="0.0" style="-fx-border-width: 10;">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </VBox.margin>
+                </Separator>
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <children>
+                                <Label styleClass="text-sub-heading-2" text="FULL NAME">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="name" maxWidth="1.7976931348623157E308" promptText="ENTER PATIENT'S NAME" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="WEIGHT">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="weight" maxWidth="1.7976931348623157E308" promptText="ENTER WEIGHT" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="AGE">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="age" maxWidth="1.7976931348623157E308" promptText="ENTER AGE" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="BLOOD GROUP">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="bloodGroup" promptText="ENTER BLOOD GROUP" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="EMAIL">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="email" maxWidth="1.7976931348623157E308" promptText="ENTER EMAIL" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                        <Label styleClass="text-sub-heading-2" text="DATE OF BIRTH">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="dateOfBirth" maxWidth="1.7976931348623157E308" promptText="ENTER DATE OF BIRTH" styleClass="text-field-normal">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                                <Label styleClass="text-sub-heading-2" text="MEDICAL INFO">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                                      <TextField fx:id="medicalInfo" promptText="ENTER MEDICAL INFO" styleClass="text-field-normal" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                                      </TextField>
+                              <JFXButton maxHeight="1.7976931348623157E308" onAction="#onAddMedicalInfo" styleClass="button-secondary" text="  " HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                            </children>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <children>
+                                <Label styleClass="text-sub-heading-2" text="GENDER">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="gender" maxWidth="1.7976931348623157E308" promptText="ENTER GENDER" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="HEIGHT">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="height" maxWidth="1.7976931348623157E308" promptText="ENTER HEIGHT" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="CONTACT">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="contact" maxWidth="1.7976931348623157E308" promptText="ENTER CONTACT" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="EMERGENCY CONTACT">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="emergencyContact" promptText="ENTER ONE EMERGENCY CONTACT" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <Label styleClass="text-sub-heading-2" text="ADDRESS">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="address" promptText="ENTER ADDRESS" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                        <Label styleClass="text-sub-heading-2" text="JOINING DATE">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="joiningDate" promptText="ENTER DATE" styleClass="text-field-normal">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                                <Label styleClass="text-sub-heading-2" text="SOCIAL HISTORY">
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                                      <TextField fx:id="socialHistory" promptText="ENTER SOCIAL HISTORY" styleClass="text-field-normal" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                                      </TextField>
+                              <JFXButton maxHeight="1.7976931348623157E308" onAction="#onAddSocialHistory" styleClass="button-secondary" text="  " />
+                           </children>
+                        </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <Separator maxHeight="5.0" maxWidth="1.7976931348623157E308" minHeight="0.0" style="-fx-border-width: 10;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Separator>
+                <HBox prefHeight="100.0">
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <padding>
+                                <Insets right="10.0" />
+                            </padding>
+                            <children>
+                                <Label styleClass="text-sub-heading-2" text="SURGICAL HISTORY">
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="surgicalHistory" maxWidth="1.7976931348623157E308" promptText="ENTER SURGICAL HISTORY" styleClass="text-field-normal">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <VBox alignment="BASELINE_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox alignment="BASELINE_RIGHT" VBox.vgrow="ALWAYS" />
+                        <JFXButton maxWidth="1.7976931348623157E308" onAction="#onCreateButtonClicked" prefHeight="44.0" prefWidth="1047.0" styleClass="button-primary" text="CREATE" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets left="20.0" right="10.0" />
+                            </VBox.margin>
+                        </JFXButton>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

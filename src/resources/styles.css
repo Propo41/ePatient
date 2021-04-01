@@ -24,9 +24,6 @@
     -fx-color-combobox-prompt: #b0b0b0
 }
 
-.env-pane {
-    -fx-background-color: black;
-}
 .user-icon {
     -fx-image: url('icons/ic_profile_image.png');
 }
@@ -37,6 +34,13 @@
 
 .bullet-icon {
     -fx-image: url('icons/ic_bullet_point.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+
+.pdf-upload-icon {
+    -fx-image: url('icons/ic_pdf_upload.png');
     -fx-pref-width: 40;
     -fx-pref-height: 40;
 }
@@ -220,7 +224,7 @@
 .button-secondary-listview {
     -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
-    -fx-background-image: url('/resources/icons/ic_delete.png');
+    -fx-background-image: url('/resources/icons/ic_remove.png');
     -fx-background-size: 20px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -297,6 +301,13 @@
     -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
     -fx-font-size: 13;
+}
+
+.view-button {
+    -fx-background-image: url("icons/ic_pdf_upload.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
 }
 
 /*END: Button styles*/
@@ -400,6 +411,13 @@
     -fx-background-radius: 10;
     /*padding: top right bottom left*/
     -fx-padding: 10 10 10 0;
+}
+
+.text-content-background-3 {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 20;
+    /*padding: top right bottom left*/
+    -fx-padding: 10 10 10 10;
 }
 
 
@@ -555,3 +573,8 @@
 .dialog-background {
     -fx-background-color: white;
 }
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+

@@ -7,9 +7,7 @@ import model.*;
 import util.Util;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DoctorDao implements IDoctorDao {
 
@@ -49,7 +47,95 @@ public class DoctorDao implements IDoctorDao {
 
         return "0";
 
+    }
 
+    public void deleteTuple(String tableName, String attributeSelection,String id) {
+        connection = DatabaseHandler.getConnection();
+        String query = "delete from "  + tableName + " where " +  attributeSelection +  " = " +  id;
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+    }
+
+
+    public ArrayList<Doctor> getDoctorBasicInfo(String name) {
+
+        String query = "select doctor_specialist,doctor_name,doctor_id from Doctor where doctor_name like '%"+ name + "%' ";
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<Doctor> doctorArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()) {
+                    Doctor doctor = new Doctor();
+                    doctor.setSpecialist(resultSet.getString("doctor_specialist"));
+                    doctor.setName(resultSet.getString("doctor_name"));
+                    doctor.setDoctorId(resultSet.getString("doctor_id"));
+                    doctorArrayList.add(doctor);
+                    index++;
+                }
+                return doctorArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<MedicalTestDetails> getTestReport(String name) {
+        String query = "select T.test_name, Pat.patient_name, D.doctor_name,A.date_of_appointment \n" +
+                "from Test as T inner join Prescription as P\n" +
+                "on T.prescription_id = P.prescription_id inner join Appointment as A\n" +
+                "on A.appointment_id = P.appointment_id inner join Patient as Pat \n" +
+                "on A.patient_id = Pat.patient_id inner join Doctor as D\n" +
+                "on A.doctor_id = D.doctor_id where (Pat.patient_name like '%" +name + "%') " +
+                "or (T.test_id like '%"+name+"%')";
+
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<MedicalTestDetails> medicalArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()){
+                    MedicalTestDetails medicalTestDetails = new MedicalTestDetails();
+                    medicalTestDetails.setTestDate(resultSet.getString("date_of_appointment"));
+                    medicalTestDetails.setTestName(resultSet.getString("test_name"));
+                    medicalTestDetails.setDoctorName(resultSet.getString("doctor_name"));
+                    medicalTestDetails.setPatientName(resultSet.getString("patient_name"));
+                    medicalArrayList.add(medicalTestDetails);
+                    index++;
+                }
+                return medicalArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 
     @Override
@@ -72,6 +158,8 @@ public class DoctorDao implements IDoctorDao {
         }
         return null;
     }
+
+
 
     @Override
     public ArrayList<Patient> getRecentPatientList(String doctorId) {
@@ -111,6 +199,7 @@ public class DoctorDao implements IDoctorDao {
     @Override
     public ArrayList<Schedule> getDoctorVisitingHours(String doctorId) {
         connection = DatabaseHandler.getConnection();
+
         ArrayList<Schedule> visitingHours = new ArrayList<>();
         String query = "select * from Schedule where doctor_id='" + doctorId + "'";
         if (connection != null) {
@@ -302,7 +391,7 @@ public class DoctorDao implements IDoctorDao {
         String query = "select * from Patient " +
                 "where " +
                 "(patient_name LIKE '%" + keyword + "%'" +
-                " OR patient_id LIKE '%" + keyword + "%')";
+                " OR patient_id LIKE '% " + keyword + "%')";
         ArrayList<Patient> patientList = new ArrayList<>();
 
         if (connection != null) {
@@ -356,7 +445,37 @@ public class DoctorDao implements IDoctorDao {
                 }
             }
         }
+        return;
     }
+
+
+    @Override
+    public void updateSingleAttribute(String tableName,String attribute, String data, String patientId){
+        connection = DatabaseHandler.getConnection();
+        String query = "update "+  tableName + " Set " + attribute + " = '" + data + "' where patient_id = " + patientId;
+        System.out.println(query);
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+    }
+
+
+
+
+
+
 
     @Override
     public ArrayList<Doctor> getDoctorList(String keyword) {
