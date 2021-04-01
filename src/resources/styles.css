@@ -285,18 +285,18 @@
 /* text button with smaller font and white background*/
 .button-text-only-small {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: -fx-color-blue;
-    -fx-background-color: white;
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-blue;
     -fx-background-radius: 10;
-    -fx-font-size: 17;
+    -fx-font-size: 13;
 }
 
 .button-text-only-small-red {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: -fx-color-blue;
+    -fx-text-fill: white;
     -fx-background-color: -fx-color-orange;
     -fx-background-radius: 10;
-    -fx-font-size: 17;
+    -fx-font-size: 13;
 }
 
 /*END: Button styles*/
@@ -336,6 +336,25 @@
     -fx-font-size: 13;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-color-ash-dark;
+}
+.text-prompt-in-hbox{
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -fx-color-combobox-prompt;
+
+}
+
+.combo-box-style{
+    -fx-prompt-text-fill: -fx-color-combobox-prompt;
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Semibold";
+    -jfx-focus-color: -fx-color-combobox-prompt;
+
+}
+
+.combo-box-style .cell{
+    -fx-text-fill: -fx-color-combobox-prompt;
+    -fx-font: 13px "Segoe UI Semibold";
 }
 
 .text-field-icon:focused {
@@ -418,6 +437,7 @@
     -fx-background-radius: 10;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
+
 }
 
 .nav-button-unselected {
@@ -466,6 +486,20 @@
 
 }
 
+/* date picker */
+
+.date-picker-parent{
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 5;
+    -fx-border-color: -fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-background;
+}
+.date-picker-parent:hover{
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 5;
+}
 .date-picker-style {
     -fx-border-color: -fx-color-ash-background;
     -fx-background-color: -fx-color-ash-background;
@@ -478,17 +512,31 @@
 }
 
 .date-picker-style-white-bg {
+    -fx-border-color: -fx-color-ash-background;
+    -fx-background-color: -fx-color-ash-background;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+
+.date-picker-style-ash-bg {
     -fx-border-color: white;
     -fx-background-color: white;
     -fx-pref-width: 0;
     -fx-pref-height: 0;
 }
 
+.date-picker-style-ash-bg:editable .arrow-button .jfx-svg-glyph{
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+
+}
+
 .h-box-background {
     -fx-background-color: -fx-color-ash-background;
     -fx-background-radius: 10;
     /*padding: top right bottom left*/
-    -fx-padding: 10 10 10 10;
+    -fx-padding: 15;
 
 }
 

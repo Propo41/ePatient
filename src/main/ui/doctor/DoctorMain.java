@@ -16,7 +16,7 @@ public class DoctorMain extends Application {
     public void start(Stage primaryStage) throws Exception{
         // for dummy testing. delete this
         Util.getInstance().setUserId("1");
-        Util.getInstance().setUserType("doctor");
+        Util.getInstance().setUserType(Util.TYPE_DOCTOR);
 
         Parent root = FXMLLoader.load(getClass().getResource("doctor_main.fxml"));
         primaryStage.setTitle("a World");

@@ -44,6 +44,14 @@ public class ViewPrescriptionHistoryController implements Initializable {
     private TextField doctorNameTv;
     private String patientId;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        doctorNameTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
+        prescriptionList.getStyleClass().add("list-bg-color");
+    }
+
+
     @FXML
     void onSearchClick(ActionEvent event) {
         prescriptionList.getItems().clear();
@@ -61,12 +69,6 @@ public class ViewPrescriptionHistoryController implements Initializable {
             }
         }
 
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        doctorNameTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
-        prescriptionList.getStyleClass().add("list-bg-color");
     }
 
     /**

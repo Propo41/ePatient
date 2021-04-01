@@ -1,21 +1,14 @@
 package main.ui.doctor.appointments;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.skins.JFXDatePickerSkin;
-import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import database.AppointmentDao;
 import database.DoctorDao;
-import database.PrescriptionDao;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;

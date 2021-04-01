@@ -13,7 +13,8 @@ public class DatabaseHandler {
 
     private Connection connection;
     private static final HikariDataSource dataSource;
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=ePatient;selectedMethod=cursor";
+    // switch to master
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=master;selectedMethod=cursor";
 
     static {
         HikariConfig config = new HikariConfig();

@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Doctor {
     private String name;
@@ -16,6 +17,7 @@ public class Doctor {
     private String professionalExperience;
     private String visitFee;
     private Date joinedDate;
+    private ArrayList<Schedule> visitingHours;
 
 
     public Doctor() {

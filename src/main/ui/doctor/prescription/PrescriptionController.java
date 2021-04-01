@@ -58,8 +58,6 @@ public class PrescriptionController implements Initializable {
             createCardItems(patientList);
         }else{
             resultsFoundLabel.setText("0 SEARCH RESULTS FOUND");
-
-
         }
     }
 

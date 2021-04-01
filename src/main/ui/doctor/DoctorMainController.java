@@ -3,7 +3,7 @@ package main.ui.doctor;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import database.DoctorQueueDaoDao;
+import database.DoctorQueueDao;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,7 +28,6 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import util.Util;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -100,16 +99,10 @@ public class DoctorMainController implements Initializable {
             e.printStackTrace();
         }
 
-
-        // createCardItems(4);
-        startQueryingService();
-
-
     }
 
-
     private void startQueryingService() {
-        DoctorQueueDaoDao doctorQueueDao = new DoctorQueueDaoDao();
+        DoctorQueueDao doctorQueueDao = new DoctorQueueDao();
         timeline = new Timeline(
                 new KeyFrame(Duration.seconds(Util.QUERY_DELAY), e -> {
                     // query database here
@@ -142,7 +135,7 @@ public class DoctorMainController implements Initializable {
             dialog = new JFXDialog(stackPaneRoot, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
             DialogNewPatientPromptController dialogController = loader.getController();
-            dialogController.setIds(res);
+            dialogController.setIds(res, dialog, this);
             dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,6 +173,11 @@ public class DoctorMainController implements Initializable {
         return null;
     }
 
+    /**
+     * start the querying service and clear out the
+     *
+     * @param event
+     */
     @FXML
     void onNextPatientClick(ActionEvent event) {
         startQueryingService();
@@ -205,21 +203,7 @@ public class DoctorMainController implements Initializable {
 
     @FXML
     void onPatientsClick(ActionEvent event) {
-        if (!guiButtonCurrent.equals(navPatientBtn)) {
-            guiButtonCurrent = navPatientBtn;
-            guiChangeButtonStyle();
-            guiButtonPrevious = navPatientBtn;
-            try {
-                frameLayout.getChildren().clear();
-                VBox root = FXMLLoader.load(getClass().getResource("prescription/prescription.fxml"));
-                root = (VBox) makeResponsive(root, "vbox");
-                frameLayout.getChildren().add(root);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
+        initPrescriptionWindow();
     }
 
     @FXML
@@ -276,12 +260,28 @@ public class DoctorMainController implements Initializable {
 
     }
 
+    public void initPrescriptionWindow() {
+        if (!guiButtonCurrent.equals(navPatientBtn)) {
+            guiButtonCurrent = navPatientBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navPatientBtn;
+            try {
+                frameLayout.getChildren().clear();
+                VBox root = FXMLLoader.load(getClass().getResource("prescription/prescription.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @FXML
     void onLogOutClick(ActionEvent event) {
         stopQueryingService();
         Stage stage = (Stage) guiButtonCurrent.getScene().getWindow();
         stage.close();
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/main/ui/main/main.fxml"));
             Parent parent = loader.load();
@@ -289,7 +289,7 @@ public class DoctorMainController implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(loginScene);
             window.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

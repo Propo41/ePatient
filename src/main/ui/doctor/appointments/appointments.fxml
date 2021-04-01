@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="847.0" spacing="15.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.appointments.AppointmentsController">
+<VBox prefHeight="847.0" spacing="15.0" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.doctor.appointments.AppointmentsController">
    <padding>
       <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
    </padding>
@@ -34,7 +28,7 @@
                         <Image url="@../../../../resources/icons/ic_calender.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="selectedDateLabel" prefHeight="19.0" prefWidth="475.0" styleClass="text-prompt" text="SET A DATE FROM THE CALENDER ICON" HBox.hgrow="SOMETIMES">
+                  <Label fx:id="selectedDateLabel" prefHeight="19.0" prefWidth="475.0" styleClass="text-prompt-in-hbox" text="SET A DATE FROM THE CALENDER ICON" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
