@@ -29,8 +29,8 @@ public class EditDoctorDialogController {
     JFXDialog jfxDialog;
     EditDoctorController editDoctorController;
 
-    public void setLabel(int doctorId, String speciality, String email, String contact, String address,
-                         String hospitalAffiliations, JFXDialog dialog, EditDoctorController editDoctorController) {
+    public void setLabel(int doctorId, String speciality, String email, String contact, String hospitalAffiliations,
+                         String address, JFXDialog dialog, EditDoctorController editDoctorController) {
         this.jfxDialog = dialog;
         this.specialityText = speciality;
         this.emailText = email;
@@ -49,17 +49,16 @@ public class EditDoctorDialogController {
 
     @FXML
     void onSaveClicked(ActionEvent event) {
-
         DoctorDao doctorDao = new DoctorDao();
         if(!specialityText.equals(speciality.getText())){
             doctorDao.updateDoctorAttribute("doctor_specialist",speciality.getText(),doctorId);
             editDoctorController.recieveTextBackDialog("doctor_specialist",speciality.getText());
         }
-        if(!emailText.equals(email.getText())) {
+        if(!emailText.equals(email.getText())){
             doctorDao.updateDoctorAttribute("doctor_email", email.getText(), doctorId);
             editDoctorController.recieveTextBackDialog("doctor_email", email.getText());
         }
-        if(!contactText.equals(contact.getText())) {
+        if(!contactText.equals(contact.getText())){
             doctorDao.updateDoctorAttribute("doctor_phone", contact.getText(), doctorId);
             editDoctorController.recieveTextBackDialog("doctor_phone", contact.getText());
         }

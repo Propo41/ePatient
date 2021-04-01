@@ -238,6 +238,7 @@ public class EditPatientController {
     }
 
     public void addAllergiesClick(MouseEvent mouseEvent) {
+
         try{
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");

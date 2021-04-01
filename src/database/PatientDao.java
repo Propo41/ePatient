@@ -49,7 +49,6 @@ public class PatientDao implements IPatientDao {
         if (connection != null) {
             try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
-
                     medicalHistory.put("arthritis", resultSet.getBoolean("arthritis"));
                     medicalHistory.put("asthma", resultSet.getBoolean("ashtma"));
                     medicalHistory.put("cancer", resultSet.getBoolean("cancer"));
@@ -59,6 +58,7 @@ public class PatientDao implements IPatientDao {
                     medicalHistory.put("high cholesterol", resultSet.getBoolean("high_cholesterol"));
                     medicalHistory.put("hiv", resultSet.getBoolean("hiv"));
                     medicalHistory.put("kidney disease", resultSet.getBoolean("kidney_disease"));
+                    medicalHistory.put("seasonal allergies", resultSet.getBoolean("seasonal_allergies"));
                     medicalHistory.put("lung disease", resultSet.getBoolean("lung_disease"));
                     medicalHistory.put("pneumonia", resultSet.getBoolean("pneumonia"));
                     medicalHistory.put("sinus", resultSet.getBoolean("sinus"));
@@ -66,9 +66,7 @@ public class PatientDao implements IPatientDao {
                     medicalHistory.put("thyroid problems", resultSet.getBoolean("thyroid_problems"));
                     medicalHistory.put("tonsilities", resultSet.getBoolean("tonsilities"));
                     medicalHistory.put("tuberculosis", resultSet.getBoolean("tuberculosis"));
-
                 }
-
                 return medicalHistory;
 
             } catch (Exception e) {
@@ -134,6 +132,7 @@ public class PatientDao implements IPatientDao {
                     medicalHistory.put("thyroid problems", resultSet.getBoolean("thyroid_problems"));
                     medicalHistory.put("tonsilities", resultSet.getBoolean("tonsilities"));
                     medicalHistory.put("tuberculosis", resultSet.getBoolean("tuberculosis"));
+                    medicalHistory.put("seasonal allergies", resultSet.getBoolean("seasonal_allergies"));
 
                     socialHistory.put("alcohol use", resultSet.getBoolean("alcohol_use"));
                     socialHistory.put("caffeine use", resultSet.getBoolean("caffeine_use"));

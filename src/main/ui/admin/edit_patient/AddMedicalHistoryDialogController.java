@@ -114,7 +114,7 @@ public class AddMedicalHistoryDialogController {
         sinus.getSelectionModel().select(getSelection("sinus"));
         tonsilities.getSelectionModel().select(getSelection("tonsilities"));
         lung_disease.getSelectionModel().select(getSelection("lung disease"));
-       // seasonal_allergies.getSelectionModel().select(getSelection("seasonal allergies"));
+        seasonal_allergies.getSelectionModel().select(getSelection("seasonal allergies"));
         arthritis.getSelectionModel().select(getSelection("arthritis"));
         ashtma.getSelectionModel().select(getSelection("asthma"));
         cancer.getSelectionModel().select(getSelection("cancer"));
@@ -127,7 +127,6 @@ public class AddMedicalHistoryDialogController {
 
     private int getSelection(String str){
         int value;
-        System.out.println(medicalHistoryMap.get(str).toString());
         if(medicalHistoryMap.get(str)){
             value = 0;
         }else{

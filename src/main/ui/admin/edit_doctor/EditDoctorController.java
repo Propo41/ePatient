@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import database.DoctorDao;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -12,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -48,9 +46,6 @@ public class EditDoctorController {
     private Label address;
 
     @FXML
-    private TextArea professionalSummary;
-
-    @FXML
     private ListView<HBox> educationalBackgroundList;
 
     @FXML
@@ -58,10 +53,6 @@ public class EditDoctorController {
 
     @FXML
     private ListView<HBox> avaiableDurationList;
-
-    @FXML
-    private ListView<HBox> chamberAddressList;
-
 
     EditDoctorController editDoctorController;
 
@@ -84,7 +75,6 @@ public class EditDoctorController {
         this.email.setText(doctor.getEmail());
         this.contact.setText(doctor.getPhone());
         this.address.setText(doctor.getAddress());
-        this.professionalSummary.setText(doctor.getProfessionalExperience());
         this.professionalExperience = doctor.getProfessionalExperience();
         this.educationalBackground = doctor.getEducationalBackground();
 
@@ -112,11 +102,6 @@ public class EditDoctorController {
         }
 
 
-        for (int i = 0; i < 2; i++) {
-            HBox hBox = createCard("habijabi");
-            chamberAddressList.getItems().add(hBox);
-        }
-
     }
 
 
@@ -130,8 +115,6 @@ public class EditDoctorController {
             }
             doctorDao.updateDoctorAttribute("educaional_background",newData,selectedDoctorId);
             educationalBackgroundList.getItems().add(hBox);
-
-
         }else if(attribute.equals("Professional Experience")){
             HBox hBox = createCard(addItem);
             String newData = professionalExperience + "," +addItem;
