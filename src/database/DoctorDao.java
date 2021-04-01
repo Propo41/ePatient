@@ -7,7 +7,9 @@ import model.*;
 import util.Util;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DoctorDao implements IDoctorDao {
 
@@ -472,11 +474,6 @@ public class DoctorDao implements IDoctorDao {
     }
 
 
-
-
-
-
-
     @Override
     public ArrayList<Doctor> getDoctorList(String keyword) {
         connection = DatabaseHandler.getConnection();
@@ -518,6 +515,8 @@ public class DoctorDao implements IDoctorDao {
         }
         return doctorList;
     }
+
+
 
     @Override
     public ArrayList<Appointment> getSchedule(String doctorId, LocalDate date) {
