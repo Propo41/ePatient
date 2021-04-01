@@ -33,15 +33,14 @@ public class AppointmentsController implements Initializable {
 
     private LocalDate selectedDate;
     private DoctorDao doctorDao;
-
     @FXML
-    void onSearchClick(ActionEvent event) {
-        prescriptionList.getItems().clear();
-        initList(selectedDate);
-    }
+    private Label searchResultNumber;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        searchResultNumber.setText("");
+        selectedDate = LocalDate.now();
+
         doctorDao = new DoctorDao();
         JFXDatePicker datePicker = new JFXDatePicker();
         datePicker.getStyleClass().add("date-picker-style");
@@ -62,14 +61,23 @@ public class AppointmentsController implements Initializable {
             selectedDateLabel.setText(selectedDate.toString());
         });
 
-        initList(LocalDate.now());
+        initList(selectedDate);
 
     }
 
+    @FXML
+    void onSearchClick(ActionEvent event) {
+        prescriptionList.getItems().clear();
+        initList(selectedDate);
+    }
+
     private void initList(LocalDate date) {
+        System.out.println("local date now: " + date);
         ArrayList<Appointment> appointments = new AppointmentDao().getAppointmentInfo(
                 Util.getInstance().getUserId(),
                 date);
+        searchResultNumber.setText(appointments.size() + " SEARCH RESULTS FOUND");
+
         // create appointment list
         for (Appointment appointment : appointments) {
             HBox hBox = createCard(
@@ -113,11 +121,10 @@ public class AppointmentsController implements Initializable {
         HBox.setHgrow(hBox1, Priority.ALWAYS);
         hBox1.setAlignment(Pos.CENTER_RIGHT);
 
-        Label reasonLabel = new Label(reason);
+        Label reasonLabel = new Label("Reason: " + reason);
         reasonLabel.getStyleClass().add("text-sub-heading-light");
         reasonLabel.setPrefWidth(200);
         reasonLabel.setWrapText(true);
-
 
         hBox1.getChildren().add(reasonLabel);
 

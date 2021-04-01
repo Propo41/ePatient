@@ -393,7 +393,7 @@ public class DoctorDao implements IDoctorDao {
         String query = "select * from Patient " +
                 "where " +
                 "(patient_name LIKE '%" + keyword + "%'" +
-                " OR patient_id LIKE '% " + keyword + "%')";
+                " OR patient_id LIKE '%" + keyword + "%')";
         ArrayList<Patient> patientList = new ArrayList<>();
 
         if (connection != null) {

@@ -40,7 +40,7 @@ public class LogInController {
                     loader.setLocation(getClass().getResource("/main/ui/doctor/doctor_main.fxml"));
 
                 }else{
-                   //loader.setLocation(getClass().getResource("/main/ui/doctor/reception_main.fxml"));
+                   loader.setLocation(getClass().getResource("/main/ui/receptionist/reception_main.fxml"));
                 }
                 Parent parent = loader.load();
                 Scene loginScene = new Scene(parent);

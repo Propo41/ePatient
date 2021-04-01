@@ -43,10 +43,11 @@
                   </HBox>
                </children>
             </HBox>
-            <JFXButton fx:id="searchButton" onAction="#onSearchClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
+            <JFXButton fx:id="searchButton" onAction="#onSearchClick" prefHeight="55.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <Separator prefHeight="5.0" prefWidth="845.0" />
+      <Label fx:id="searchResultNumber" styleClass="text-sub-heading" text="5 SEARCH RESULTS FOUND" />
       <ListView fx:id="prescriptionList" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles.css" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

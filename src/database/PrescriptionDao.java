@@ -13,7 +13,6 @@ import java.util.HashMap;
 public class PrescriptionDao implements IPrescription {
     private Connection connection;
 
-
     @Override
     public Prescription getPrescriptionDetails(String prescriptionId) {
         String query = "select * " +

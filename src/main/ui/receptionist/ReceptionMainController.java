@@ -75,11 +75,7 @@ public class ReceptionMainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         guiButtonCurrent = navAppointmentsBtn;
         guiButtonPrevious = navAppointmentsBtn;
-
-        DoctorDao doctorDao = new DoctorDao();
-        String name = doctorDao.getName(Util.getInstance().getUserId());
-        receptionNameTv.setText(name);
-
+        receptionNameTv.setText("ADMIN");
         // initially load appointments UI
         try {
             frameLayout.getChildren().clear();
@@ -92,36 +88,37 @@ public class ReceptionMainController implements Initializable {
     }
 
     private Parent makeResponsive(Parent root, String node) {
-        if (node.equals("vbox")) {
-            VBox vBox = (VBox) root;
-            // to make the contents of the frame responsive
-            vBox.setPrefWidth(930);
-            vBox.setPrefHeight(847);
-            AnchorPane.setTopAnchor(vBox, 0.0d);
-            AnchorPane.setBottomAnchor(vBox, 0.0d);
-            AnchorPane.setLeftAnchor(vBox, 0.0d);
-            AnchorPane.setRightAnchor(vBox, 0.0d);
-            return vBox;
-        }else if(node.equals("ScrollPane")){
-            ScrollPane scrollPane = (ScrollPane) root;
-            // to make the contents of the frame responsive
-            scrollPane.setPrefWidth(930);
-            scrollPane.setPrefHeight(847);
-            AnchorPane.setTopAnchor(scrollPane, 0.0d);
-            AnchorPane.setBottomAnchor(scrollPane, 0.0d);
-            AnchorPane.setLeftAnchor(scrollPane, 0.0d);
-            AnchorPane.setRightAnchor(scrollPane, 0.0d);
-            return scrollPane;
-        }else if(node.equals("BorderPane")){
-            BorderPane borderPane = (BorderPane) root;
-            // to make the contents of the frame responsive
-            borderPane.setPrefWidth(930);
-            borderPane.setPrefHeight(847);
-            AnchorPane.setTopAnchor(borderPane, 0.0d);
-            AnchorPane.setBottomAnchor(borderPane, 0.0d);
-            AnchorPane.setLeftAnchor(borderPane, 0.0d);
-            AnchorPane.setRightAnchor(borderPane, 0.0d);
-            return borderPane;
+        switch (node) {
+            case "vbox":
+                VBox vBox = (VBox) root;
+                // to make the contents of the frame responsive
+                vBox.setPrefWidth(930);
+                vBox.setPrefHeight(847);
+                AnchorPane.setTopAnchor(vBox, 0.0d);
+                AnchorPane.setBottomAnchor(vBox, 0.0d);
+                AnchorPane.setLeftAnchor(vBox, 0.0d);
+                AnchorPane.setRightAnchor(vBox, 0.0d);
+                return vBox;
+            case "ScrollPane":
+                ScrollPane scrollPane = (ScrollPane) root;
+                // to make the contents of the frame responsive
+                scrollPane.setPrefWidth(930);
+                scrollPane.setPrefHeight(847);
+                AnchorPane.setTopAnchor(scrollPane, 0.0d);
+                AnchorPane.setBottomAnchor(scrollPane, 0.0d);
+                AnchorPane.setLeftAnchor(scrollPane, 0.0d);
+                AnchorPane.setRightAnchor(scrollPane, 0.0d);
+                return scrollPane;
+            case "BorderPane":
+                BorderPane borderPane = (BorderPane) root;
+                // to make the contents of the frame responsive
+                borderPane.setPrefWidth(930);
+                borderPane.setPrefHeight(847);
+                AnchorPane.setTopAnchor(borderPane, 0.0d);
+                AnchorPane.setBottomAnchor(borderPane, 0.0d);
+                AnchorPane.setLeftAnchor(borderPane, 0.0d);
+                AnchorPane.setRightAnchor(borderPane, 0.0d);
+                return borderPane;
         }
         return null;
     }
@@ -214,24 +211,6 @@ public class ReceptionMainController implements Initializable {
 
         }
 
-    }
-
-    @FXML
-    void onViewPatientsClick(ActionEvent event) {
-        if (!guiButtonCurrent.equals(navViewPatientBtn)) {
-            guiButtonCurrent = navViewPatientBtn;
-            guiChangeButtonStyle();
-            guiButtonPrevious = navViewPatientBtn;
-            try {
-                frameLayout.getChildren().clear();
-                VBox root = FXMLLoader.load(getClass().getResource("appointments/appointments.fxml"));
-                root = (VBox) makeResponsive(root, "vbox");
-                frameLayout.getChildren().add(root);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
     }
 
 
