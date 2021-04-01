@@ -75,7 +75,7 @@ public class ReceptionMainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         guiButtonCurrent = navAppointmentsBtn;
         guiButtonPrevious = navAppointmentsBtn;
-        receptionNameTv.setText("ADMIN");
+        receptionNameTv.setText("RECEPTIONIST");
         // initially load appointments UI
         try {
             frameLayout.getChildren().clear();

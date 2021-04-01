@@ -200,6 +200,7 @@ public class DoctorDao implements IDoctorDao {
 
     @Override
     public ArrayList<Schedule> getDoctorVisitingHours(String doctorId) {
+        System.out.println("doctorDAO: " + doctorId);
         connection = DatabaseHandler.getConnection();
 
         ArrayList<Schedule> visitingHours = new ArrayList<>();
@@ -209,7 +210,6 @@ public class DoctorDao implements IDoctorDao {
                 while (resultSet.next()) {
                     String startTime = Util.convert24to12format(resultSet.getString("doctor_schedule_start_time"));
                     String endTime = Util.convert24to12format(resultSet.getString("doctor_schedule_end_time"));
-
                     String day = resultSet.getString("schedule_day").toUpperCase();
                     visitingHours.add(new Schedule(
                             day,
@@ -524,7 +524,7 @@ public class DoctorDao implements IDoctorDao {
         String query = "select * from " +
                 "Appointment left join Patient " +
                 "on Appointment.patient_id = Patient.patient_id " +
-                "where (doctor_id = " + 1 + " and date_of_appointment ='" + date + "' and appointment_status = 0) ";
+                "where (doctor_id = " + doctorId + " and date_of_appointment ='" + date + "' and appointment_status = 0) ";
         ArrayList<Appointment> schedule = new ArrayList<>();
         if (connection != null) {
             try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {

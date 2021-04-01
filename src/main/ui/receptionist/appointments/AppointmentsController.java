@@ -312,6 +312,7 @@ public class AppointmentsController implements Initializable {
                     stage.setResizable(false);
                     stage.setScene(new Scene(loader.load(), Util.DIALOG_SCREEN_WIDTH, Util.DIALOG_SCREEN_HEIGHT));
                     ViewScheduleController controller = loader.getController();
+                    System.out.println("selected doctor id: " + doctor.getDoctorId());
                     controller.setContent(doctor.getDoctorId());
                     stage.show();
                 } catch (Exception e) {

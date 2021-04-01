@@ -70,7 +70,6 @@ public class CreateAppointmentController implements Initializable {
                 setDisable(empty || date.compareTo(today) < 0);
             }
         });
-        visitingHours = new DoctorDao().getDoctorVisitingHours(Util.getInstance().getUserId());
         datePicker.setOnAction(event -> {
             selectedDate = datePicker.getValue();
             selectedDateLabel.setText(selectedDate.toString());
@@ -80,6 +79,7 @@ public class CreateAppointmentController implements Initializable {
             selectedTime = NO_SLOTS_FREE;
             this.doctorId = doctorTv.getText();
             if (!doctorTv.getText().equals("")) {
+                visitingHours = new DoctorDao().getDoctorVisitingHours(doctorId);
                 initAvailableTime(selectedDate, doctorId);
             } else {
                 System.out.println("You must enter the doctorId");
@@ -91,11 +91,11 @@ public class CreateAppointmentController implements Initializable {
     }
 
     private void initAvailableTime(LocalDate date, String doctorId) {
-        ArrayList<Appointment> schedule = new DoctorDao().getSchedule(String.valueOf(doctorId), date);
+        System.out.println("doctor id selected: " + doctorId);
+        ArrayList<Appointment> schedule = new DoctorDao().getSchedule(doctorId, date);
         Schedule s = isDoctorAvailable(date);
         int l = schedule.size();
         if (s != null) {
-
             String t = s.getStartTime();
             int i = 0;
             String formattedString = "";

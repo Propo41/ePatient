@@ -41,29 +41,24 @@ public class ViewScheduleController implements Initializable {
     private String doctorId;
     private ArrayList<Schedule> visitingHours;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("INITIALIZED CALLED FIRST");
+        selectedDate = LocalDate.now();
+        datePicker.setOnAction(event -> {
+            selectedDate = datePicker.getValue();
+            // getting doctor visiting hours
+            visitingHours = new DoctorDao().getDoctorVisitingHours(doctorId);
+            initItems(selectedDate);
+        });
+
+    }
+
     @FXML
     void onDismissClick(ActionEvent event) {
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();
     }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        selectedDate = LocalDate.now();
-        datePicker.setOnAction(event -> {
-            selectedDate = datePicker.getValue();
-            initItems(selectedDate);
-            System.out.println("date selected: " + selectedDate);
-
-        });
-
-        // getting doctor visiting hours
-        visitingHours = new DoctorDao().getDoctorVisitingHours(Util.getInstance().getUserId());
-        initItems(selectedDate);
-
-    }
-
 
     private Schedule isDoctorAvailable(LocalDate date) {
         String dayPicked = date.getDayOfWeek().name().toLowerCase();
@@ -196,7 +191,9 @@ public class ViewScheduleController implements Initializable {
     }
 
     public void setContent(String doctorId) {
+        System.out.println("SET CONTENT CALLED SECOND");
         this.doctorId = doctorId;
-
+        visitingHours = new DoctorDao().getDoctorVisitingHours(doctorId);
+        initItems(selectedDate);
     }
 }
