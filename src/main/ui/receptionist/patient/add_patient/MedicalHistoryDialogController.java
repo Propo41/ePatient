@@ -65,9 +65,11 @@ public class MedicalHistoryDialogController {
     private JFXComboBox hepatitis;
 
     HashMap<String, Integer> medicalHistoryMap;
+    private JFXDialog dialog;
 
-    public void setTitle(HashMap<String, Integer> medicalHistoryMap) {
+    public void setTitle(HashMap<String, Integer> medicalHistoryMap, JFXDialog dialog) {
         this.medicalHistoryMap = medicalHistoryMap;
+        this.dialog = dialog;
         initcomboBoxes();
     }
 
@@ -141,11 +143,10 @@ public class MedicalHistoryDialogController {
         checkSelection(pneumonia, "pneumonia");
         checkSelection(hiv, "hiv");
         checkSelection(hepatitis, "hepatitis");
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        dialog.close();
     }
 
     void checkSelection(JFXComboBox comboBox, String attribute){
-        System.out.println(comboBox.getSelectionModel().getSelectedItem().toString() + " " + attribute);
         String s = comboBox.getSelectionModel().getSelectedItem().toString();
         if(s.equals("Yes")){
             medicalHistoryMap.put(attribute, 0);

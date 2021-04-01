@@ -189,6 +189,51 @@ public class PrescriptionDao implements IPrescription {
 
     }
 
+
+    @Override
+    public ArrayList<Prescription> getMedicalTest(String find) {
+        String query = "select P.prescription_id,D.doctor_id,Pat.patient_id,D.doctor_name, Pat.patient_name, A.date_of_appointment from Appointment as A inner join Prescription as P\n" +
+                "on A.appointment_id = P.appointment_id inner join Doctor as D \n" +
+                "on D.doctor_id = P.doctor_id inner join Patient as Pat\n" +
+                "on Pat.patient_id = P.patient_id where ";
+        try{
+            int value = Integer.parseInt(find);
+            query += "P.prescription_id  = " + value;
+        }catch (Exception ex){
+            query += "Pat.patient_name like '%" + find + "%'";
+        }
+        System.out.println(query);
+
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<Prescription> prescriptionArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()) {
+                    Prescription prescription = new Prescription();
+                    prescription.setDateOfPrescription(resultSet.getDate("date_of_appointment"));
+                    prescription.setPatientName(resultSet.getString("patient_name"));
+                    prescription.setDoctorName(resultSet.getString("doctor_name"));
+                    prescription.setPrescriptionId(resultSet.getString("prescription_id"));
+                    prescription.setPatientId(resultSet.getString("patient_id"));
+                    prescription.setPatientId(resultSet.getString("doctor_id"));
+                    prescriptionArrayList.add(prescription);
+                    index++;
+                }
+                return prescriptionArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
     @Override
     public String createNewPrescription(Prescription prescription) {
         connection = DatabaseHandler.getConnection();

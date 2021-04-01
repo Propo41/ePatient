@@ -23,6 +23,7 @@ import main.ui.admin.InputErrorDialogController;
 import main.ui.admin.InsertionProfileDialogController;
 import main.ui.admin.edit_doctor.EditDoctorController;
 import main.ui.admin.edit_patient.AddMedicalHistoryDialogController;
+import main.ui.receptionist.test_report.AddSuccessDialogController;
 import model.Patient;
 import util.Util;
 
@@ -93,6 +94,7 @@ public class AddPatientController implements Initializable {
     private HashMap<String, Boolean> medicalInfoText;
     HashMap<String, Integer> medicalHistoryMap;
     Patient patient;
+    StackPane stackPane;
 
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -105,6 +107,10 @@ public class AddPatientController implements Initializable {
             Pattern.compile("(MALE|FEMALE)", Pattern.CASE_INSENSITIVE);
 
 
+    public void init(StackPane myStackPane) {
+        this.stackPane = myStackPane;
+    }
+
     @FXML
     void onAddMedicalInfo(ActionEvent event) {
         openMedicalInfo();
@@ -112,25 +118,18 @@ public class AddPatientController implements Initializable {
 
     void openMedicalInfo(){
         try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/patient/add_patient/medicalHistoryDialog.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-
-            MedicalHistoryDialogController dialogController = fxmlLoader.getController();
-            dialogController.setTitle(medicalHistoryMap);
-
-            Stage stage = new Stage();
-            stage.setTitle("");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        }
-        catch (IOException e) {
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.getStyleClass().add("jfx-dialog-overlay-pane");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/patient/add_patient/medicalHistoryDialog.fxml"));
+            loader.load();
+            JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
+            dialog.getStyleClass().add("jfx-dialog-layout");
+            MedicalHistoryDialogController medicalHistoryDialogController = loader.getController();
+            medicalHistoryDialogController.setTitle(medicalHistoryMap,dialog);
+            dialog.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -245,9 +244,16 @@ public class AddPatientController implements Initializable {
         patient.setSurgicalHistory(surgicalHistory.getText());
         patient.setEmergencyContact(emergencyContact.getText());
 
-        new PatientDao().addPatient(patient, joiningDate.getText(), dateOfBirth.getText());
-        int createdPatientId = new PatientDao().addMedicalHistory(medicalHistoryMap);
-        openSuccessDialog(createdPatientId);
+
+        try {
+            new PatientDao().addPatient(patient, joiningDate.getText(), dateOfBirth.getText());
+            int createdPatientId = new PatientDao().addMedicalHistory(medicalHistoryMap);
+            openSuccessDialog(createdPatientId);
+
+        }catch (Exception ex){
+            return;
+        }
+        resetValues();
     }
 
 
@@ -364,37 +370,37 @@ public class AddPatientController implements Initializable {
 
     private void openEmptyDialogWarning(String emptyMessage){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/InputErrorDialog.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-
-            InputErrorDialogController inputErrorDialogController = fxmlLoader.getController();
-            inputErrorDialogController.setErrorMessage(emptyMessage);
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root1));
-            stage.show();
-        }catch (Exception ex){
-
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.getStyleClass().add("jfx-dialog-overlay-pane");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/InputErrorDialog.fxml"));
+            loader.load();
+            JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
+            dialog.getStyleClass().add("jfx-dialog-layout");
+            InputErrorDialogController inputErrorDialogController = loader.getController();
+            inputErrorDialogController.setErrorMessage(emptyMessage,dialog);
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+
     }
 
 
     private void openSuccessDialog(int createdPatientId) {
+
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/InsertionProfileDialog.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-
-            InsertionProfileDialogController insertionProfileDialogController = fxmlLoader.getController();
-            insertionProfileDialogController.setIdNumber(createdPatientId);
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root1));
-            stage.show();
-            resetValues();
-        }catch (Exception ex){
-
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.getStyleClass().add("jfx-dialog-overlay-pane");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/InsertionProfileDialog.fxml"));
+            loader.load();
+            JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
+            dialog.getStyleClass().add("jfx-dialog-layout");
+            InsertionProfileDialogController insertionProfileDialogController = loader.getController();
+            insertionProfileDialogController.setIdNumber(createdPatientId,dialog);
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -417,6 +423,7 @@ public class AddPatientController implements Initializable {
         surgicalHistory.setText("");
         joiningDate.setText("");
     }
+
 
 
 }

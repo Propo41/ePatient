@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -38,22 +40,23 @@ public class DatabaseHandler {
     }
 
     public boolean insertDoctorProfile(String name, String email, String mobileNumber, String doctorAddresss,
-                                String department, String speciality, String languages, String hospitalAffiliations,
+                                String department, String speciality, String visit_fee, String hospitalAffiliations,
                                 String professionalExperience, String roomNumber,
                                 String educationalBackground, String password){
-
-        String query = "INSERT INTO Doctor (doctor_name, doctor_email, doctor_mobile, doctor_address, department, doctor_specialist, " +
-                "languages, hospital_affiliations, professional_experience, room_number, educaional_background, doctor_password) " +
-                "VALUES ('" +  name + "', '" + email + "','" + mobileNumber + "','" + doctorAddresss + "','" + languages +
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        //joiningDate.setText(dtf.format(now));
+        String query = "INSERT INTO Doctor (doctor_name, doctor_email, doctor_phone, doctor_address, department, doctor_specialist, " +
+                "visit_fee, hospital_affiliations, professional_experience, room_number, educaional_background, doctor_password, joined_date ) " +
+                "VALUES ('" +  name + "', '" + email + "','" + mobileNumber + "','" + doctorAddresss + "','" + visit_fee +
         "','" + department + "','" + speciality + "','" + hospitalAffiliations + "','" + professionalExperience +"','" +
-               Integer.parseInt(roomNumber) + "','" + educationalBackground + "','" + password +"')";
+               Integer.parseInt(roomNumber) + "','" + educationalBackground + "','" + password + "','" + dtf.format(now) + "')";
 
         try {
             connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
             statement.execute(query);
             return true;
-
         } catch (Exception e) {
             e.printStackTrace();
             return false;

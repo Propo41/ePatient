@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
+import main.ui.admin.AddProfileController;
+import main.ui.receptionist.patient.add_patient.AddPatientController;
 
 
 import java.io.IOException;
@@ -21,6 +23,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminMainController implements Initializable {
+
+
+    @FXML
+    private StackPane myStackPane;
 
     @FXML
     private AnchorPane frameLayout;
@@ -197,6 +203,24 @@ public class AdminMainController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/addProfile.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+
+                AddProfileController addProfileController = fxmlLoader.getController();
+                addProfileController.init(myStackPane);
+                frameLayout.getChildren().clear();
+                ScrollPane root1 = fxmlLoader.load(getClass().getResource("/main/ui/admin/addProfile.fxml"));
+
+                root1 = (ScrollPane) makeResponsive(root, "ScrollPane");
+                frameLayout.getChildren().add(root1);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
         }
 
     }

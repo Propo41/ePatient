@@ -38,6 +38,13 @@
     -fx-pref-height: 40;
 }
 
+
+.pdf-upload-icon {
+    -fx-image: url('icons/ic_pdf_upload.png');
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
 .pdf-icon {
     -fx-image: url('/resources/icons/ic_pdf.png');
     -fx-pref-width: 40;
@@ -296,6 +303,13 @@
     -fx-font-size: 17;
 }
 
+.view-button {
+    -fx-background-image: url("icons/ic_pdf_upload.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+
 /*END: Button styles*/
 
 .text-field-normal {
@@ -378,6 +392,13 @@
     -fx-background-radius: 10;
     /*padding: top right bottom left*/
     -fx-padding: 10 10 10 0;
+}
+
+.text-content-background-3 {
+    -fx-background-color: -fx-color-ash-background;
+    -fx-background-radius: 20;
+    /*padding: top right bottom left*/
+    -fx-padding: 10 10 10 10;
 }
 
 

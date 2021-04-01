@@ -101,6 +101,44 @@ public class DoctorDao implements IDoctorDao {
     }
 
     @Override
+    public ArrayList<MedicalTestDetails> getTestReport(String name) {
+        String query = "select T.test_name, Pat.patient_name, D.doctor_name,A.date_of_appointment \n" +
+                "from Test as T inner join Prescription as P\n" +
+                "on T.prescription_id = P.prescription_id inner join Appointment as A\n" +
+                "on A.appointment_id = P.appointment_id inner join Patient as Pat \n" +
+                "on A.patient_id = Pat.patient_id inner join Doctor as D\n" +
+                "on A.doctor_id = D.doctor_id where (Pat.patient_name like '%" +name + "%') " +
+                "or (T.test_id like '%"+name+"%')";
+
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<MedicalTestDetails> medicalArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()){
+                    MedicalTestDetails medicalTestDetails = new MedicalTestDetails();
+                    medicalTestDetails.setTestDate(resultSet.getString("date_of_appointment"));
+                    medicalTestDetails.setTestName(resultSet.getString("test_name"));
+                    medicalTestDetails.setDoctorName(resultSet.getString("doctor_name"));
+                    medicalTestDetails.setPatientName(resultSet.getString("patient_name"));
+                    medicalArrayList.add(medicalTestDetails);
+                    index++;
+                }
+                return medicalArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
     public String getName(String doctorId) {
         String query = "select doctor_name from Doctor where doctor_id='" + doctorId + "'";
         connection = DatabaseHandler.getConnection();
@@ -120,6 +158,8 @@ public class DoctorDao implements IDoctorDao {
         }
         return null;
     }
+
+
 
     @Override
     public ArrayList<Patient> getRecentPatientList(String doctorId) {

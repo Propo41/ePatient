@@ -60,7 +60,7 @@
             </VBox>
             <VBox alignment="CENTER_LEFT">
                <children>
-                  <Label styleClass="text-sub-heading-2" text="LANGUAGES">
+                  <Label styleClass="text-sub-heading-2" text="ADDRESS">
                      <VBox.margin>
                         <Insets left="30.0" top="20.0" />
                      </VBox.margin>

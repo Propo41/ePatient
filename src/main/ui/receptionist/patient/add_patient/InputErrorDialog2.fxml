@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" stylesheets="@../../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.patient.add_patient.InputErrorDialog2Controller">
+<children>
+    <VBox alignment="CENTER" prefHeight="360.0" prefWidth="600.0">
+        <children>
+            <Label styleClass="title-text-dialog" text="Input Error" />
+            <Label fx:id="inputErrorLabel" styleClass="text-sub-heading-bold-blue" text="Your Account ID is 30">
+                <VBox.margin>
+                    <Insets top="30.0" />
+                </VBox.margin>
+            </Label>
+            <JFXButton maxWidth="1.7976931348623157E308" onAction="#dismissDialog" styleClass="button-primary" text="Close">
+                <VBox.margin>
+                    <Insets left="60.0" right="60.0" top="35.0" />
+                </VBox.margin>
+            </JFXButton>
+        </children>
+        <StackPane.margin>
+            <Insets />
+        </StackPane.margin>
+    </VBox>
+</children>
+</StackPane>

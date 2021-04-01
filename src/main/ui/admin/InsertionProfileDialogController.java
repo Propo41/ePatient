@@ -1,5 +1,6 @@
 package main.ui.admin;
 
+import com.jfoenix.controls.JFXDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,14 +14,17 @@ public class InsertionProfileDialogController implements Initializable {
 
     @FXML
     private Label idNumber;
+    private JFXDialog dialog;
 
-    public void setIdNumber(int idNumberOfNewUser) {
+
+    public void setIdNumber(int idNumberOfNewUser, JFXDialog dialog) {
         idNumber.setText("Your account ID is "+ idNumberOfNewUser+"");
+        this.dialog = dialog;
     }
 
     @FXML
     void dismissDialog(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        dialog.close();
     }
 
 
@@ -29,5 +33,9 @@ public class InsertionProfileDialogController implements Initializable {
 
     }
 
+
+    public void setIdNumber(int answer){
+        System.out.println("InComplete work");
+    }
 
 }

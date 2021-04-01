@@ -23,6 +23,6 @@ public interface IPrescription {
     ObservableList<Disease> getDiseasesInfo(String prescriptionId);
     ObservableList<MedicalTest> getMedicalTestsInfo(String prescriptionId);
     ObservableList<Medicine> getMedicineInfo(String prescriptionId);
-
+    ArrayList<Prescription> getMedicalTest(String name);
 
 }

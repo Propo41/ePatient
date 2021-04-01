@@ -50,7 +50,6 @@ public class ViewDoctorsController implements Initializable {
     ArrayList<Doctor> doctorArrayList;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         doctorSearchTv.setStyle("-fx-background-image: url('/resources/icons/ic_search.png');");
@@ -98,8 +97,8 @@ public class ViewDoctorsController implements Initializable {
             i--;
         }
         doctorListView.getItems().add(hBox);
-
     }
+
 
     private VBox createCard() {
         int index = count;

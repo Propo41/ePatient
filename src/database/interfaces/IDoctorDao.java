@@ -21,4 +21,5 @@ public interface IDoctorDao {
     void updateSingleAttribute(String tableName,String attribute, String data, String patientId);
     void deleteTuple(String tableName, String attributeSelection,String id);
     ArrayList<Doctor> getDoctorBasicInfo(String name);
+    ArrayList<MedicalTestDetails> getTestReport(String name);
 }

@@ -1,5 +1,6 @@
 package main.ui.admin;
 
+import com.jfoenix.controls.JFXDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,14 +18,16 @@ public class InputErrorDialogController implements Initializable {
 
     @FXML
     private Label inputErrorLabel;
+    private JFXDialog dialog;
 
-    public void setErrorMessage(String emptyField) {
+    public void setErrorMessage(String emptyField, JFXDialog dialog) {
         inputErrorLabel.setText(emptyField);
+        this.dialog = dialog;
     }
 
     @FXML
     void dismissDialog(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        dialog.close();
     }
 
 }

@@ -151,9 +151,9 @@ public class EditDoctorController {
         }else if(attribute.equals("doctor_email")){
             email.setText(addedItem);
         }else if(attribute.equals("doctor_phone")){
-            email.setText(addedItem);
+            contact.setText(addedItem);
         }else if(attribute.equals("hospital_affiliations")){
-            email.setText(addedItem);
+            hospitalAffiliations.setText(addedItem);
         }else if(attribute.equals("doctor_address")){
             address.setText(addedItem);
         }

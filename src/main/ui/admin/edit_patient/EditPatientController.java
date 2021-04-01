@@ -38,7 +38,7 @@ public class EditPatientController {
     private Label dateOfBirth;
 
     @FXML
-    private Label weight;
+    public Label weight;
 
     @FXML
     private Label age;
@@ -185,7 +185,6 @@ public class EditPatientController {
 
     }
 
-
     @FXML
     void onDismissClick(ActionEvent event) {
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -203,12 +202,11 @@ public class EditPatientController {
             dialog.getStyleClass().add("jfx-dialog-layout");
             EditPatientDialogController dialogController = loader.getController();
             dialogController.setLabel(selectedPatientId, patient.getWeight(), patient.getHeight(),
-                    patient.getContact(), patient.getEmail() , patient.getAddress(), dialog);
+                    patient.getContact(), patient.getEmail() , patient.getAddress(), dialog,editPatientController);
             dialog.show();
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
 
@@ -237,9 +235,7 @@ public class EditPatientController {
         hBox.getChildren().addAll(vBox, vBox1);
 
         return hBox;
-
     }
-
 
     public void addAllergiesClick(MouseEvent mouseEvent) {
         try{
@@ -274,5 +270,19 @@ public class EditPatientController {
         }
     }
 
+
+    public void updateUI(String attribute_name, String value) {
+        if(attribute_name.equals("patient_weight")){
+            weight.setText(value);
+        }else if(attribute_name.equals("patient_height")){
+            height.setText(value);
+        }else if(attribute_name.equals("patient_contact")){
+            contact.setText(value);
+        }else if(attribute_name.equals("patient_address")){
+            address.setText(value);
+        }else if(attribute_name.equals("patient_email")){
+            email.setText(value);
+        }
+    }
 
 }

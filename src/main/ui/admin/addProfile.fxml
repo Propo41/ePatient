@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../resources/styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.AddProfileController">
    <content>
       <VBox style="-fx-background-color: #FFFFFF;">
@@ -54,12 +53,12 @@
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label styleClass="text-sub-heading-2" text="LANGUAGES">
+                        <Label styleClass="text-sub-heading-2" text="VISIT FEE">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="languages" maxWidth="1.7976931348623157E308" promptText="ENTER LANGUAGES" styleClass="text-field-normal">
+                        <TextField fx:id="visit_fee" maxWidth="1.7976931348623157E308" promptText="ENTER VISIT FEE" styleClass="text-field-normal">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>

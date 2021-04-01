@@ -4,9 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 import database.DoctorDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class EditDoctorDialogController {
 
@@ -27,7 +25,7 @@ public class EditDoctorDialogController {
 
 
     int doctorId;
-    String specialityText, emailText, contactText, languagesText, hospitalAffiliationsText;
+    String specialityText, emailText, contactText, addressText, hospitalAffiliationsText;
     JFXDialog jfxDialog;
     EditDoctorController editDoctorController;
 
@@ -37,7 +35,8 @@ public class EditDoctorDialogController {
         this.specialityText = speciality;
         this.emailText = email;
         this.contactText  = contact;
-        this.languagesText = address;
+        this.addressText = address;
+        this.hospitalAffiliationsText = hospitalAffiliations;
         this.doctorId = doctorId;
 
         this.speciality.setText(speciality);
@@ -50,6 +49,7 @@ public class EditDoctorDialogController {
 
     @FXML
     void onSaveClicked(ActionEvent event) {
+
         DoctorDao doctorDao = new DoctorDao();
         if(!specialityText.equals(speciality.getText())){
             doctorDao.updateDoctorAttribute("doctor_specialist",speciality.getText(),doctorId);
@@ -67,7 +67,7 @@ public class EditDoctorDialogController {
             doctorDao.updateDoctorAttribute("hospital_affiliations", hospitalAffiliations.getText(), doctorId);
             editDoctorController.recieveTextBackDialog("hospital_affiliations", hospitalAffiliations.getText());
         }
-        if(!languagesText.equals(languagesText)){
+        if(!addressText.equals(address.getText())){
             doctorDao.updateDoctorAttribute("doctor_address",address.getText(),doctorId);
             editDoctorController.recieveTextBackDialog("doctor_address",address.getText());
         }

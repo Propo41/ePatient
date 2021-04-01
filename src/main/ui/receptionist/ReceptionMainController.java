@@ -20,16 +20,24 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import main.ui.doctor.DialogNewPatientPromptController;
+import main.ui.receptionist.patient.add_patient.AddPatientController;
+import main.ui.receptionist.test_report.AddTestReportDialogController;
+import main.ui.receptionist.test_report.ViewTestReportController;
 import util.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReceptionMainController implements Initializable {
+
+    @FXML
+    private StackPane myStackPane;
+
     @FXML
     private AnchorPane frameLayout;
 
@@ -38,6 +46,9 @@ public class ReceptionMainController implements Initializable {
 
     @FXML
     private JFXButton navAppointmentsBtn;
+
+    @FXML
+    private JFXButton navViewAllTestReportBtn;
 
     @FXML
     private JFXButton navSettingsBtn;
@@ -146,8 +157,47 @@ public class ReceptionMainController implements Initializable {
     }
 
     @FXML
-    void onTestReportsClick(ActionEvent event) {
+    void navViewAllTestReportBtnClick(ActionEvent event) {
+        if (!guiButtonCurrent.equals(navViewAllTestReportBtn)) {
+            guiButtonCurrent = navViewAllTestReportBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navViewAllTestReportBtn;
+            try {
+                frameLayout.getChildren().clear();
+                VBox root = FXMLLoader.load(getClass().getResource("test_report_history/view_test_report_history.fxml"));
+                root = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        }
+    }
+
+    @FXML
+    void onTestReportsClick(ActionEvent event) {
+        if (!guiButtonCurrent.equals(navTestReportsBtn)) {
+            guiButtonCurrent = navTestReportsBtn;
+            guiChangeButtonStyle();
+            guiButtonPrevious = navTestReportsBtn;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/test_report/view_test_report.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+
+                ViewTestReportController viewTestReportController = fxmlLoader.getController();
+                viewTestReportController.init(myStackPane);
+                frameLayout.getChildren().clear();
+                VBox root1 = fxmlLoader.load(getClass().getResource("test_report/view_test_report.fxml"));
+
+                root1 = (VBox) makeResponsive(root, "vbox");
+                frameLayout.getChildren().add(root1);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     @FXML
@@ -156,14 +206,23 @@ public class ReceptionMainController implements Initializable {
             guiButtonCurrent = navAddPatientBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navAddPatientBtn;
+
             try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/patient/add_patient/add_patient.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+
+                AddPatientController addPatientController = fxmlLoader.getController();
+                addPatientController.init(myStackPane);
                 frameLayout.getChildren().clear();
-                ScrollPane root = FXMLLoader.load(getClass().getResource("/main/ui/receptionist/patient/add_patient/add_patient.fxml"));
-                root = (ScrollPane) makeResponsive(root, "ScrollPane");
-                frameLayout.getChildren().add(root);
+                ScrollPane root1 = fxmlLoader.load(getClass().getResource("/main/ui/receptionist/patient/add_patient/add_patient.fxml"));
+
+                root1 = (ScrollPane) makeResponsive(root, "ScrollPane");
+                frameLayout.getChildren().add(root1);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
     }
@@ -227,5 +286,7 @@ public class ReceptionMainController implements Initializable {
         guiButtonPrevious.getStyleClass().clear();
         guiButtonPrevious.getStyleClass().add("nav-button-unselected");
     }
+
+
 
 }

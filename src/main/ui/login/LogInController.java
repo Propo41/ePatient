@@ -41,7 +41,6 @@ public class LogInController {
 
                 }else{
                    //loader.setLocation(getClass().getResource("/main/ui/doctor/reception_main.fxml"));
-
                 }
                 Parent parent = loader.load();
                 Scene loginScene = new Scene(parent);
