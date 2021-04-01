@@ -1,10 +1,8 @@
 package database.interfaces;
 
 import javafx.collections.ObservableList;
-import model.Disease;
-import model.MedicalTest;
-import model.Medicine;
-import model.Prescription;
+import main.ui.test.Test;
+import model.*;
 
 import java.util.ArrayList;
 
@@ -24,5 +22,5 @@ public interface IPrescription {
     ObservableList<MedicalTest> getMedicalTestsInfo(String prescriptionId);
     ObservableList<Medicine> getMedicineInfo(String prescriptionId);
     ArrayList<Prescription> getMedicalTest(String name);
-
+    ArrayList<MedicalTest> getTestForAddReport(String id);
 }

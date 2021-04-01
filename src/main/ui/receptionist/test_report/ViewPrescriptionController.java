@@ -38,7 +38,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ViewTestReportController  implements Initializable {
+public class ViewPrescriptionController implements Initializable {
 
     @FXML
     private TextField testReportSearchTv;
@@ -59,7 +59,6 @@ public class ViewTestReportController  implements Initializable {
     StackPane stackPane;
 
     public void init(StackPane stackPane){
-        System.out.println("HI ALL AWTUIONATY ");
         this.stackPane = stackPane;
     }
 
@@ -156,7 +155,7 @@ public class ViewTestReportController  implements Initializable {
                     JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
                     dialog.getStyleClass().add("jfx-dialog-layout");
                     AddTestReportDialogController addTestReportDialogController = loader.getController();
-                    addTestReportDialogController.init(stackPane);
+                    addTestReportDialogController.init(stackPane,index);
                     dialog.show();
                 }catch (Exception e){
                     e.printStackTrace();

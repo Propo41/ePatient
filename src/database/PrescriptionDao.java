@@ -3,6 +3,7 @@ package database;
 import database.interfaces.IPrescription;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import main.ui.test.Test;
 import model.*;
 
 import java.sql.*;
@@ -221,6 +222,36 @@ public class PrescriptionDao implements IPrescription {
                     index++;
                 }
                 return prescriptionArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<MedicalTest> getTestForAddReport(String id) {
+        String query = "select * from Test where test_id = " + id;
+
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<MedicalTest> medicalTestArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()) {
+                    MedicalTest medicalTest = new MedicalTest(resultSet.getString("test_name"),
+                            resultSet.getString("test_description"),
+                            resultSet.getString("test_date"), resultSet.getString("test_report"));
+                    medicalTestArrayList.add(medicalTest);
+                    index++;
+                }
+                return medicalTestArrayList;
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

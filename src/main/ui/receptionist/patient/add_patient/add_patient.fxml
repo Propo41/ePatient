@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../../resources/styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.patient.add_patient.AddPatientController">
     <content>
         <VBox style="-fx-background-color: #FFFFFF;">
@@ -107,7 +106,7 @@
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                            <children>
-                                      <TextField fx:id="medicalInfo" promptText="ENTER MEDICAL INFO" styleClass="text-field-normal" HBox.hgrow="ALWAYS">
+                                      <TextField fx:id="medicalInfo" editable="false" promptText="ENTER MEDICAL INFO" styleClass="text-field-normal" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="8.0" />
                                  </HBox.margin>

@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="847.0" spacing="15.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.test_report.ViewTestReportController">
+<VBox prefHeight="847.0" spacing="15.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.receptionist.test_report.ViewPrescriptionController">
     <children>
-        <Label styleClass="text-content-title" text="TEST REPORTS" />
+        <Label styleClass="text-content-title" text="PRESCRIPTION" />
         <HBox spacing="10.0">
             <children>
-                <TextField fx:id="testReportSearchTv" prefHeight="50.0" promptText="ENTER TEST REPORT ID OR PATIENTS NAME" styleClass="text-field-icon" HBox.hgrow="ALWAYS" />
+                <TextField fx:id="testReportSearchTv" prefHeight="50.0" promptText="ENTER PRESCRIPTION ID OR PATIENTS NAME" styleClass="text-field-icon" HBox.hgrow="ALWAYS" />
                 <HBox alignment="TOP_RIGHT" HBox.hgrow="NEVER">
                     <children>
                         <JFXButton onAction="#onSearchBtnClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />

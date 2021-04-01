@@ -2,6 +2,7 @@ package main.ui.receptionist.test_report;
 
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import database.PrescriptionDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,20 +16,27 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import model.MedicalTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AddTestReportDialogController {
 
     @FXML
     private ListView<HBox> testReportList;
     StackPane stackPane;
+    int selectedItemId;
+    ArrayList<MedicalTest> medicalTestArrayList;
 
-    public void init(StackPane stackPane) {
+    public void init(StackPane stackPane,int selectedItemId) {
         this.stackPane = stackPane;
+        this.selectedItemId = selectedItemId;
 
-        for (int i = 0; i < 10; i++) {
-            HBox hBox = createCard("Hello World");
+        medicalTestArrayList = new PrescriptionDao().getTestForAddReport(selectedItemId+"");
+
+        for (int i = 0; i < medicalTestArrayList.size(); i++) {
+            HBox hBox = createCard(medicalTestArrayList.get(i).getTestName());
             HBox btnContainer = (HBox) hBox.getChildren().get(2);
             ImageView button = (ImageView) btnContainer.getChildren().get(0);
             int finalI = i;
@@ -36,8 +44,9 @@ public class AddTestReportDialogController {
             button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event){
-                    System.out.println("Tile pressed " + finalI);
+               //     System.out.println("Tile pressed " + finalI);
                     try {
+
                     JFXDialogLayout content = new JFXDialogLayout();
                     content.getStyleClass().add("jfx-dialog-overlay-pane");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/test_report/add_success_dialog.fxml"));

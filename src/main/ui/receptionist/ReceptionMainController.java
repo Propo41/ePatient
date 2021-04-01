@@ -16,16 +16,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.util.Pair;
-import main.ui.doctor.DialogNewPatientPromptController;
 import main.ui.receptionist.patient.add_patient.AddPatientController;
-import main.ui.receptionist.test_report.AddTestReportDialogController;
-import main.ui.receptionist.test_report.ViewTestReportController;
+import main.ui.receptionist.test_report.ViewPrescriptionController;
 import util.Util;
 
 import java.net.URL;
@@ -182,8 +176,8 @@ public class ReceptionMainController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/test_report/view_test_report.fxml"));
                 Parent root = (Parent) fxmlLoader.load();
 
-                ViewTestReportController viewTestReportController = fxmlLoader.getController();
-                viewTestReportController.init(myStackPane);
+                ViewPrescriptionController viewPrescriptionController = fxmlLoader.getController();
+                viewPrescriptionController.init(myStackPane);
                 frameLayout.getChildren().clear();
                 VBox root1 = fxmlLoader.load(getClass().getResource("test_report/view_test_report.fxml"));
 

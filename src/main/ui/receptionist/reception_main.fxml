@@ -55,12 +55,12 @@
                         <Insets left="30.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="navTestReportsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onTestReportsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="TEST REPORTS">
+                  <JFXButton fx:id="navTestReportsBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onTestReportsClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="PRESCRIPTION">
                      <padding>
                         <Insets left="30.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="navViewAllTestReportBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#navViewAllTestReportBtnClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="TEST REPORTS 2">
+                  <JFXButton fx:id="navViewAllTestReportBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#navViewAllTestReportBtnClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="TEST REPORTS">
                      <padding>
                         <Insets left="30.0" />
                      </padding>

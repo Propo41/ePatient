@@ -134,9 +134,24 @@ public class AddPatientController implements Initializable {
 
     @FXML
     void onAddSocialHistory(ActionEvent event) {
-        if(!socialHistory.getText().equals("")){
+        /*if(!socialHistory.getText().equals("")){
             socialHistoryText.put(socialHistory.getText(),true);
             socialHistory.setText("");
+        }*/
+
+        try {
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.getStyleClass().add("jfx-dialog-overlay-pane");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/receptionist/patient/add_patient/social_history_dialog.fxml"));
+            loader.load();
+            JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
+            dialog.getStyleClass().add("jfx-dialog-layout");
+            SocialHistoryDialogController socialHistoryDialogController = loader.getController();
+            //socialHistoryDialogController.setTitle(medicalHistoryMap,dialog);
+            socialHistoryDialogController.setTitle();
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -144,57 +159,57 @@ public class AddPatientController implements Initializable {
     void onCreateButtonClicked(ActionEvent event) throws ParseException {
 
         if(name.getText().equals("")){
-            openEmptyDialogWarning("Name field cannot be emtpy");
+            openEmptyDialogWarning("Name field cannot be empty");
             return;
         }
 
         if(email.getText().equals("")){
-            openEmptyDialogWarning("Email field cannot be emtpy");
+            openEmptyDialogWarning("Email field cannot be empty");
             return;
         }
 
         if(weight.getText().equals("")){
-            openEmptyDialogWarning("Weight field cannot be emtpy");
+            openEmptyDialogWarning("Weight field cannot be empty");
             return;
         }
 
         if(age.getText().equals("")){
-            openEmptyDialogWarning("Age field cannot be emtpy");
+            openEmptyDialogWarning("Age field cannot be empty");
             return;
         }
 
         if(bloodGroup.getText().equals("")){
-            openEmptyDialogWarning("BloodGroup cannot be emtpy");
+            openEmptyDialogWarning("BloodGroup cannot be empty");
             return;
         }
 
         if(gender.getText().equals("")){
-            openEmptyDialogWarning("Gender field cannot be emtpy");
+            openEmptyDialogWarning("Gender field cannot be empty");
             return;
         }
 
         if(height.getText().equals("")){
-            openEmptyDialogWarning("Height field cannot be emtpy");
+            openEmptyDialogWarning("Height field cannot be empty");
             return;
         }
 
         if(contact.getText().equals("")){
-            openEmptyDialogWarning("Contact field cannot be emtpy");
+            openEmptyDialogWarning("Contact field cannot be empty");
             return;
         }
 
         if(address.getText().equals("")){
-            openEmptyDialogWarning("Address field cannot be emtpy");
+            openEmptyDialogWarning("Address field cannot be empty");
             return;
         }
 
         if(dateOfBirth.getText().equals("")){
-            openEmptyDialogWarning("Date of Birth field cannot be emtpy");
+            openEmptyDialogWarning("Date of Birth field cannot be empty");
             return;
         }
 
         if(joiningDate.getText().equals("")){
-            openEmptyDialogWarning("Joining date field cannot be emtpy");
+            openEmptyDialogWarning("Joining date field cannot be empty");
             return;
         }
 
