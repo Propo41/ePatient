@@ -1,7 +1,6 @@
 package main.ui.receptionist.patient.add_patient;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -12,32 +11,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import jdk.nashorn.internal.runtime.ECMAException;
-import main.ui.admin.InputErrorDialogController;
-import main.ui.admin.InsertionProfileDialogController;
-import main.ui.admin.edit_doctor.EditDoctorController;
-import main.ui.admin.edit_patient.AddMedicalHistoryDialogController;
-import main.ui.receptionist.test_report.AddSuccessDialogController;
+import main.ui.admin.add_doctor.InputErrorDialogController;
+import main.ui.admin.add_doctor.InsertionProfileDialogController;
 import model.Patient;
-import util.Util;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -387,7 +373,7 @@ public class AddPatientController implements Initializable {
         try {
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/InputErrorDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/InputErrorDialog.fxml"));
             loader.load();
             JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
@@ -407,7 +393,7 @@ public class AddPatientController implements Initializable {
         try {
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/InsertionProfileDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/InsertionProfileDialog.fxml"));
             loader.load();
             JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");

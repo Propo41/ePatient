@@ -1,24 +1,23 @@
-package main.ui.admin;
+package main.ui.admin.add_doctor;
 
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import database.DoctorDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import database.DatabaseHandler;
-import main.ui.receptionist.test_report.AddSuccessDialogController;
+import model.MyTime;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +32,8 @@ public class AddProfileController implements Initializable {
     DatabaseHandler connectMSSQL;
 
     StackPane stackPane;
-
+    AddProfileController addProfileController;
+    ArrayList<MyTime> timeArrayList;
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
@@ -80,6 +80,7 @@ public class AddProfileController implements Initializable {
             }
         });
 
+        timeArrayList = new ArrayList<>();
     }
 
 
@@ -89,6 +90,12 @@ public class AddProfileController implements Initializable {
     }
 
     private void checkemptyField() {
+
+        if(timeArrayList.size()==0){
+            openScheduleDialog();
+            return;
+        }
+
         if(name.getText().equals("")){
             openEmptyDialogWarning("Name field cannot be empty");
             return;
@@ -198,7 +205,7 @@ public class AddProfileController implements Initializable {
         try {
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/InputErrorDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/InputErrorDialog.fxml"));
             loader.load();
             JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
@@ -215,11 +222,14 @@ public class AddProfileController implements Initializable {
         try {
             JFXDialogLayout content = new JFXDialogLayout();
             content.getStyleClass().add("jfx-dialog-overlay-pane");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/InsertionProfileDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/InsertionProfileDialog.fxml"));
             loader.load();
             JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
             dialog.getStyleClass().add("jfx-dialog-layout");
             int answer = connectMSSQL.getProfileId();
+            for(int i = 0; i < timeArrayList.size(); i++) {
+                new DoctorDao().insertSchedule(timeArrayList.get(i), answer);
+            }
             InsertionProfileDialogController insertionProfileDialogController = loader.getController();
             insertionProfileDialogController.setIdNumber(answer,dialog);
             dialog.show();
@@ -228,9 +238,35 @@ public class AddProfileController implements Initializable {
         }
     }
 
-
-    public void init(StackPane myStackPane) {
+    public void init(StackPane myStackPane, AddProfileController addProfileController) {
         this.stackPane = myStackPane;
+        this.addProfileController = addProfileController;
+    }
+
+    @FXML
+    void onAvailableDurationClick(MouseEvent event) {
+        openScheduleDialog();
+    }
+
+    private void openScheduleDialog() {
+        try {
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.getStyleClass().add("jfx-dialog-overlay-pane");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/add_schedule.fxml"));
+            loader.load();
+            JFXDialog dialog = new JFXDialog(stackPane, loader.getRoot(), JFXDialog.DialogTransition.CENTER);
+            dialog.getStyleClass().add("jfx-dialog-layout");
+            AddScheduleController addScheduleController = loader.getController();
+            addScheduleController.init(addProfileController,dialog);
+            dialog.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void saveSchedule(ArrayList<MyTime> timeArrayList) {
+        this.timeArrayList = timeArrayList;
     }
 
 }

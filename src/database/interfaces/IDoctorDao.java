@@ -25,4 +25,5 @@ public interface IDoctorDao {
     void deleteTuple(String tableName, String attributeSelection,String id);
     ArrayList<Doctor> getDoctorBasicInfo(String name);
     ArrayList<MedicalTestDetails> getTestReport(String name);
+    void insertSchedule(MyTime timeArrayList, int doctorId);
 }

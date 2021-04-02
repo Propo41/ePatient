@@ -141,6 +141,33 @@ public class DoctorDao implements IDoctorDao {
     }
 
     @Override
+    public void insertSchedule( MyTime timeArrayList, int doctorId) {
+
+        String query = "insert into Schedule (doctor_id,schedule_day,doctor_schedule_start_time,doctor_schedule_end_time ) \n" +
+                "values('" + doctorId + "','" + timeArrayList.getDate() +"', '" +
+                timeArrayList.getStartTime()+ "', '" + timeArrayList.getEndTime() + "')";
+        System.out.println("inserting");
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+
+    }
+
+
+    @Override
     public String getName(String doctorId) {
         String query = "select doctor_name from Doctor where doctor_id='" + doctorId + "'";
         connection = DatabaseHandler.getConnection();

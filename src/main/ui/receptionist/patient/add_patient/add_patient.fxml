@@ -195,7 +195,7 @@
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                            <children>
-                                      <TextField fx:id="socialHistory" promptText="ENTER SOCIAL HISTORY" styleClass="text-field-normal" HBox.hgrow="ALWAYS">
+                                      <TextField fx:id="socialHistory" editable="false" promptText="ENTER SOCIAL HISTORY" styleClass="text-field-normal" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="8.0" />
                                  </HBox.margin>
