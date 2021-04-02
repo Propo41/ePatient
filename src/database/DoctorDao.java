@@ -167,6 +167,28 @@ public class DoctorDao implements IDoctorDao {
 
     }
 
+    @Override
+    public void deleteChildForDoctor(String tableName, String attributeSelection, String id) {
+        connection = DatabaseHandler.getConnection();
+        String query = "delete from " + tableName + " where prescription_id IN" +
+                " (select prescription_id from Prescription where doctor_id = "+ id+")";
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+    }
+
 
     @Override
     public String getName(String doctorId) {

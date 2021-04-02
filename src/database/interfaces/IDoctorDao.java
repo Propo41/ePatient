@@ -26,4 +26,5 @@ public interface IDoctorDao {
     ArrayList<Doctor> getDoctorBasicInfo(String name);
     ArrayList<MedicalTestDetails> getTestReport(String name);
     void insertSchedule(MyTime timeArrayList, int doctorId);
+    void deleteChildForDoctor(String tableName, String attributeSelection,String id);
 }

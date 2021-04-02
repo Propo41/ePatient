@@ -137,7 +137,6 @@ public class ViewDoctorsController implements Initializable {
 
                 try {
 
-
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/edit_doctor/edit_doctor.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
 
@@ -174,6 +173,10 @@ public class ViewDoctorsController implements Initializable {
         prescriptionBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                new DoctorDao().deleteChildForDoctor("Recommendations","doctor_id",
+                        doctorArrayList.get(index).getDoctorId()+"");
+                new DoctorDao().deleteTuple("Prescription","doctor_id",
+                        doctorArrayList.get(index).getDoctorId()+"");
                 new DoctorDao().deleteTuple("Doctor","doctor_id",
                         doctorArrayList.get(index).getDoctorId()+"");
                 try {

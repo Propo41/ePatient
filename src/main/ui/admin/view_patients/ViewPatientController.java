@@ -158,6 +158,14 @@ public class ViewPatientController implements Initializable {
         prescriptionBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                new PatientDao().deleteChildForPatient("Disease","patient_id",
+                        patientArrayList.get(index).getId()+"");
+                new PatientDao().deleteChildForPatient("Recommendations","patient_id",
+                        patientArrayList.get(index).getId()+"");
+                new PatientDao().deleteTuple("Prescription","patient_id",
+                        patientArrayList.get(index).getId()+"");
+                new PatientDao().deleteTuple("Appointment","patient_id",
+                        patientArrayList.get(index).getId()+"");
                 new PatientDao().deleteTuple("Patient","patient_id",
                         patientArrayList.get(index).getId()+"");
                 getPatients();

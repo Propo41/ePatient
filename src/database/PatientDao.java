@@ -159,7 +159,8 @@ public class PatientDao implements IPatientDao {
 
 
     public ArrayList<Patient> getPatientBasicInfo(String name) {
-        String query = "select patient_name,joined_date,patient_id from Patient where patient_name like '%"+ name + "%' ";
+        String query = "select patient_name,joined_date,patient_id from Patient " +
+                "where (patient_name like '%"+ name +"%') OR (patient_id like '%"+name+"%')";
         connection = DatabaseHandler.getConnection();
         if (connection != null){
             try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
@@ -206,6 +207,30 @@ public class PatientDao implements IPatientDao {
             }
         }
         return;
+    }
+
+
+    @Override
+    public void deleteChildForPatient(String tableName, String attributeSelection, String id) {
+        connection = DatabaseHandler.getConnection();
+        String query = "delete from " + tableName+ " where prescription_id =" +
+                " (select prescription_id from Prescription where patient_id = " +id +")";
+        if (connection != null) {
+            try{
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return;
+
     }
 
     @Override
