@@ -74,7 +74,8 @@ public class DoctorDao implements IDoctorDao {
 
     public ArrayList<Doctor> getDoctorBasicInfo(String name) {
 
-        String query = "select doctor_specialist,doctor_name,doctor_id from Doctor where doctor_name like '%"+ name + "%' ";
+        String query = "select doctor_specialist,doctor_name,doctor_id from Doctor where (doctor_name like '%"+ name + "%' " +
+                " OR doctor_id like '%"+name+"%')";
         connection = DatabaseHandler.getConnection();
         if (connection != null) {
             try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
@@ -143,9 +144,9 @@ public class DoctorDao implements IDoctorDao {
     @Override
     public void insertSchedule( MyTime timeArrayList, int doctorId) {
 
-        String query = "insert into Schedule (doctor_id,schedule_day,doctor_schedule_start_time,doctor_schedule_end_time ) \n" +
-                "values('" + doctorId + "','" + timeArrayList.getDate() +"', '" +
-                timeArrayList.getStartTime()+ "', '" + timeArrayList.getEndTime() + "')";
+        String query = "insert into Schedule (doctor_id,schedule_day,doctor_schedule_start_time,doctor_schedule_end_time,duration ) \n" +
+                "values('" + doctorId + "','" + timeArrayList.getDate().getDayOfWeek().toString().toLowerCase() +"', '" +
+                timeArrayList.getStartTime()+ "', '" + timeArrayList.getEndTime() + "', '"+timeArrayList.getEndTime()+"')";
         System.out.println("inserting");
         connection = DatabaseHandler.getConnection();
         if (connection != null) {

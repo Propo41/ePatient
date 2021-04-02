@@ -29,9 +29,6 @@ public class AdminMainController implements Initializable {
     private JFXButton navSupportBtn;
 
     @FXML
-    private JFXButton navDashboardBtn;
-
-    @FXML
     private JFXButton navAppointmentsBtn;
 
     @FXML
@@ -69,14 +66,13 @@ public class AdminMainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        guiButtonCurrent = navDashboardBtn;
-        guiButtonPrevious = navDashboardBtn;
+        guiButtonCurrent = navPatientBtn;
+        guiButtonPrevious = navPatientBtn;
 
-
-        // initially load dashboard UI
+        // initially load view patients UI
         try {
             frameLayout.getChildren().clear();
-            VBox root = FXMLLoader.load(getClass().getResource("/main/ui/admin/dashboard/admin_dashboard.fxml"));
+            VBox root = FXMLLoader.load(getClass().getResource("/main/ui/admin/view_doctor/view_doctors.fxml"));
             root = (VBox) makeResponsive(root, "vbox");
             frameLayout.getChildren().add(root);
         } catch (Exception e) {
@@ -144,7 +140,7 @@ public class AdminMainController implements Initializable {
         }
     }
 
-    @FXML
+/*    @FXML
     void onDashboardClick(ActionEvent event) {
         if (!guiButtonCurrent.equals(navDashboardBtn)) {
             guiButtonCurrent = navDashboardBtn;
@@ -159,7 +155,7 @@ public class AdminMainController implements Initializable {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
     @FXML
     void onLogOutClick(ActionEvent event) {
@@ -189,14 +185,6 @@ public class AdminMainController implements Initializable {
             guiButtonCurrent = navAddADoctorBtn;
             guiChangeButtonStyle();
             guiButtonPrevious = navAddADoctorBtn;
-            try {
-                frameLayout.getChildren().clear();
-                ScrollPane root = FXMLLoader.load(getClass().getResource("/main/ui/admin/add_doctor/addProfile.fxml"));
-                root = (ScrollPane) makeResponsive(root, "ScrollPane");
-                frameLayout.getChildren().add(root);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/addProfile.fxml"));

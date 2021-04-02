@@ -43,8 +43,10 @@ public class AddScheduleController implements Initializable {
 
     @FXML
     void onAddClick(ActionEvent event) {
-        if(dateSelector.getValue() != null && startTimeSelector.getValue().toString() != null
-        && endTimeSelector.getValue().toString()!=null ) {
+        if(dateSelector.getValue() != null) {
+            startTimeSelector.getValue();
+            System.out.println("date picked: " + dateSelector.getValue().getDayOfWeek());
+            endTimeSelector.getValue();
             timeObservableList.add(new MyTime(dateSelector.getValue(),
                     startTimeSelector.getValue(),
                     endTimeSelector.getValue()));
@@ -54,6 +56,7 @@ public class AddScheduleController implements Initializable {
             dateSelector.setValue(null);
             startTimeSelector.setValue(null);
             endTimeSelector.setValue(null);
+
         }
 
     }

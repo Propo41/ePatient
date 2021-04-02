@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <StackPane fx:id="myStackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.main.AdminMainController">
    <children>
       <BorderPane prefHeight="857.0" prefWidth="1200.0" styleClass="window-background" stylesheets="@../../../../resources/styles.css">
@@ -31,7 +30,7 @@
                               <Insets top="20.0" />
                           </VBox.margin>
                       </ImageView>
-                      <Label fx:id="doctorNameTv" styleClass="text-sub-heading" text="DOCTOR" />
+                      <Label fx:id="doctorNameTv" styleClass="text-sub-heading" text="ADMIN" />
                       <Separator prefWidth="200.0" />
                       <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="250.0">
                           <children>
@@ -42,12 +41,7 @@
                               </Label>
                           </children>
                       </HBox>
-                      <JFXButton fx:id="navDashboardBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onDashboardClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-selected" text="DASHBOARD">
-                          <padding>
-                              <Insets left="30.0" />
-                          </padding>
-                      </JFXButton>
-                      <JFXButton fx:id="navViewDoctorButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onViewDoctorClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="VIEW DOCTORS">
+                      <JFXButton fx:id="navViewDoctorButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#onViewDoctorClick" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-selected" text="VIEW DOCTORS">
                           <padding>
                               <Insets left="30.0" />
                           </padding>
