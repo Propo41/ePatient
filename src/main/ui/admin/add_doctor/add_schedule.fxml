@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #f9faff;" stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.add_doctor.AddScheduleController">
+   <children>
+      <Label styleClass="title-text-dialog" text="PICK TIME" />
+      <VBox alignment="TOP_CENTER" prefHeight="847.0" spacing="20.0" styleClass="content-background" stylesheets="@../../../../resources/styles.css">
+         <children>
+            <HBox>
+               <children>
+                  <VBox prefHeight="82.0" prefWidth="175.0" spacing="10.0" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                     <children>
+                        <Label styleClass="text-box-header" text="DAY" />
+                        <JFXDatePicker fx:id="dateSelector" prefWidth="400.0" showWeekNumbers="true" styleClass="text-field-normal">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </JFXDatePicker>
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="82.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <Label styleClass="text-box-header" text="START TIME">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <JFXTimePicker fx:id="startTimeSelector" prefWidth="300.0" styleClass="text-field-normal">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
+                        </JFXTimePicker>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="82.0" spacing="10.0">
+                     <children>
+                        <Label styleClass="text-box-header" text="END TIME" />
+                        <JFXTimePicker fx:id="endTimeSelector" prefWidth="300.0" styleClass="text-field-normal" />
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox prefWidth="100.0" spacing="10.0" />
+            <JFXButton maxWidth="1920.0" onAction="#onAddClick" prefHeight="16.0" prefWidth="853.0" styleClass="button-tertiary-small" text="ADD" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefWidth="200.0">
+               <children>
+                  <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Label styleClass="text-box-header" text="OBSERVED DISEASES">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox spacing="15.0">
+               <children>
+                  <VBox styleClass="text-content-background" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ListView fx:id="timeListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/listview_styles_ash_selectable.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <HBox>
+                     <children>
+                        <JFXButton maxWidth="1920.0" onAction="#onTimeRemove" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <JFXButton maxWidth="1.7976931348623157E308" onAction="#onSaveClick" styleClass="button-primary" text="SAVE" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="50.0" right="50.0" top="30.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>

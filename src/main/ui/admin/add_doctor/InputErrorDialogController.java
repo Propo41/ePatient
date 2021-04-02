@@ -1,4 +1,4 @@
-package main.ui.admin;
+package main.ui.admin.add_doctor;
 
 import com.jfoenix.controls.JFXDialog;
 import javafx.event.ActionEvent;

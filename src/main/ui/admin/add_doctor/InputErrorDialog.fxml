@@ -6,19 +6,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-           stylesheets="@../../../resources/styles.css"
-           xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.InsertionProfileDialogController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+           stylesheets="@../../../../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.admin.add_doctor.InputErrorDialogController">
    <children>
       <VBox alignment="CENTER" prefHeight="360.0" prefWidth="600.0">
          <children>
-            <Label styleClass="title-text-dialog" text="Account Created" />
-            <Label styleClass="title-text-dialog" text="Sucessfully">
+            <Label styleClass="title-text-dialog" text="Input Error" />
+            <Label fx:id="inputErrorLabel" styleClass="text-sub-heading-bold-blue" text="Your Account ID is 30">
                <VBox.margin>
-                  <Insets bottom="40.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="idNumber" styleClass="text-sub-heading-bold-blue" text="Your Account ID is 30" />
             <JFXButton maxWidth="1.7976931348623157E308" onAction="#dismissDialog" styleClass="button-primary" text="Close">
                <VBox.margin>
                   <Insets left="60.0" right="60.0" top="35.0" />

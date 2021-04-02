@@ -1,4 +1,4 @@
-package main.ui.admin;
+package main.ui.admin.add_doctor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

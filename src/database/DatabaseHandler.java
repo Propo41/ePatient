@@ -3,6 +3,7 @@ package database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import model.Doctor;
+import model.MyTime;
 import util.Util;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class DatabaseHandler {
     private Connection connection;
     private static final HikariDataSource dataSource;
     // switch to master
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=master;selectedMethod=cursor";
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=ePatient;selectedMethod=cursor";
 
     static {
         HikariConfig config = new HikariConfig();
@@ -41,9 +42,9 @@ public class DatabaseHandler {
     }
 
     public boolean insertDoctorProfile(String name, String email, String mobileNumber, String doctorAddresss,
-                                String department, String speciality, String visit_fee, String hospitalAffiliations,
-                                String professionalExperience, String roomNumber,
-                                String educationalBackground, String password){
+                                       String department, String speciality, String visit_fee, String hospitalAffiliations,
+                                       String professionalExperience, String roomNumber,
+                                       String educationalBackground, String password){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         //joiningDate.setText(dtf.format(now));

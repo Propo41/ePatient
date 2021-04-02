@@ -1,24 +1,18 @@
 package main.ui.admin.main;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import main.ui.admin.AddProfileController;
-import main.ui.receptionist.patient.add_patient.AddPatientController;
+import main.ui.admin.add_doctor.AddProfileController;
 
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -197,7 +191,7 @@ public class AdminMainController implements Initializable {
             guiButtonPrevious = navAddADoctorBtn;
             try {
                 frameLayout.getChildren().clear();
-                ScrollPane root = FXMLLoader.load(getClass().getResource("/main/ui/admin/addProfile.fxml"));
+                ScrollPane root = FXMLLoader.load(getClass().getResource("/main/ui/admin/add_doctor/addProfile.fxml"));
                 root = (ScrollPane) makeResponsive(root, "ScrollPane");
                 frameLayout.getChildren().add(root);
             } catch (Exception e) {
@@ -205,13 +199,13 @@ public class AdminMainController implements Initializable {
             }
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/addProfile.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/admin/add_doctor/addProfile.fxml"));
                 Parent root = (Parent) fxmlLoader.load();
 
                 AddProfileController addProfileController = fxmlLoader.getController();
-                addProfileController.init(myStackPane);
+                addProfileController.init(myStackPane, addProfileController);
                 frameLayout.getChildren().clear();
-                ScrollPane root1 = fxmlLoader.load(getClass().getResource("/main/ui/admin/addProfile.fxml"));
+                ScrollPane root1 = fxmlLoader.load(getClass().getResource("/main/ui/admin/add_doctor/addProfile.fxml"));
 
                 root1 = (ScrollPane) makeResponsive(root, "ScrollPane");
                 frameLayout.getChildren().add(root1);
