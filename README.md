@@ -12,13 +12,15 @@ The application consists of 3 roles:
 - The Receptionist will be handling the patients, create their profiles, make new appointments and add patient medical test reports, that will all be displayed in a user-friendly UI. 
 - Finally, the Doctor(s) can receive patients and add prescriptions to their profile, which can later be printed out as a file.
 
-APIs used
+**APIs used**
 - HikariCP (for connection pooling)
 - jfoenix
 
-Patterns used
+**Patterns used**
 - DAO pattern for database operations
 - MVC pattern
+
+**Screenshots**
 
 ![1](https://user-images.githubusercontent.com/46298019/113416545-68cc2280-93e3-11eb-802a-75438f2ff11e.PNG)
 ![2](https://user-images.githubusercontent.com/46298019/113416550-69fd4f80-93e3-11eb-905b-d39e310a2c02.PNG)
