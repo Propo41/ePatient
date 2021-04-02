@@ -36,7 +36,7 @@ public class PrescriptionDao implements IPrescription {
                             resultSet.getString("food_chart"),
                             resultSet.getString("exercise_routine"),
                             resultSet.getString("patient_health_condition"),
-                            resultSet.getString("health_comment"));
+                            resultSet.getString("comment"));
                     prescription.setHealthCondition(healthCondition);
                     prescription.setDiseases(getDiseasesInfo(prescriptionId));
                     prescription.setMedicalTests(getMedicalTestsInfo(prescriptionId));
@@ -121,8 +121,8 @@ public class PrescriptionDao implements IPrescription {
                 while (resultSet.next()) {
                     medicines.add(new Medicine(
                             resultSet.getString("medicine_name"),
-                            resultSet.getString("medicine_duration"),
-                            resultSet.getString("medicine_comment")));
+                            resultSet.getString("duration"),
+                            resultSet.getString("comment")));
                 }
 
             } catch (Exception e) {

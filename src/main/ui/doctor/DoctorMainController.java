@@ -80,6 +80,8 @@ public class DoctorMainController implements Initializable {
     private Timeline timeline;
     private JFXDialog dialog;
 
+    private boolean isQueryOn = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         guiButtonCurrent = navDashboardBtn;
@@ -102,28 +104,32 @@ public class DoctorMainController implements Initializable {
     }
 
     private void startQueryingService() {
-        DoctorQueueDao doctorQueueDao = new DoctorQueueDao();
-        timeline = new Timeline(
-                new KeyFrame(Duration.seconds(Util.QUERY_DELAY), e -> {
-                    // query database here
-                    // if data is found, then show alert dialog and then stop service.
-                    System.out.println("service running...");
-                    Pair<String, String> res = doctorQueueDao.fetchQueue(Util.getInstance().getUserId());
-                    if (res != null) {
-                        // update ui
-                        // stop service
-                        Util util = Util.getInstance();
-                        if (!util.getCurrentDoctorPatientQueue().equals(res)) {
-                            openNewPatientDialog(res);
-                            stopQueryingService();
-                            Util.getInstance().setCurrentDoctorPatientQueue(res);
-                        }
+        if(!isQueryOn){
+            isQueryOn = true;
+            DoctorQueueDao doctorQueueDao = new DoctorQueueDao();
+            timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(Util.QUERY_DELAY), e -> {
+                        // query database here
+                        // if data is found, then show alert dialog and then stop service.
+                        System.out.println("service running...");
+                        Pair<String, String> res = doctorQueueDao.fetchQueue(Util.getInstance().getUserId());
+                        if (res != null) {
+                            // update ui
+                            // stop service
+                            Util util = Util.getInstance();
+                            if (!util.getCurrentDoctorPatientQueue().equals(res)) {
+                                openNewPatientDialog(res);
+                                stopQueryingService();
+                                Util.getInstance().setCurrentDoctorPatientQueue(res);
+                            }
 
-                    }
-                })
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+                        }
+                    })
+            );
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+        }
+
     }
 
     private void openNewPatientDialog(Pair<String, String> res) {
@@ -143,8 +149,10 @@ public class DoctorMainController implements Initializable {
     }
 
     private void stopQueryingService() {
-        System.out.println("service stopped...");
-        timeline.stop();
+        if (isQueryOn) {
+            System.out.println("service stopped...");
+            timeline.stop();
+        }
     }
 
     private Parent makeResponsive(Parent root, String node) {

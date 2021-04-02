@@ -175,10 +175,15 @@ public class ViewDoctorsController implements Initializable {
             public void handle(ActionEvent event) {
                 new DoctorDao().deleteChildForDoctor("Recommendations","doctor_id",
                         doctorArrayList.get(index).getDoctorId()+"");
+                new DoctorDao().deleteTuple("Schedule","doctor_id",
+                        doctorArrayList.get(index).getDoctorId()+"");
+                new DoctorDao().deleteTuple("Appointment","doctor_id",
+                        doctorArrayList.get(index).getDoctorId()+"");
                 new DoctorDao().deleteTuple("Prescription","doctor_id",
                         doctorArrayList.get(index).getDoctorId()+"");
                 new DoctorDao().deleteTuple("Doctor","doctor_id",
                         doctorArrayList.get(index).getDoctorId()+"");
+
                 try {
                     getDoctors();
                 } catch (SQLException throwables) {

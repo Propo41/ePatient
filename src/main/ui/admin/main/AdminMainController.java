@@ -5,11 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import main.ui.admin.add_doctor.AddProfileController;
 
 
@@ -57,7 +60,6 @@ public class AdminMainController implements Initializable {
     private JFXButton navAddADoctorBtn;
 
 
-
     @FXML
     private ListView<HBox> listView;
 
@@ -94,7 +96,7 @@ public class AdminMainController implements Initializable {
             AnchorPane.setLeftAnchor(vBox, 0.0d);
             AnchorPane.setRightAnchor(vBox, 0.0d);
             return vBox;
-        }else if(node.equals("ScrollPane")){
+        } else if (node.equals("ScrollPane")) {
             ScrollPane scrollPane = (ScrollPane) root;
             // to make the contents of the frame responsive
             scrollPane.setPrefWidth(930);
@@ -104,7 +106,7 @@ public class AdminMainController implements Initializable {
             AnchorPane.setLeftAnchor(scrollPane, 0.0d);
             AnchorPane.setRightAnchor(scrollPane, 0.0d);
             return scrollPane;
-        }else if(node.equals("BorderPane")){
+        } else if (node.equals("BorderPane")) {
             BorderPane borderPane = (BorderPane) root;
             // to make the contents of the frame responsive
             borderPane.setPrefWidth(930);
@@ -159,11 +161,23 @@ public class AdminMainController implements Initializable {
 
     @FXML
     void onLogOutClick(ActionEvent event) {
-
+        Stage stage = (Stage) guiButtonCurrent.getScene().getWindow();
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/ui/main/main.fxml"));
+            Parent parent = loader.load();
+            Scene loginScene = new Scene(parent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(loginScene);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void onViewDoctorClick(ActionEvent event){
+    void onViewDoctorClick(ActionEvent event) {
         if (!guiButtonCurrent.equals(navViewDoctorButton)) {
             guiButtonCurrent = navViewDoctorButton;
             guiChangeButtonStyle();
