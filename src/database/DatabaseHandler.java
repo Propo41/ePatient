@@ -50,8 +50,8 @@ public class DatabaseHandler {
         //joiningDate.setText(dtf.format(now));
         String query = "INSERT INTO Doctor (doctor_name, doctor_email, doctor_phone, doctor_address, department, doctor_specialist, " +
                 "visit_fee, hospital_affiliations, professional_experience, room_number, educaional_background, doctor_password, joined_date ) " +
-                "VALUES ('" +  name + "', '" + email + "','" + mobileNumber + "','" + doctorAddresss + "','" + visit_fee +
-        "','" + department + "','" + speciality + "','" + hospitalAffiliations + "','" + professionalExperience +"','" +
+                "VALUES ('" +  name + "', '" + email + "','" + mobileNumber + "','" + doctorAddresss + "','" + department +
+        "','" + speciality + "','" + visit_fee + "','" + hospitalAffiliations + "','" + professionalExperience +"','" +
                Integer.parseInt(roomNumber) + "','" + educationalBackground + "','" + password + "','" + dtf.format(now) + "')";
 
         try {
