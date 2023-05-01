@@ -265,6 +265,7 @@
                                           <HBox>
                                              <children>
                                                 <JFXButton fx:id="diseasesDeleteItemBtn11" maxWidth="1920.0" onAction="#onMedicineDeleteItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text=" " />
+                                                <JFXButton fx:id="printPrescriptionBtn" maxWidth="1920.0" onAction="#printPrescriptionItemClick" prefHeight="259.0" prefWidth="51.0" styleClass="button-secondary-listview" text="PRINT PRESCRIPTION" />
                                              </children>
                                           </HBox>
                                        </children>

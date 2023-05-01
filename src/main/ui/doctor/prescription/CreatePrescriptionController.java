@@ -78,6 +78,9 @@ public class CreatePrescriptionController implements Initializable {
     private int medicineSelectedItemIndex = -1;
 
 
+    @FXML
+    private TextField printPrescription;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // DISEASES
@@ -145,9 +148,16 @@ public class CreatePrescriptionController implements Initializable {
         diseaseNameTv.clear();
         diseaseCommentsTv.clear();
 
+        printPrescription.setText("Disease: " + diseasesListView.get(diseaseSelectedItemIndex) + "\n" +
+                                    "Medicine: " + medicineListView.get(medicineSelectedItemIndex));
+        
     }
 
-
+    @FXML 
+    void onPrintPrescriptionItemClick(ActionEvent event){
+        PrintEvent(printPrescription);
+    }
+    
     @FXML
     void onDeleteTestItemClick(ActionEvent event) {
         medicalTestObservableList.remove(medicalTestsSelectedItemIndex);
