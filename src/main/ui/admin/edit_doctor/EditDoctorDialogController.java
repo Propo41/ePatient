@@ -47,6 +47,13 @@ public class EditDoctorDialogController {
         this.editDoctorController = editDoctorController;
     }
 
+
+    
+
+
+
+
+
     @FXML
     void onSaveClicked(ActionEvent event) {
         DoctorDao doctorDao = new DoctorDao();
