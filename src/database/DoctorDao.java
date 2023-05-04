@@ -103,6 +103,75 @@ public class DoctorDao implements IDoctorDao {
         return null;
     }
 
+
+
+
+ 
+    public ArrayList<Doctor> getDoctorsBySpeciality() {
+
+        String query = "select doctor_specialist,doctor_name,doctor_id, doctor_experience from Doctor Order By doctor_Speciality ";
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<Doctor> doctorArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()) {
+                    Doctor doctor = new Doctor();
+                    doctor.setSpecialist(resultSet.getString("doctor_specialist"));
+                    doctor.setName(resultSet.getString("doctor_name"));
+                    doctor.setDoctorId(resultSet.getString("doctor_id"));
+                    doctorArrayList.add(doctor);
+                    index++;
+                }
+                return doctorArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+
+    public ArrayList<Doctor> getDoctorByExperience() {
+
+        String query = "select doctor_specialist,doctor_name,doctor_id, doctor_experience from Doctor Order By doctor_experience DESC ";
+        connection = DatabaseHandler.getConnection();
+        if (connection != null) {
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                ArrayList<Doctor> doctorArrayList = new ArrayList<>();
+                int index = 0;
+                while (resultSet.next()) {
+                    Doctor doctor = new Doctor();
+                    doctor.setSpecialist(resultSet.getString("doctor_specialist"));
+                    doctor.setName(resultSet.getString("doctor_name"));
+                    doctor.setDoctorId(resultSet.getString("doctor_id"));
+                    doctorArrayList.add(doctor);
+                    index++;
+                }
+                return doctorArrayList;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+
+
     @Override
     public ArrayList<MedicalTestDetails> getTestReport(String name) {
         String query = "select T.test_name, Pat.patient_name, D.doctor_name,A.date_of_appointment \n" +

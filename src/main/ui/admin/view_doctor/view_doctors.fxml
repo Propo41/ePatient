@@ -20,7 +20,18 @@
                   <JFXButton onAction="#onSearchBtnClick" prefHeight="50.0" prefWidth="234.0" styleClass="button-primary-small" text="SEARCH" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
+
+            <JFXButton fx:id="sortBySpecialist" alignment="BASELINE_LEFT"  graphicTextGap="20.0"
+             onAction="onSpecialitySort" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="Speciality">
+             <padding> <Insets left="150.0" right="150.0" top="50.0"/> </padding> </JFXButton>
+
+             
+            <JFXButton fx:id="sortByExperience" alignment="BASELINE_RIGHT"  graphicTextGap="20.0"
+             onAction="onSpecialitySort" prefHeight="47.0" prefWidth="240.0" styleClass="nav-button-unselected" text="Experience">
+             <padding> <Insets left="150.0" right="150.0" top="50.0"/> </padding> </JFXButton>
+
          </children>
+
       </HBox>
       <Separator prefHeight="5.0" prefWidth="845.0" />
       <Label fx:id="searchResultNumber" styleClass="text-sub-heading" text="5 SEARCH RESULTS FOUND" />

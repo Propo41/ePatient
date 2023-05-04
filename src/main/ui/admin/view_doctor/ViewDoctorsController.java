@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import main.ui.admin.edit_doctor.EditDoctorController;
 import model.Doctor;
 import util.Util;
+import java.awt.*;
 
 import javax.print.Doc;
 import java.io.IOException;
@@ -165,6 +166,47 @@ public class ViewDoctorsController implements Initializable {
 
             }
         });
+
+        JFXButton sortBySpecialist = new JFXButton();
+        JFXButton sortByExperience = new JFXButton();
+
+
+        sortByExperience.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void experienceSort(ActionEvent event) {
+                new DoctorDao().getDoctorByExperience();
+                try {
+                    getDoctors();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+       sortBySpecialist.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void specialtySort(ActionEvent event) {
+                new DoctorDao().getDoctorsBySpeciality();
+                try {
+                    getDoctors();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+        
+
+
+
+
 
         JFXButton prescriptionBtn = new JFXButton();
         prescriptionBtn.setText("DELETE");
