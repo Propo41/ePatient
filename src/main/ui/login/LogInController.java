@@ -20,6 +20,8 @@ public class LogInController {
     @FXML
     private TextField userPassword;
 
+    @FXML
+    private JFXButton navBackBtn;
 
     @FXML
     void loginClicked(ActionEvent event) {
@@ -61,6 +63,19 @@ public class LogInController {
 
     }
 
-
+    // Back button takes back to main screen select
+    void onBackClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/ui/main/main.fxml"));
+            Parent parent = loader.load();
+            Scene mainscene = new Scene(parent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(mainscene);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
